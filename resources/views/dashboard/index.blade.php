@@ -337,14 +337,14 @@
     </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    window.aiRoutes = {
-        analyze: "{{ route('ai.analyze') }}",
-        ask: "{{ route('ai.ask') }}",
-        report: "{{ route('ai.report') }}",
-    };
-    window.dashboardAiSeed = {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        window.aiRoutes = {
+        analyze: "{{ route('ai.analyze', [], false) }}",
+        ask: "{{ route('ai.ask', [], false) }}",
+        report: "{{ route('ai.report', [], false) }}",
+        };
+        window.dashboardAiSeed = {
         monthlyRevenue: @json($periodSeries),
         categoryPerformance: @json($categoryPerformance),
         categoryStock: @json($categoryStock),

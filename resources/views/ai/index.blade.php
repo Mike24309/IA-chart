@@ -122,9 +122,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     window.aiRoutes = {
-        analyze: "{{ route('ai.analyze') }}",
-        ask: "{{ route('ai.ask') }}",
-        report: "{{ route('ai.report') }}",
+        analyze: "{{ route('ai.analyze', [], false) }}",
+        ask: "{{ route('ai.ask', [], false) }}",
+        report: "{{ route('ai.report', [], false) }}",
     };
 </script>
 @endsection

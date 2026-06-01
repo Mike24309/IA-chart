@@ -119,10 +119,10 @@
     @endphp
     <script>
         window.aiRoutes = window.aiRoutes || {
-            analyze: "{{ route('ai.analyze') }}",
-            interpret: "{{ route('ai.interpret') }}",
-            ask: "{{ route('ai.ask') }}",
-            report: "{{ route('ai.report') }}",
+            analyze: "{{ route('ai.analyze', [], false) }}",
+            interpret: "{{ route('ai.interpret', [], false) }}",
+            ask: "{{ route('ai.ask', [], false) }}",
+            report: "{{ route('ai.report', [], false) }}",
         };
         window.initialAiSummaryPayload = @json($sidepanelSummaryPayload);
     </script>
