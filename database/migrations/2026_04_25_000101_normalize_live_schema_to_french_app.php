@@ -95,11 +95,22 @@ return new class extends Migration
                 });
             }
 
-            DB::statement("
-                UPDATE details_facture df
-                LEFT JOIN produits p ON p.id = df.produit_id
-                SET df.description = COALESCE(NULLIF(df.description, ''), p.nom, '')
-            ");
+            if (DB::getDriverName() === 'pgsql') {
+                DB::statement("
+                    UPDATE details_facture
+                    SET description = COALESCE(NULLIF(description, ''), (
+                        SELECT nom
+                        FROM produits
+                        WHERE produits.id = details_facture.produit_id
+                    ), '')
+                ");
+            } else {
+                DB::statement("
+                    UPDATE details_facture df
+                    LEFT JOIN produits p ON p.id = df.produit_id
+                    SET df.description = COALESCE(NULLIF(df.description, ''), p.nom, '')
+                ");
+            }
         }
 
         if (Schema::hasTable('mouvements_stock')) {
@@ -123,10 +134,12 @@ return new class extends Migration
                 END
             ");
 
-            DB::statement("
-                ALTER TABLE mouvements_stock
-                MODIFY type_mouvement ENUM('entree','sortie','ajustement') NOT NULL
-            ");
+            if (DB::getDriverName() === 'mysql') {
+                DB::statement("
+                    ALTER TABLE mouvements_stock
+                    MODIFY type_mouvement ENUM('entree','sortie','ajustement') NOT NULL
+                ");
+            }
         }
 
         if (Schema::hasTable('activites_utilisateurs')) {
@@ -264,13 +277,23 @@ return new class extends Migration
     private function renameTable(string $from, string $to): void
     {
         if (Schema::hasTable($from) && ! Schema::hasTable($to)) {
-            DB::statement("RENAME TABLE `{$from}` TO `{$to}`");
+            if (DB::getDriverName() === 'pgsql') {
+                DB::statement("ALTER TABLE \"{$from}\" RENAME TO \"{$to}\"");
+            } else {
+                DB::statement("RENAME TABLE `{$from}` TO `{$to}`");
+            }
         }
     }
 
     private function renameColumn(string $table, string $from, string $to, string $definition): void
     {
         if (Schema::hasTable($table) && Schema::hasColumn($table, $from) && ! Schema::hasColumn($table, $to)) {
+            if (DB::getDriverName() === 'pgsql') {
+                DB::statement("ALTER TABLE \"{$table}\" RENAME COLUMN \"{$from}\" TO \"{$to}\"");
+
+                return;
+            }
+
             DB::statement("ALTER TABLE `{$table}` CHANGE `{$from}` `{$to}` {$definition}");
         }
     }

@@ -12,11 +12,11 @@ return new class extends Migration
     {
         if (Schema::hasTable('produits')) {
             if (Schema::hasColumn('produits', 'stock_theorique') && ! Schema::hasColumn('produits', 'stock')) {
-                DB::statement('ALTER TABLE `produits` CHANGE `stock_theorique` `stock` INT NOT NULL DEFAULT 0');
+                $this->renameColumn('produits', 'stock_theorique', 'stock', 'INT NOT NULL DEFAULT 0');
             }
 
             if (Schema::hasColumn('produits', 'theoretical_stock') && ! Schema::hasColumn('produits', 'stock')) {
-                DB::statement('ALTER TABLE `produits` CHANGE `theoretical_stock` `stock` INT NOT NULL DEFAULT 0');
+                $this->renameColumn('produits', 'theoretical_stock', 'stock', 'INT NOT NULL DEFAULT 0');
             }
 
             if (Schema::hasColumn('produits', 'stock_physique')) {
@@ -34,11 +34,11 @@ return new class extends Migration
 
         if (Schema::hasTable('mouvements_stock')) {
             if (Schema::hasColumn('mouvements_stock', 'stock_theorique_avant') && ! Schema::hasColumn('mouvements_stock', 'stock_avant')) {
-                DB::statement('ALTER TABLE `mouvements_stock` CHANGE `stock_theorique_avant` `stock_avant` INT NOT NULL');
+                $this->renameColumn('mouvements_stock', 'stock_theorique_avant', 'stock_avant', 'INT NOT NULL');
             }
 
             if (Schema::hasColumn('mouvements_stock', 'stock_theorique_apres') && ! Schema::hasColumn('mouvements_stock', 'stock_apres')) {
-                DB::statement('ALTER TABLE `mouvements_stock` CHANGE `stock_theorique_apres` `stock_apres` INT NOT NULL');
+                $this->renameColumn('mouvements_stock', 'stock_theorique_apres', 'stock_apres', 'INT NOT NULL');
             }
 
             if (Schema::hasColumn('mouvements_stock', 'stock_physique_avant')) {
@@ -60,7 +60,7 @@ return new class extends Migration
     {
         if (Schema::hasTable('produits')) {
             if (Schema::hasColumn('produits', 'stock') && ! Schema::hasColumn('produits', 'stock_theorique')) {
-                DB::statement('ALTER TABLE `produits` CHANGE `stock` `stock_theorique` INT NOT NULL DEFAULT 0');
+                $this->renameColumn('produits', 'stock', 'stock_theorique', 'INT NOT NULL DEFAULT 0');
             }
 
             if (! Schema::hasColumn('produits', 'stock_physique')) {
@@ -74,11 +74,11 @@ return new class extends Migration
 
         if (Schema::hasTable('mouvements_stock')) {
             if (Schema::hasColumn('mouvements_stock', 'stock_avant') && ! Schema::hasColumn('mouvements_stock', 'stock_theorique_avant')) {
-                DB::statement('ALTER TABLE `mouvements_stock` CHANGE `stock_avant` `stock_theorique_avant` INT NOT NULL');
+                $this->renameColumn('mouvements_stock', 'stock_avant', 'stock_theorique_avant', 'INT NOT NULL');
             }
 
             if (Schema::hasColumn('mouvements_stock', 'stock_apres') && ! Schema::hasColumn('mouvements_stock', 'stock_theorique_apres')) {
-                DB::statement('ALTER TABLE `mouvements_stock` CHANGE `stock_apres` `stock_theorique_apres` INT NOT NULL');
+                $this->renameColumn('mouvements_stock', 'stock_apres', 'stock_theorique_apres', 'INT NOT NULL');
             }
 
             if (! Schema::hasColumn('mouvements_stock', 'stock_physique_avant')) {
@@ -93,5 +93,20 @@ return new class extends Migration
                 'stock_physique_apres' => DB::raw('stock_theorique_apres'),
             ]);
         }
+    }
+
+    private function renameColumn(string $table, string $from, string $to, string $definition): void
+    {
+        if (! Schema::hasTable($table) || ! Schema::hasColumn($table, $from) || Schema::hasColumn($table, $to)) {
+            return;
+        }
+
+        if (DB::getDriverName() === 'pgsql') {
+            DB::statement("ALTER TABLE \"{$table}\" RENAME COLUMN \"{$from}\" TO \"{$to}\"");
+
+            return;
+        }
+
+        DB::statement("ALTER TABLE `{$table}` CHANGE `{$from}` `{$to}` {$definition}");
     }
 };

@@ -296,7 +296,11 @@ return new class extends Migration
     private function renameTableIfExists(string $from, string $to): void
     {
         if (Schema::hasTable($from) && ! Schema::hasTable($to)) {
-            DB::statement("RENAME TABLE `{$from}` TO `{$to}`");
+            if (DB::getDriverName() === 'pgsql') {
+                DB::statement("ALTER TABLE \"{$from}\" RENAME TO \"{$to}\"");
+            } else {
+                DB::statement("RENAME TABLE `{$from}` TO `{$to}`");
+            }
         }
     }
 
@@ -304,6 +308,12 @@ return new class extends Migration
     private function renameColumnIfExists(string $table, string $from, string $to): void
     {
         if (Schema::hasTable($table) && Schema::hasColumn($table, $from) && ! Schema::hasColumn($table, $to)) {
+            if (DB::getDriverName() === 'pgsql') {
+                DB::statement("ALTER TABLE \"{$table}\" RENAME COLUMN \"{$from}\" TO \"{$to}\"");
+
+                return;
+            }
+
             $safeColumn = str_replace('`', '``', $from);
             $column = DB::selectOne("SHOW FULL COLUMNS FROM `{$table}` LIKE '{$safeColumn}'");
 
