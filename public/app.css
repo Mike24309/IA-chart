@@ -1,0 +1,5248 @@
+/* Cette section definit les couleurs et variables globales reutilisees dans tout le theme. */
+:root {
+    --navy: #0f172a;
+    --white: #ffffff;
+    --light: #fff6ee;
+    --line: #ead7c9;
+    --text: #4b4f57;
+    --muted: #6f737b;
+    --green: #0f9d76;
+    --red: #d14343;
+    --amber: #f59e0b;
+    --panel: rgba(255, 252, 248, 0.95);
+    --panel-soft: #fff1e4;
+    --shadow: 0 18px 50px rgba(119, 66, 31, 0.08);
+    --shadow-soft: 0 12px 30px rgba(119, 66, 31, 0.06);
+    --shadow-strong: 0 24px 54px rgba(119, 66, 31, 0.12);
+    --focus-ring: 0 0 0 4px rgba(243, 91, 28, 0.12);
+}
+
+/* Finition premium DEV SOLAIRE appliquee sur toute l application. */
+body {
+    background:
+        radial-gradient(circle at 8% 14%, rgba(243, 91, 28, 0.16) 0%, transparent 24%),
+        radial-gradient(circle at 86% 8%, rgba(245, 158, 11, 0.12) 0%, transparent 20%),
+        radial-gradient(circle at 20% 92%, rgba(243, 91, 28, 0.08) 0%, transparent 18%),
+        linear-gradient(180deg, #fff4ea 0%, #fffaf5 38%, #fff7f1 100%);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.main-content {
+    position: relative;
+}
+
+.main-content::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 0 280px;
+    pointer-events: none;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0) 32%),
+        radial-gradient(circle at 18% 10%, rgba(255,255,255,0.28) 0%, transparent 18%);
+    z-index: 0;
+}
+
+.main-content > * {
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar {
+    background:
+        radial-gradient(circle at 88% 18%, rgba(255, 150, 58, 0.22) 0%, transparent 24%),
+        radial-gradient(circle at 8% 92%, rgba(255, 108, 20, 0.34) 0%, transparent 36%),
+        linear-gradient(180deg, #050505 0%, #101010 16%, #2a170d 38%, #7b3a18 68%, #ff6b1f 100%);
+    border-right: 1px solid rgba(255, 223, 204, 0.24);
+    box-shadow: 18px 0 48px rgba(8, 8, 8, 0.24);
+    position: relative;
+}
+
+.sidebar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 22%),
+        radial-gradient(circle at 85% 16%, transparent 0 22%, rgba(255, 210, 168, 0.11) 22.5%, transparent 23.5%),
+        radial-gradient(circle at 10% 84%, transparent 0 28%, rgba(255, 210, 168, 0.08) 28.5%, transparent 29.5%);
+    pointer-events: none;
+}
+
+.sidebar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 42%;
+    background: linear-gradient(180deg, rgba(255, 107, 31, 0) 0%, rgba(255, 107, 31, 0.18) 38%, rgba(255, 107, 31, 0.42) 100%);
+    pointer-events: none;
+}
+
+.brand,
+.role-panel,
+.nav-links,
+.sidebar-user {
+    position: relative;
+    z-index: 1;
+}
+
+.brand h1 {
+    font-size: 2rem;
+    letter-spacing: .02em;
+    font-weight: 900;
+}
+
+.brand p {
+    color: rgba(255, 244, 235, .88);
+}
+
+.brand-mark {
+    border-radius: 20px;
+    background: linear-gradient(145deg, #fffaf5 0%, #ffd8bc 100%);
+    color: #f35b1c;
+    box-shadow:
+        0 14px 28px rgba(83, 34, 12, 0.2),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.role-panel {
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
+    border: 1px solid rgba(255, 229, 214, .16);
+    backdrop-filter: blur(8px);
+}
+
+.nav-links a {
+    border-radius: 16px;
+    font-weight: 700;
+    letter-spacing: .01em;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.1) 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.16);
+}
+
+.sidebar-user {
+    border-top: 1px solid rgba(255, 233, 220, 0.18);
+    padding-top: 18px;
+}
+
+.topbar h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -.02em;
+    color: #513d34;
+}
+
+.topbar p,
+.topbar .muted {
+    color: #7b6b60;
+}
+
+.topbar-meta .pill,
+.topbar-meta .status-badge,
+.topbar-meta .user-badge {
+    background: linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(255,247,240,.92) 100%);
+    border: 1px solid rgba(232, 206, 188, .9);
+    color: #635a56;
+    box-shadow: 0 10px 22px rgba(119, 66, 31, .06);
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(255,254,252,.96) 0%, rgba(255,248,241,.94) 100%);
+    border-radius: 28px;
+    box-shadow:
+        0 18px 40px rgba(119, 66, 31, 0.07),
+        inset 0 1px 0 rgba(255,255,255,0.72);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 24px 52px rgba(119, 66, 31, 0.11),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.stat-card {
+    background: radial-gradient(circle at top right, rgba(255, 186, 126, 0.14) 0%, transparent 30%);
+}
+
+.stat-card::after {
+    background: radial-gradient(circle, rgba(243, 91, 28, .12) 0%, rgba(243, 91, 28, 0) 70%);
+    opacity: .9;
+}
+
+.stat-card strong,
+.stat-card-value {
+    color: #514741;
+}
+
+.table-responsive {
+    background: linear-gradient(180deg, rgba(255,253,250,.97) 0%, rgba(255,247,239,.97) 100%);
+}
+
+th {
+    background: rgba(255, 244, 233, .92);
+    color: #7b675b;
+}
+
+tbody tr:hover {
+    background: rgba(255, 238, 224, .7);
+}
+
+input,
+select,
+textarea {
+    background: rgba(255,255,255,.92);
+    color: #4b4f57;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: rgba(243, 91, 28, .48);
+    box-shadow: 0 0 0 4px rgba(243, 91, 28, .12);
+}
+
+.btn {
+    border-radius: 16px;
+    font-weight: 800;
+    letter-spacing: .01em;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ca4d14 0%, #f35b1c 58%, #ff7a18 100%);
+    box-shadow: 0 16px 28px rgba(201, 77, 20, 0.22);
+}
+
+.btn-secondary {
+    background: linear-gradient(180deg, #fff8f2 0%, #f3e4d9 100%);
+    color: #625953;
+    border: 1px solid rgba(232, 206, 188, .88);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #c13a2c 0%, #de5241 100%);
+}
+
+.pill,
+.note,
+.user-badge,
+.status-badge {
+    border-radius: 18px;
+}
+
+.note {
+    background: linear-gradient(180deg, rgba(255,247,239,.96) 0%, rgba(255,241,231,.94) 100%);
+}
+
+.hero-banner,
+.profile-hero {
+    border-radius: 32px;
+    box-shadow: 0 24px 48px rgba(119, 66, 31, .14);
+}
+
+.hero-admin,
+.profile-hero-admin {
+    background:
+        radial-gradient(circle at 88% 18%, rgba(255, 196, 112, 0.18) 0%, transparent 26%),
+        linear-gradient(135deg, #60311a 0%, #91411f 32%, #d95515 74%, #f35b1c 100%);
+}
+
+.hero-employee,
+.profile-hero-employee {
+    background:
+        radial-gradient(circle at 88% 18%, rgba(255, 228, 205, 0.18) 0%, transparent 26%),
+        linear-gradient(135deg, #555a63 0%, #70757f 48%, #8d929a 100%);
+}
+
+.dashboard-photo-title {
+    background: linear-gradient(90deg, #565b64 0%, #7d828a 100%);
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.dashboard-photo-title-orange {
+    background: linear-gradient(90deg, #ca4d14 0%, #f35b1c 100%);
+}
+
+.ai-fab {
+    background: linear-gradient(135deg, #ca4d14 0%, #f35b1c 100%);
+    box-shadow: 0 18px 38px rgba(201, 77, 20, .28);
+}
+
+.auth-card {
+    border: 1px solid rgba(255, 223, 197, .28);
+    box-shadow: 0 30px 70px rgba(76, 33, 10, 0.22);
+}
+
+.auth-brand-panel {
+    background:
+        radial-gradient(circle at top right, rgba(255, 182, 102, 0.22) 0%, transparent 28%),
+        linear-gradient(180deg, rgba(92, 41, 18, 0.98) 0%, rgba(202, 77, 20, 0.98) 72%, rgba(243, 91, 28, 0.98) 100%);
+}
+
+.auth-brand-logo {
+    width: 82px;
+    height: 82px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #fffaf5 0%, #ffd4b3 100%);
+    color: #f35b1c;
+    box-shadow: 0 16px 32px rgba(76, 33, 10, 0.2);
+}
+
+.auth-brand-content h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -.03em;
+}
+
+.auth-login-panel {
+    background: linear-gradient(180deg, rgba(255,248,241,.98) 0%, rgba(255,238,220,.96) 100%);
+}
+
+.auth-login-box {
+    border-radius: 26px;
+    box-shadow:
+        0 24px 48px rgba(95, 47, 23, 0.12),
+        inset 0 1px 0 rgba(255,255,255,.72);
+}
+
+.auth-login-head h2 {
+    font-size: 2.15rem;
+    font-weight: 900;
+    letter-spacing: -.02em;
+}
+
+.auth-submit-btn,
+.auth-secondary-btn {
+    border-radius: 16px;
+    letter-spacing: .01em;
+}
+
+.auth-submit-btn {
+    background: linear-gradient(135deg, #ca4d14 0%, #f35b1c 58%, #ff7a18 100%);
+}
+
+.auth-forgot-link {
+    color: #ca4d14;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    background: linear-gradient(135deg, rgba(17,17,17,0.86) 0%, rgba(42,42,42,0.68) 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 176, 108, 0.16);
+}
+
+.topbar h2,
+.auth-login-head h2,
+.brand h1 {
+    color: #181818;
+}
+
+.auth-forgot-link {
+    color: #d65217;
+    font-weight: 800;
+}
+
+@media (max-width: 1024px) {
+    .main-content::before {
+        inset: 0;
+    }
+}
+
+/* Correctif visuel force : noir, blanc clair, orange accent. */
+body,
+.main-content,
+.main-content::before {
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 127, 34, 0.12) 0%, transparent 18%),
+        radial-gradient(circle at 86% 10%, rgba(255, 184, 112, 0.06) 0%, transparent 14%),
+        linear-gradient(180deg, #050505 0%, #101010 42%, #171717 100%) !important;
+}
+
+.sidebar,
+body.role-admin .sidebar,
+body.role-employee .sidebar {
+    background:
+        radial-gradient(circle at 100% 0%, rgba(255, 148, 56, 0.10) 0%, transparent 24%),
+        radial-gradient(circle at 0% 100%, rgba(255, 123, 34, 0.10) 0%, transparent 24%),
+        linear-gradient(180deg, #0a0a0a 0%, #181818 42%, #242424 100%) !important;
+    border-right: 1px solid rgba(255, 148, 56, 0.16) !important;
+    box-shadow: 18px 0 42px rgba(0, 0, 0, 0.24) !important;
+}
+
+.card,
+.note,
+.table-responsive,
+.auth-login-box,
+.auth-login-panel,
+.auth-card {
+    background: linear-gradient(180deg, rgba(255,255,255,.995) 0%, rgba(248,248,248,.98) 100%) !important;
+}
+
+.main-content {
+    color: #f3f3f3 !important;
+}
+
+.topbar h2,
+.topbar p,
+.topbar .muted,
+.card-head h3,
+.dashboard-section-head h3,
+.note,
+.table-responsive,
+table,
+th,
+td {
+    color: #f3f3f3;
+}
+
+.card,
+.note,
+.table-responsive {
+    color: #1f1f1f !important;
+}
+
+.topbar h2 {
+    color: #ffffff !important;
+}
+
+.topbar p,
+.topbar .muted {
+    color: #d2d2d2 !important;
+}
+
+/* Refonte finale de la page de connexion. */
+.auth-page {
+    background:
+        radial-gradient(circle at 14% 18%, rgba(255, 122, 24, 0.16) 0%, transparent 16%),
+        radial-gradient(circle at 84% 10%, rgba(255, 160, 76, 0.10) 0%, transparent 14%),
+        linear-gradient(180deg, #050505 0%, #101010 44%, #171717 100%) !important;
+    padding: 40px 20px;
+}
+
+.auth-shell {
+    width: min(1040px, 100%);
+}
+
+.auth-card {
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    min-height: 620px;
+    border-radius: 34px;
+    overflow: hidden;
+    background: transparent !important;
+    border: 1px solid rgba(255, 145, 54, 0.16);
+    box-shadow: 0 34px 80px rgba(0, 0, 0, 0.34);
+}
+
+.auth-brand-panel {
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, rgba(232, 91, 23, 0.14) 100%),
+        url('/images/login-bg.webp'),
+        linear-gradient(180deg, #090909 0%, #171717 58%, #232323 100%) !important;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 44px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-brand-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 0% 100%, transparent 0 22%, rgba(255, 145, 54, 0.10) 22.5%, transparent 23.5%),
+        radial-gradient(circle at 0% 100%, transparent 0 30%, rgba(255, 145, 54, 0.06) 30.5%, transparent 31.5%),
+        radial-gradient(circle at 100% 12%, transparent 0 22%, rgba(255, 184, 112, 0.08) 22.5%, transparent 23.5%);
+    pointer-events: none;
+}
+
+.auth-brand-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.auth-brand-logo {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 22px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #ffffff 0%, #f7f7f7 100%) !important;
+    color: #e85b17 !important;
+    font-size: 1.45rem;
+    font-weight: 900;
+    box-shadow:
+        0 18px 34px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.auth-brand-eyebrow {
+    color: rgba(255,255,255,0.84);
+    margin: 0 0 10px;
+    font-size: .8rem;
+    font-weight: 800;
+}
+
+.auth-brand-content h1 {
+    font-size: 2.8rem;
+    line-height: 1;
+    margin: 0;
+    color: #ffffff !important;
+    font-weight: 900;
+    letter-spacing: -.04em;
+}
+
+.auth-login-panel {
+    background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(246,246,246,.94) 100%) !important;
+    color: #171717 !important;
+    padding: 54px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-login-head {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-login-head p {
+    margin: 0 0 12px;
+    color: #7a7f88 !important;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+}
+
+.auth-login-head h2 {
+    margin: 0;
+    font-size: 2.35rem;
+    color: #111111 !important;
+    font-weight: 900;
+    letter-spacing: -.04em;
+}
+
+.auth-login-box {
+    width: min(390px, 100%);
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(255,255,255,.995) 0%, rgba(249,249,249,.99) 100%) !important;
+    border: 1px solid rgba(228, 228, 228, 0.95) !important;
+    border-radius: 28px;
+    padding: 32px 28px;
+    box-shadow:
+        0 24px 54px rgba(0, 0, 0, 0.10),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.auth-form-grid {
+    gap: 16px;
+}
+
+.auth-form-grid label {
+    color: #1f1f1f !important;
+    font-size: .9rem;
+    font-weight: 800;
+}
+
+.auth-form-grid input[type="text"],
+.auth-form-grid input[type="password"] {
+    border-radius: 18px;
+    border: 1px solid #d7dfec !important;
+    background: linear-gradient(180deg, #f7faff 0%, #eef4fc 100%) !important;
+    color: #1f2937 !important;
+    padding: 14px 16px;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        0 8px 20px rgba(15, 23, 42, 0.05);
+}
+
+.auth-form-grid input[type="text"]:focus,
+.auth-form-grid input[type="password"]:focus {
+    border-color: rgba(232, 91, 23, 0.44) !important;
+    box-shadow:
+        0 0 0 4px rgba(232, 91, 23, 0.12),
+        0 10px 24px rgba(15, 23, 42, 0.08) !important;
+}
+
+.auth-remember {
+    color: #4b5563 !important;
+    font-size: .92rem;
+}
+
+.auth-forgot-link {
+    color: #e85b17 !important;
+    font-weight: 800;
+}
+
+.auth-submit-btn {
+    width: 100%;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #0b0b0b 0%, #1e1e1e 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 145, 54, 0.34) !important;
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.20) !important;
+}
+
+.auth-submit-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 860px) {
+    .auth-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .auth-brand-panel {
+        min-height: 260px;
+    }
+
+    .auth-login-panel {
+        padding: 34px 24px;
+    }
+}
+
+/* Ici on pose une palette finale plus professionnelle pour toute l application. */
+:root {
+    --ds-black: #111111;
+    --ds-surface: #ffffff;
+    --ds-surface-soft: #f7f8fa;
+    --ds-surface-muted: #eef1f4;
+    --ds-border: #d7dde4;
+    --ds-text: #18212b;
+    --ds-text-soft: #5c6775;
+    --ds-orange: #e85b18;
+    --ds-orange-deep: #b84814;
+    --ds-orange-soft: #fff1e9;
+    --ds-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+}
+
+/* Ici on change le fond general pour retirer les beiges trop forts et garder un contraste propre. */
+body,
+.main-content {
+    background: linear-gradient(180deg, #f4f6f8 0%, #eef1f4 100%);
+    color: var(--ds-text);
+}
+
+/* Ici on nettoie la sidebar avec un noir plus noble et un orange mieux dose. */
+.sidebar,
+body.role-admin .sidebar,
+body.role-employee .sidebar {
+    background: radial-gradient(circle at bottom left, rgba(232, 91, 24, 0.18) 0%, rgba(232, 91, 24, 0) 34%), linear-gradient(180deg, #141414 0%, #1b1b1b 100%);
+    color: #f8fafc;
+}
+
+.sidebar::before {
+    opacity: 0.38;
+}
+
+.brand h1,
+.sidebar-footer strong,
+.sidebar .role-panel strong,
+.sidebar .nav-links a {
+    color: #f8fafc;
+}
+
+.brand p,
+.sidebar .muted,
+.sidebar .role-panel p {
+    color: rgba(248, 250, 252, 0.74);
+}
+
+.sidebar .role-panel {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+.sidebar .nav-links a {
+    border: 1px solid transparent;
+    border-radius: 14px;
+    transition: all .2s ease;
+}
+
+.sidebar .nav-links a:hover,
+.sidebar .nav-links a.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Cette passe finale verrouille la structure de la sidebar admin pour eviter le grand vide en haut. */
+.sidebar,
+body.role-admin .sidebar,
+body.role-employee .sidebar {
+    justify-content: flex-start !important;
+    gap: 22px;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(255, 150, 58, 0.22) 0%, transparent 24%),
+        radial-gradient(circle at 8% 92%, rgba(255, 108, 20, 0.46) 0%, rgba(255, 108, 20, 0.22) 22%, transparent 42%),
+        linear-gradient(180deg, #050505 0%, #101010 16%, #2a170d 34%, #8f4118 66%, #ff7426 100%) !important;
+}
+
+.sidebar > div:first-child {
+    flex: 1 1 auto;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 18px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(12, 12, 12, 0.14) 0%, rgba(63, 32, 15, 0.62) 42%, rgba(142, 64, 26, 0.92) 100%);
+    border-top: 1px solid rgba(255, 191, 150, 0.1);
+    margin-left: -22px;
+    margin-right: -22px;
+    margin-bottom: -28px;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-bottom: 28px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.sidebar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 34%;
+    background: linear-gradient(180deg, rgba(255, 116, 38, 0) 0%, rgba(255, 116, 38, 0.16) 42%, rgba(255, 116, 38, 0.38) 100%);
+    pointer-events: none;
+}
+
+.sidebar-footer .user-badge {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    backdrop-filter: none;
+    margin-bottom: 16px;
+}
+
+/* Ici on eclaircit les surfaces internes sans cacher les informations. */
+.card,
+.nested-card,
+.invoice-preview-shell,
+.invoice-view-shell,
+.toolbar,
+.note,
+.ai-dialog-panel,
+.ai-sidepanel,
+.auth-login-panel {
+    background: var(--ds-surface);
+    color: var(--ds-text);
+    border-color: var(--ds-border);
+    box-shadow: var(--ds-shadow);
+}
+
+.muted,
+.card p,
+.note,
+table td,
+.toolbar strong + div {
+    color: var(--ds-text-soft);
+}
+
+.topbar h2,
+.card-head h3,
+.dashboard-ai-board h3,
+.dashboard-ai-board strong,
+.invoice-preview-title,
+.invoice-view-title {
+    color: var(--ds-text);
+}
+
+.topbar p,
+.topbar .muted {
+    color: #64707d;
+}
+
+.topbar-meta .pill,
+.topbar-meta .status-badge,
+.topbar-meta .user-badge {
+    background: #ffffff;
+    border: 1px solid var(--ds-border);
+    color: var(--ds-text);
+}
+
+/* Ici on garde des boutons forts mais moins agressifs a l oeil. */
+.btn-primary,
+.auth-submit-btn,
+.sidebar .btn-danger,
+button[type="submit"].btn-primary {
+    background: linear-gradient(135deg, #111111 0%, #232323 100%);
+    color: #ffffff;
+    border: 1px solid #111111;
+    box-shadow: 0 14px 30px rgba(17, 17, 17, 0.16);
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: var(--ds-text);
+    border: 1px solid var(--ds-border);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #e85b18 0%, #c74711 100%);
+    color: #ffffff;
+    border: 1px solid #c74711;
+}
+
+/* Ici on redonne un contraste clair aux formulaires qui s etaient trop pales. */
+input,
+select,
+textarea {
+    background: #ffffff;
+    color: var(--ds-text);
+    border: 1px solid #cfd6df;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: rgba(232, 91, 24, 0.68);
+    box-shadow: 0 0 0 4px rgba(232, 91, 24, 0.12);
+}
+
+/* Ici on apaise le bloc hero du dashboard pour eviter l orange trop violent. */
+.hero-admin,
+.profile-hero-admin {
+    background: linear-gradient(135deg, #2d1810 0%, #c24d18 58%, #e85b18 100%);
+}
+
+.hero-employee,
+.profile-hero-employee {
+    background: linear-gradient(135deg, #181818 0%, #2e2e2e 45%, #d95617 100%);
+}
+
+.hero-metrics div,
+.profile-summary div {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Ici on garde le tableau de bord IA lisible avec des contrastes plus sobres. */
+.dashboard-ai-board .pill,
+.dashboard-ai-board .status-badge {
+    background: var(--ds-surface-muted);
+    color: var(--ds-text);
+}
+
+.dashboard-ai-board .note {
+    background: #f8fafc;
+    border: 1px solid var(--ds-border);
+}
+
+.dashboard-ai-board .card-head,
+.dashboard-ai-board .card-head h3,
+.dashboard-ai-board .eyebrow {
+    color: var(--ds-text);
+}
+
+.dashboard-ai-board .eyebrow {
+    letter-spacing: 0.08em;
+}
+
+/* Ici on termine la page de connexion avec un fond noir/orange plus maitrise. */
+.auth-page {
+    background: radial-gradient(circle at top right, rgba(232, 91, 24, 0.24) 0%, rgba(232, 91, 24, 0) 28%), linear-gradient(180deg, #0f0f10 0%, #171717 100%);
+}
+
+.auth-card {
+    background: transparent;
+    box-shadow: none;
+}
+
+.auth-brand-panel {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+}
+
+.auth-login-panel {
+    background: #ffffff;
+    border: 1px solid rgba(215, 221, 228, 0.9);
+}
+
+.auth-login-box {
+    background: #ffffff;
+    border: 1px solid rgba(232, 91, 24, 0.18);
+}
+
+.auth-login-head p,
+.auth-login-box label,
+.auth-remember span {
+    color: #5f6b79;
+}
+
+/* Ici on retire les fonds trop blancs qui faisaient disparaitre certaines donnees dans les tableaux. */
+table th {
+    color: #ffffff;
+}
+
+table tbody tr:nth-child(even) td {
+    background: #fafbfd;
+}
+
+/* Ici on rend les entetes de tableau vraiment lisibles avec un vrai fond sombre. */
+.table-responsive table thead th,
+table thead th {
+    background: linear-gradient(180deg, #161616 0%, #242424 100%);
+    border-color: #242424;
+    color: #ffffff;
+}
+
+/* Ici on force les tableaux de factures a garder une barre noire nette et elegante. */
+.data-table-dark-head thead th {
+    background: linear-gradient(180deg, #0f0f10 0%, #1d1d1f 100%) !important;
+    border-top: 1px solid #26272b;
+    border-bottom: 1px solid #26272b;
+    color: #ffffff !important;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.table-responsive .data-table-dark-head thead,
+.table-responsive .data-table-dark-head thead tr,
+.table-responsive .data-table-dark-head thead th {
+    background: linear-gradient(180deg, #0b0b0c 0%, #18181b 100%) !important;
+}
+
+.data-table-dark-head tbody td {
+    background: #ffffff;
+    color: #1f2937;
+}
+
+.data-table-dark-head tbody tr:hover td {
+    background: #f7f8fa;
+}
+
+/* Ici on renforce les blocs importants des factures pour que le blanc ne mange plus le noir. */
+.invoice-preview-meta-row span,
+.invoice-view-meta-row span,
+.meta-label,
+.totals-label,
+.invoice-preview-summary td:first-child,
+.invoice-view-summary td:first-child {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
+.invoice-party-head,
+.invoice-view-party-head,
+.line-table th,
+.invoice-preview-table th,
+.invoice-view-table th,
+.grand-total td,
+.invoice-preview-summary .grand td,
+.invoice-view-summary .grand td {
+    background: linear-gradient(180deg, #161616 0%, #242424 100%) !important;
+    border-color: #242424 !important;
+    color: #ffffff !important;
+}
+
+/* Ici on donne aux factures une palette plus executive avec noir, blanc et orange controle. */
+.invoice-view-shell,
+.invoice-preview-shell {
+    border: 1px solid #d8dde5;
+    box-shadow: 0 28px 64px rgba(15, 23, 42, 0.12);
+}
+
+.invoice-view-title,
+.invoice-preview-title {
+    color: #111827 !important;
+}
+
+.invoice-view-company,
+.invoice-preview-subtitle,
+.invoice-view-note,
+.invoice-preview-note,
+.invoice-view-party-body,
+.invoice-preview-party-body {
+    color: #4b5563;
+}
+
+.invoice-view-logo,
+.invoice-preview-logo {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+}
+
+.invoice-view-section-title,
+.invoice-preview-section-title {
+    color: #c24d18 !important;
+}
+
+/* Finition globale des interfaces internes : noir, orange, blanc clair. */
+.app-shell {
+    background: linear-gradient(180deg, #050505 0%, #111111 100%);
+}
+
+.sidebar,
+body.role-admin .sidebar,
+body.role-employee .sidebar {
+    background:
+        radial-gradient(circle at 100% 0%, rgba(255, 145, 54, 0.12) 0%, transparent 22%),
+        radial-gradient(circle at 0% 100%, rgba(255, 123, 34, 0.10) 0%, transparent 22%),
+        linear-gradient(180deg, #080808 0%, #151515 44%, #202020 100%) !important;
+}
+
+.brand h1 {
+    color: #ffffff !important;
+    font-size: 2.1rem !important;
+    font-weight: 900 !important;
+    letter-spacing: -.03em !important;
+    line-height: 1 !important;
+}
+
+.brand p {
+    color: #ffcfb0 !important;
+    font-weight: 700;
+}
+
+.role-panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%) !important;
+    border: 1px solid rgba(255, 145, 54, 0.18) !important;
+}
+
+.role-panel strong,
+.role-panel-label,
+.nav-links a,
+.sidebar-footer,
+.sidebar-footer strong,
+.sidebar-footer .muted {
+    color: #ffffff !important;
+}
+
+.main-content {
+    background:
+        radial-gradient(circle at 12% 12%, rgba(255, 127, 34, 0.08) 0%, transparent 14%),
+        linear-gradient(180deg, #ffffff 0%, #fafafa 100%) !important;
+    color: #1a1a1a !important;
+}
+
+.main-content::before {
+    display: none !important;
+}
+
+.topbar h2 {
+    color: #111111 !important;
+}
+
+.topbar p,
+.topbar .muted {
+    color: #686f78 !important;
+}
+
+.card,
+.note,
+.table-responsive {
+    background: linear-gradient(180deg, rgba(255,255,255,.995) 0%, rgba(248,248,248,.985) 100%) !important;
+    border: 1px solid rgba(232, 232, 232, 0.95) !important;
+}
+
+.btn-primary,
+.btn-danger,
+.auth-submit-btn,
+.ai-fab,
+.sidebar .btn-danger {
+    background: linear-gradient(135deg, #080808 0%, #1a1a1a 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 145, 54, 0.34) !important;
+}
+
+.btn-secondary {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%) !important;
+    color: #171717 !important;
+    border: 1px solid rgba(255, 145, 54, 0.26) !important;
+}
+
+.pill,
+.topbar-meta .pill,
+.topbar-meta .status-badge,
+.topbar-meta .user-badge {
+    background: linear-gradient(180deg, #ffffff 0%, #f6f6f6 100%) !important;
+    color: #171717 !important;
+    border: 1px solid rgba(255, 145, 54, 0.24) !important;
+}
+
+.dashboard-photo-title,
+.dashboard-photo-title-orange {
+    background: linear-gradient(90deg, #0d0d0d 0%, #252525 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 145, 54, 0.28) !important;
+}
+
+.btn-primary,
+.btn-danger,
+.auth-submit-btn,
+.ai-fab,
+.sidebar .btn-danger,
+form .btn-danger,
+button[type="submit"].btn-danger,
+button[type="submit"].btn-primary {
+    background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 148, 56, 0.34) !important;
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.24) !important;
+}
+
+.btn-secondary,
+.pill,
+.topbar-meta .pill,
+.topbar-meta .status-badge,
+.topbar-meta .user-badge {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%) !important;
+    color: #1f1f1f !important;
+    border: 1px solid rgba(255, 148, 56, 0.28) !important;
+}
+
+.dashboard-photo-title-orange {
+    background: linear-gradient(90deg, #0d0d0d 0%, #252525 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 148, 56, 0.30) !important;
+}
+
+th {
+    background: rgba(245, 245, 245, 0.98) !important;
+}
+
+tbody tr:hover {
+    background: rgba(241, 241, 241, 0.88) !important;
+}
+
+/* Direction artistique finale DEV SOLAIRE : plus nette, plus premium, plus lisible. */
+:root {
+    --ds-brown: #7f2f12;
+    --ds-brown-soft: #9b3d18;
+    --ds-orange: #e85b17;
+    --ds-orange-bright: #ff7b22;
+    --ds-cream: #fff4e9;
+    --ds-cream-strong: #ffeddc;
+    --ds-graphite: #555b63;
+    --ds-graphite-soft: #767c85;
+}
+
+body {
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 127, 34, 0.10) 0%, transparent 18%),
+        radial-gradient(circle at 86% 10%, rgba(255, 184, 112, 0.06) 0%, transparent 14%),
+        linear-gradient(180deg, #ffffff 0%, #fbfbfb 42%, #f7f7f7 100%);
+}
+
+.sidebar {
+    background:
+        radial-gradient(circle at 100% 0%, rgba(255, 148, 56, 0.14) 0%, transparent 24%),
+        radial-gradient(circle at 0% 100%, rgba(255, 123, 34, 0.14) 0%, transparent 26%),
+        linear-gradient(180deg, #0f0f0f 0%, #1c1c1c 42%, #2a2a2a 100%);
+}
+
+.brand h1,
+.auth-login-head h2,
+.topbar h2 {
+    font-weight: 900;
+    letter-spacing: -.03em;
+}
+
+.brand-mark,
+.auth-brand-logo {
+    background: linear-gradient(145deg, #ffffff 0%, #f6f6f6 100%);
+    color: var(--ds-orange);
+    box-shadow:
+        0 14px 30px rgba(97, 39, 14, 0.2),
+        inset 0 1px 0 rgba(255,255,255,0.88);
+}
+
+.card,
+.auth-card,
+.auth-login-box,
+.note,
+.table-responsive {
+    border-radius: 28px;
+}
+
+.card {
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(249,249,249,.97) 100%);
+    box-shadow:
+        0 20px 42px rgba(113, 54, 23, 0.08),
+        inset 0 1px 0 rgba(255,255,255,.82);
+}
+
+.card-head h3,
+.dashboard-photo-title,
+.dashboard-photo-title-orange {
+    font-weight: 800;
+    letter-spacing: .08em;
+}
+
+.dashboard-photo-title {
+    background: linear-gradient(90deg, var(--ds-graphite) 0%, var(--ds-graphite-soft) 100%);
+}
+
+.dashboard-photo-title-orange,
+.btn-primary,
+.auth-submit-btn,
+.ai-fab {
+    background: linear-gradient(135deg, #111111 0%, #242424 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 148, 56, 0.42);
+}
+
+.btn,
+.auth-submit-btn,
+.auth-secondary-btn {
+    border-radius: 18px;
+    font-weight: 800;
+    letter-spacing: .01em;
+}
+
+.btn-primary,
+.auth-submit-btn {
+    color: #fff;
+    box-shadow:
+        0 16px 30px rgba(17, 17, 17, 0.24),
+        0 0 0 1px rgba(255, 148, 56, 0.14);
+}
+
+.btn-secondary {
+    background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+    color: #1f1f1f;
+    border: 1px solid rgba(255, 176, 108, 0.44);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #151515 0%, #2c2c2c 100%);
+    color: #ffffff;
+    border: 1px solid rgba(226, 75, 61, 0.36);
+}
+
+.pill,
+.topbar-meta .pill,
+.topbar-meta .status-badge,
+.topbar-meta .user-badge {
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(247,247,247,.96) 100%);
+    color: #383838;
+    border: 1px solid rgba(255, 176, 108, .34);
+}
+
+input,
+select,
+textarea,
+.auth-form-grid input[type="text"],
+.auth-form-grid input[type="password"] {
+    border-radius: 16px;
+    border: 1px solid rgba(233, 208, 191, 0.92);
+    background: linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(246,248,251,.97) 100%);
+    color: #3f454d;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.92),
+        0 6px 18px rgba(127, 47, 18, 0.03);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.auth-form-grid input[type="text"]:focus,
+.auth-form-grid input[type="password"]:focus {
+    border-color: rgba(232, 91, 23, 0.52);
+    box-shadow:
+        0 0 0 4px rgba(232, 91, 23, 0.12),
+        0 10px 22px rgba(232, 91, 23, 0.08);
+}
+
+.auth-page {
+    background:
+        radial-gradient(circle at 10% 84%, rgba(255, 141, 48, 0.18) 0%, transparent 16%),
+        radial-gradient(circle at 84% 14%, rgba(255, 182, 106, 0.12) 0%, transparent 14%),
+        radial-gradient(circle at 18% 82%, transparent 0 22%, rgba(255, 166, 85, 0.10) 22.5%, transparent 23.5%),
+        radial-gradient(circle at 18% 82%, transparent 0 30%, rgba(255, 166, 85, 0.06) 30.5%, transparent 31.5%),
+        radial-gradient(circle at 80% 18%, transparent 0 20%, rgba(255, 190, 126, 0.08) 20.5%, transparent 21.5%),
+        linear-gradient(180deg, #7f2f12 0%, #913616 22%, #ab4319 50%, #cb5217 76%, #ef640f 100%);
+}
+
+.auth-card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.auth-brand-panel {
+    background:
+        radial-gradient(circle at top right, rgba(255, 189, 115, 0.22) 0%, transparent 28%),
+        linear-gradient(180deg, #6f2d13 0%, #953c17 34%, #c84f16 76%, #ef640f 100%);
+}
+
+.auth-brand-content h1 {
+    font-size: 2.65rem;
+    font-weight: 900;
+}
+
+.auth-brand-eyebrow {
+    color: rgba(255, 241, 227, 0.88);
+}
+
+.auth-login-panel {
+    background: linear-gradient(180deg, rgba(255,246,236,.90) 0%, rgba(255,237,221,.86) 100%);
+    border-radius: 0 28px 28px 0;
+    backdrop-filter: blur(10px);
+}
+
+.auth-login-box {
+    background: linear-gradient(180deg, rgba(255,251,246,.99) 0%, rgba(255,241,228,.98) 100%);
+    border: 1px solid rgba(248, 186, 135, .55);
+    box-shadow:
+        0 24px 48px rgba(103, 45, 15, 0.14),
+        inset 0 1px 0 rgba(255,255,255,.82);
+}
+
+.auth-shell {
+    width: min(980px, 100%);
+}
+
+.auth-brand-panel {
+    border-radius: 28px 0 0 28px;
+    box-shadow: 0 28px 60px rgba(76, 33, 10, 0.20);
+}
+
+.auth-login-head {
+    margin-bottom: 28px;
+}
+
+.auth-login-head p {
+    margin-bottom: 12px;
+}
+
+.auth-login-head p {
+    color: #6d7480;
+    font-weight: 800;
+}
+
+.auth-login-head h2 {
+    color: var(--ds-brown);
+}
+
+.auth-forgot-link {
+    color: #d85318;
+    font-weight: 800;
+}
+
+.auth-remember {
+    color: #4b5360;
+    font-weight: 600;
+}
+
+.hero-admin,
+.profile-hero-admin {
+    background:
+        radial-gradient(circle at 88% 18%, rgba(255, 198, 112, 0.18) 0%, transparent 26%),
+        linear-gradient(135deg, #5e2d16 0%, #8e3b19 34%, #c84e16 74%, #ef640f 100%);
+}
+
+.hero-employee,
+.profile-hero-employee {
+    background:
+        radial-gradient(circle at 88% 18%, rgba(255, 228, 205, 0.18) 0%, transparent 26%),
+        linear-gradient(135deg, #565b63 0%, #6f757d 48%, #888d95 100%);
+}
+
+.table-responsive,
+.note {
+    background: linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(249,249,249,.97) 100%);
+}
+
+th {
+    background: rgba(246, 246, 246, .96);
+    color: #7a675c;
+}
+
+tbody tr:hover {
+    background: rgba(243, 243, 243, .78);
+}
+
+.stat-card {
+    background:
+        radial-gradient(circle at top right, rgba(255, 182, 122, 0.16) 0%, transparent 30%);
+}
+
+.stat-card-value,
+.stat-card strong {
+    color: #4f453e;
+}
+
+* { box-sizing: border-box; }
+
+/* Cette section regle le style de base du document entier. */
+body {
+    margin: 0;
+    font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    background:
+        radial-gradient(circle at top right, rgba(243, 91, 28, 0.12) 0%, rgba(243, 91, 28, 0) 26%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0) 22%),
+        linear-gradient(180deg, #fff4ea 0%, #fffaf5 100%);
+    color: var(--text);
+    transition: background .25s ease, color .25s ease;
+}
+
+a { color: inherit; text-decoration: none; }
+input, select, textarea, button { font: inherit; }
+
+/* Cette section definit le style commun des champs de formulaire. */
+input, select, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--white);
+    color: var(--text);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease, background .2s ease;
+}
+
+textarea { min-height: 110px; resize: vertical; }
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #8fb5ea;
+    box-shadow: var(--focus-ring);
+    background: #ffffff;
+}
+
+/* Ici on change la largeur de la sidebar a gauche avec la valeur 280px. */
+.app-shell { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+
+/* Cette section gere la barre laterale, le logo et la navigation principale. */
+.sidebar {
+    /* Ici on change le fond principal de la barre laterale. */
+    background:
+        radial-gradient(circle at top right, rgba(255, 167, 94, .18) 0%, rgba(255, 167, 94, 0) 28%),
+        linear-gradient(180deg, #6e3317 0%, #f35b1c 100%);
+    color: var(--white);
+    padding: 28px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Ici on garde la barre laterale de l administrateur visible meme pendant le defilement. */
+body.role-admin .sidebar,
+body.role-employee .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.brand { display: flex; gap: 14px; align-items: center; margin-bottom: 28px; }
+.brand h1, .brand p { margin: 0; }
+.brand p { color: rgba(255, 255, 255, .7); }
+
+.brand-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff8f2 0%, #ffd9bc 100%);
+    color: #f35b1c;
+    border: 1px solid rgba(255, 255, 255, .22);
+    box-shadow: 0 12px 24px rgba(82, 35, 10, .18);
+}
+
+.brand-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    border-radius: 16px;
+    background: #ffffff;
+    padding: 4px;
+}
+
+.role-panel {
+    margin-bottom: 22px;
+    padding: 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    background: rgba(255, 255, 255, .06);
+}
+
+.role-panel-label,
+.eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: .72rem;
+    font-weight: 800;
+    opacity: .85;
+}
+
+.role-panel strong,
+.hero-banner h3,
+.profile-hero h3 {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+
+.role-panel p { margin: 0; color: rgba(255, 255, 255, .72); font-size: .92rem; }
+.role-panel-admin { box-shadow: inset 0 0 0 1px rgba(255, 214, 176, .18); }
+.role-panel-employee { box-shadow: inset 0 0 0 1px rgba(255, 240, 220, .14); }
+
+.nav-links { display: grid; gap: 8px; }
+
+.nav-links a {
+    /* Ici on change la taille interieure et la forme des liens du menu lateral. */
+    padding: 12px 14px;
+    border-radius: 14px;
+    color: rgba(255, 255, 255, .82);
+    transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+/* Ici on change l apparence d un lien actif ou survole dans le menu lateral. */
+.nav-links a.active, .nav-links a:hover {
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+    transform: translateX(2px);
+}
+
+.main-content { padding: 28px; }
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+    padding: 12px 0 2px;
+}
+.topbar h2 { margin: 0 0 6px; }
+.topbar-meta { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+/* Cette section gere les cartes, les grilles et les blocs de contenu reutilisables. */
+.card {
+    /* Ici on change la forme, l ombre et l espace interne de toutes les cartes. */
+    background: var(--panel);
+    border: 1px solid rgba(234, 215, 201, .92);
+    border-radius: 24px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease, background .24s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-strong);
+    border-color: rgba(250, 184, 132, .95);
+}
+
+.nested-card { background: color-mix(in srgb, var(--panel-soft) 80%, transparent); }
+.card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 12px; }
+.stats-grid, .content-grid, .form-grid { display: grid; gap: 20px; align-items: start; }
+.stats-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: 118px;
+    margin-bottom: 20px;
+}
+.content-grid { grid-template-columns: 2fr 1fr; }
+.form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.full { grid-column: 1 / -1; }
+.stack { display: grid; gap: 14px; }
+.stat-card span, .muted { color: var(--muted); }
+.stat-card strong { font-size: 1.7rem; }
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 118px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Ici on garde le texte des cartes statistiques bien aligne, meme si une valeur prend deux lignes. */
+.stat-card span {
+    display: block;
+    min-height: 22px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Ici on fixe une taille visuelle commune pour les grands chiffres des cartes. */
+.stat-card strong {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-height: 56px;
+    line-height: 1.15;
+    text-align: center;
+    margin: 4px 0 0;
+    width: 100%;
+}
+
+.stat-card-value {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.stat-card-currency {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: .95rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+}
+
+.stat-card .btn {
+    margin-top: 10px;
+    align-self: center;
+}
+
+.employee-quick-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: minmax(146px, auto);
+}
+
+.employee-stat-card {
+    min-height: 146px;
+    padding: 18px 16px;
+}
+
+.employee-stat-card .stat-card-value {
+    font-size: 1.1em;
+}
+
+.employee-stat-card .btn {
+    width: min(180px, 100%);
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    padding: 10px 14px;
+}
+
+.stat-card::after {
+    content: "";
+    position: absolute;
+    inset: auto -30px -30px auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56, 189, 248, .18) 0%, rgba(56, 189, 248, 0) 70%);
+}
+
+/* Cette section regle les boutons, tableaux, pastilles et messages d alerte. */
+.toolbar { display: flex; justify-content: space-between; gap: 14px; align-items: center; margin-bottom: 18px; }
+.toolbar-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.table-responsive {
+    overflow-x: auto;
+    border-radius: 18px;
+    border: 1px solid rgba(215, 223, 236, .75);
+    background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(247,250,252,.96) 100%);
+}
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 14px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th {
+    color: var(--muted);
+    font-size: .82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    background: rgba(248, 250, 252, .88);
+}
+tbody tr { transition: background .18s ease; }
+tbody tr:hover { background: rgba(239, 246, 255, .68); }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* Ici on corrige la pagination Laravel pour eviter les enormes fleches SVG sous les listes. */
+nav[role="navigation"] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+nav[role="navigation"] .hidden.sm\:flex-1 {
+    display: none !important;
+}
+
+nav[role="navigation"] > div:first-child {
+    color: var(--muted);
+    font-size: .92rem;
+}
+
+nav[role="navigation"] > div:last-child > span,
+nav[role="navigation"] > div:last-child a,
+nav[role="navigation"] > div:last-child span[aria-current="page"] > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--white);
+    color: var(--text);
+}
+
+nav[role="navigation"] > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+nav[role="navigation"] svg {
+    width: 16px !important;
+    height: 16px !important;
+    display: block;
+}
+
+.btn {
+    padding: 12px 16px;
+    border-radius: 14px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease, background .18s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-block { width: 100%; }
+/* Ici on change la couleur du bouton principal. */
+.btn-primary {
+    background: linear-gradient(135deg, #c84f13 0%, #f35b1c 100%);
+    color: #fff;
+}
+/* Ici on change la couleur du bouton secondaire. */
+.btn-secondary {
+    background: linear-gradient(180deg, #fff7f0 0%, #f0e2d7 100%);
+    color: #5d6169;
+}
+.btn-danger {
+    background: linear-gradient(135deg, #d14343 0%, #ef4444 100%);
+    color: #fff;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 26px rgba(15, 23, 42, 0.1);
+}
+
+.btn:active { transform: translateY(0); }
+
+.is-disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    pointer-events: auto;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 7px 11px;
+    font-size: .82rem;
+    font-weight: 700;
+    background: #efe3d8;
+    color: #5d6169;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+.alert { padding: 14px 16px; border-radius: 16px; margin-bottom: 18px; }
+.alert-success { background: rgba(15, 157, 118, .15); color: #0c6d52; }
+.alert-danger { background: rgba(209, 67, 67, .14); color: #8e2929; }
+
+.note {
+    border-radius: 16px;
+    background: var(--panel-soft);
+    color: var(--text);
+    padding: 14px;
+    border: 1px solid rgba(214, 224, 236, .82);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.78);
+}
+
+.note-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.profile-photo-block { display: flex; gap: 18px; align-items: center; }
+
+.profile-photo-large,
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    border-radius: 18px;
+    background: #ffffff;
+    padding: 4px;
+    border: 1px solid rgba(215, 223, 236, .85);
+}
+
+.avatar-fallback {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #c84f13 0%, #f35b1c 100%);
+    color: #fff;
+    font-weight: 800;
+}
+
+.user-badge,
+.user-inline {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.user-badge { margin-bottom: 14px; }
+
+.invoice-line {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+/* Cette section gere les bandeaux du dashboard et du profil. */
+.hero-banner,
+.profile-hero {
+    /* Ici on change la taille, les coins et l espace du grand bandeau d accueil. */
+    border-radius: 28px;
+    padding: 26px;
+    margin-bottom: 20px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* Ici on change le fond du bandeau administrateur et du bandeau profil administrateur. */
+.hero-admin,
+.profile-hero-admin {
+    background:
+        radial-gradient(circle at 82% 30%, rgba(255, 120, 42, 0.28) 0%, transparent 24%),
+        linear-gradient(118deg, #070707 0%, #141414 32%, #402012 62%, #f35b1c 100%);
+    box-shadow: 0 22px 44px rgba(10, 10, 10, 0.18);
+}
+
+/* Ici on change le fond du bandeau employe et du bandeau profil employe. */
+.hero-employee,
+.profile-hero-employee {
+    background: linear-gradient(135deg, #5d6169 0%, #8b9098 100%);
+}
+
+/* Ici on change la couleur et la largeur du texte descriptif dans les grands bandeaux. */
+.hero-banner p,
+.profile-hero p { margin-bottom: 0; color: rgba(255, 255, 255, .84); max-width: 680px; }
+
+/* Ici on change la grille des chiffres rapides dans le bandeau du dashboard et du profil. */
+.hero-metrics,
+.profile-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    min-width: 360px;
+}
+
+/* Ici on change les cartes internes qui affichent les chiffres dans le bandeau. */
+.hero-metrics div,
+.profile-summary div {
+    padding: 16px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.07) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(6px);
+}
+
+/* Ici on change le style du petit texte au-dessus des chiffres du bandeau. */
+.hero-metrics span,
+.profile-summary span { display: block; font-size: .8rem; color: rgba(255, 255, 255, .7); margin-bottom: 6px; }
+
+/* Ici on aligne la photo et les informations principales dans le bandeau profil. */
+.profile-identity {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+/* Ici on change la taille et la forme de la photo dans le bandeau profil. */
+.profile-hero-avatar {
+    width: 92px;
+    height: 92px;
+    border-radius: 24px;
+    object-fit: contain;
+    object-position: center;
+    background: #ffffff;
+    display: grid;
+    place-items: center;
+    font-size: 1.8rem;
+    padding: 5px;
+    border: 1px solid rgba(215, 223, 236, .85);
+}
+
+/* Cette section regle les graphiques simples et les blocs metier du dashboard. */
+.bar-chart {
+    /* Ici on change la hauteur du graphique en colonnes du dashboard metier. */
+    height: 224px;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+    align-items: end;
+}
+
+/* Ici on change la disposition d une colonne complete dans le graphique en barres. */
+.bar-item {
+    display: grid;
+    gap: 8px;
+    justify-items: center;
+    min-width: 0;
+}
+
+/* Ici on change le fond et la hauteur du rail de chaque barre. */
+.bar-track {
+    width: 100%;
+    height: 150px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(226, 232, 240, .5) 0%, rgba(203, 213, 225, .8) 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Ici on change la couleur et l arrondi de la barre de valeur. */
+.bar-fill {
+    width: 100%;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #ff9a5f 0%, #f35b1c 100%);
+}
+
+.bar-chart-compact {
+    height: 186px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.bar-chart-compact .bar-track {
+    height: 108px;
+    border-radius: 14px;
+}
+
+.bar-chart-compact .bar-fill {
+    border-radius: 14px;
+}
+
+.bar-chart-compact .bar-item strong {
+    font-size: .72rem;
+    line-height: 1.1;
+    text-align: center;
+    word-break: break-word;
+}
+
+.bar-chart-compact .bar-item span {
+    font-size: .75rem;
+    color: var(--muted);
+}
+
+.chart-empty-state {
+    min-height: 220px;
+    border-radius: 22px;
+    border: 1px dashed var(--line);
+    background: linear-gradient(180deg, rgba(248, 250, 252, .9) 0%, rgba(241, 245, 249, .95) 100%);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 28px 20px;
+    color: var(--muted);
+}
+
+.chart-empty-state strong {
+    color: var(--navy);
+    font-size: 1rem;
+}
+
+.chart-empty-state span {
+    max-width: 420px;
+    line-height: 1.6;
+}
+
+.chart-empty-state-compact {
+    min-height: 150px;
+}
+
+.metric-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) minmax(160px, 1fr) auto;
+    gap: 14px;
+    align-items: center;
+}
+
+.metric-progress {
+    height: 12px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+
+.metric-progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #38bdf8 0%, #1d4ed8 100%);
+}
+
+.metric-progress-fill.accent {
+    background: linear-gradient(90deg, #0f9d76 0%, #14b8a6 100%);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: .78rem;
+    font-weight: 800;
+    text-transform: capitalize;
+    letter-spacing: .02em;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+
+.status-success { background: rgba(15, 157, 118, .14); color: #0a7d5d; }
+.status-danger { background: rgba(209, 67, 67, .14); color: #a12626; }
+.status-warning { background: rgba(212, 139, 31, .16); color: #9b5d09; }
+.status-info { background: rgba(29, 78, 216, .12); color: #1d4ed8; }
+.status-admin { background: rgba(29, 78, 216, .14); color: #1d4ed8; }
+.status-employee { background: rgba(15, 157, 118, .14); color: #0a7d5d; }
+.role-pill-admin { background: rgba(29, 78, 216, .14); color: #1d4ed8; }
+.role-pill-employee { background: rgba(15, 157, 118, .14); color: #0a7d5d; }
+
+.invoice-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.totals {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dashboard-detail-grid { margin-top: 24px; }
+.content-grid + .content-grid { margin-top: 24px; }
+.theme-toggle { white-space: nowrap; }
+.settings-preview-cell {
+    display: flex;
+    align-items: flex-end;
+}
+.settings-thumb {
+    width: 92px;
+    height: 92px;
+    object-fit: contain;
+    display: block;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+}
+.settings-thumb-wide {
+    width: 180px;
+    height: 92px;
+}
+.settings-placeholder {
+    min-width: 120px;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px dashed var(--line);
+    color: var(--muted);
+    text-align: center;
+}
+
+/* Cette section definit les couleurs et adaptations du mode sombre. */
+body.theme-dark {
+    --white: #0f172a;
+    --light: #020617;
+    --line: #243244;
+    --text: #e5eefb;
+    --muted: #9fb0c8;
+    --panel: rgba(15, 23, 42, .9);
+    --panel-soft: #162234;
+    --shadow: 0 18px 50px rgba(2, 6, 23, 0.35);
+    background: radial-gradient(circle at top, #18263b 0%, #020617 75%);
+}
+
+body.theme-dark .sidebar {
+    /* Ici on change le fond de la sidebar uniquement en mode sombre. */
+    background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+}
+
+body.theme-dark .btn-secondary,
+body.theme-dark .pill {
+    /* Ici on change les couleurs des boutons secondaires et des pastilles en mode sombre. */
+    background: #162234;
+    color: #d9e7fb;
+}
+
+body.theme-dark .premium-highlight-growth,
+body.theme-dark .premium-highlight-product,
+body.theme-dark .premium-highlight-stock,
+body.theme-dark .premium-highlight-priority {
+    background: linear-gradient(180deg, rgba(22,34,52,.98) 0%, rgba(15,23,42,.98) 100%);
+}
+
+body.theme-dark .dashboard-ai-premium-head {
+    background: linear-gradient(135deg, rgba(2,6,23,.98) 0%, rgba(30,64,175,.9) 60%, rgba(14,116,144,.84) 100%);
+}
+
+body.theme-dark .dashboard-section-head {
+    background: linear-gradient(180deg, rgba(15,23,42,.98) 0%, rgba(22,34,52,.98) 100%);
+    border-color: #243244;
+}
+
+body.theme-dark .dashboard-block-accent {
+    background: linear-gradient(180deg, rgba(22,34,52,.98) 0%, rgba(15,23,42,.98) 100%);
+}
+
+body.theme-dark .bar-track,
+body.theme-dark .metric-progress {
+    background: #223146;
+}
+
+body.theme-dark .alert-success { color: #8cf0cf; }
+body.theme-dark .alert-danger { color: #ffb4b4; }
+
+@media (max-width: 1024px) {
+    .app-shell,
+    .stats-grid,
+    .content-grid,
+    .form-grid,
+    .hero-metrics,
+    .profile-summary,
+    .invoice-meta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-banner,
+    .profile-hero,
+    .metric-row {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+
+    .bar-chart {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        height: auto;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topbar-meta {
+        justify-content: flex-start;
+    }
+}
+
+/* Cette section gere tout le style de la page de connexion. */
+.auth-page {
+    /* Ici on change le fond general de toute la page de connexion. */
+    min-height: 100vh;
+    position: relative;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(255, 116, 28, 0.2) 0%, rgba(255, 116, 28, 0.08) 18%, transparent 42%),
+        radial-gradient(circle at 82% 78%, rgba(255, 92, 22, 0.14) 0%, rgba(255, 92, 22, 0.06) 16%, transparent 36%),
+        linear-gradient(120deg, rgba(5, 5, 5, 0.72) 0%, rgba(10, 10, 10, 0.64) 28%, rgba(27, 18, 12, 0.54) 54%, rgba(96, 47, 18, 0.4) 100%);
+    background-size: auto, auto, cover;
+    background-position: 18% 22%, 82% 78%, center;
+    background-repeat: no-repeat;
+    background-attachment: scroll, scroll, fixed;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 32px 18px;
+}
+
+.auth-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(125deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.24) 38%, rgba(241, 102, 33, 0.18) 100%),
+        url('/images/login-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.38;
+    transform: scale(1.02);
+    filter: saturate(0.95) contrast(1.02);
+    pointer-events: none;
+}
+
+.auth-page > * {
+    position: relative;
+    z-index: 1;
+}
+
+.auth-shell {
+    width: min(920px, 100%);
+}
+
+.auth-card {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    min-height: 560px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 28px 60px rgba(15, 23, 42, 0.14);
+    border: 1px solid rgba(215, 223, 236, 0.9);
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(6px);
+}
+
+.auth-brand-panel {
+    /* Ici on change la couleur de fond du panneau gauche de connexion. */
+    position: relative;
+    background:
+        linear-gradient(140deg, rgba(3, 3, 3, 0.82) 0%, rgba(14, 14, 14, 0.72) 34%, rgba(66, 32, 15, 0.58) 68%, rgba(232, 91, 23, 0.34) 100%),
+        url('/images/login-bg.webp'),
+        radial-gradient(circle at top right, rgba(255, 148, 56, 0.12) 0%, transparent 28%),
+        linear-gradient(180deg, #050505 0%, #121212 54%, #23160f 100%);
+    color: #fff;
+    padding: 36px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    isolation: isolate;
+}
+
+.auth-brand-wave {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(253, 186, 116, 0.3);
+    filter: blur(.2px);
+}
+
+.auth-brand-wave-one {
+    /* Ici on change la premiere forme decorative visible sur le panneau gauche. */
+    width: 420px;
+    height: 420px;
+    left: -180px;
+    bottom: -40px;
+    transform: rotate(22deg);
+    box-shadow:
+        0 0 0 18px rgba(251, 146, 60, 0.12),
+        0 0 0 36px rgba(251, 146, 60, 0.08),
+        0 0 0 54px rgba(251, 146, 60, 0.05);
+}
+
+.auth-brand-wave-two {
+    /* Ici on change la deuxieme forme decorative visible sur le panneau gauche. */
+    width: 360px;
+    height: 360px;
+    right: -180px;
+    top: -90px;
+    border-color: rgba(253, 186, 116, 0.26);
+    box-shadow:
+        0 0 0 14px rgba(249, 115, 22, 0.08),
+        0 0 0 28px rgba(249, 115, 22, 0.05);
+}
+
+.auth-brand-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.auth-brand-logo {
+    /* Ici on change la couleur du petit carre logo avec les lettres de l application. */
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ea580c;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.2);
+}
+
+.auth-brand-eyebrow {
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .78rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.74);
+}
+
+.auth-brand-content h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    line-height: 1.1;
+}
+
+.auth-login-panel {
+    /* Ici on change la couleur de fond du panneau droit qui contient les formulaires. */
+    background:
+        radial-gradient(circle at top right, rgba(255, 148, 56, 0.08) 0%, transparent 26%),
+        linear-gradient(180deg, rgba(14,14,14,.96) 0%, rgba(22,22,22,.94) 100%);
+    color: #f4f4f4;
+    padding: 44px 42px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-login-head {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.auth-login-head p {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .78rem;
+    font-weight: 800;
+    color: #c5c8cd;
+}
+
+.auth-login-head h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.auth-alert {
+    margin-bottom: 18px;
+}
+
+.auth-login-box {
+    width: min(360px, 100%);
+    margin: 0 auto;
+    background:
+        radial-gradient(circle at top right, rgba(255, 148, 56, 0.10) 0%, transparent 28%),
+        linear-gradient(180deg, rgba(24,24,24,.98) 0%, rgba(34,34,34,.96) 100%);
+    border-radius: 22px;
+    padding: 28px 26px;
+    box-shadow: 0 22px 42px rgba(15, 23, 42, 0.1);
+    border: 1px solid rgba(255, 148, 56, .24);
+}
+
+.auth-switcher {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.auth-switcher-btn {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.78);
+    border-radius: 4px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.auth-switcher-btn.active {
+    /* Ici on change la couleur du bouton actif entre Connexion et Creer un compte. */
+    background: linear-gradient(180deg, #fb923c 0%, #dc2626 100%);
+    color: #fff;
+    border-color: transparent;
+}
+
+.auth-panel {
+    display: none;
+}
+
+.auth-panel.active {
+    display: block;
+}
+
+.auth-form-grid {
+    display: grid;
+    gap: 14px;
+}
+
+.auth-form-grid label {
+    display: block;
+    margin-bottom: 6px;
+    color: #f3f3f3;
+    font-size: .88rem;
+    font-weight: 800;
+}
+
+.auth-form-grid input[type="text"],
+.auth-form-grid input[type="password"] {
+    border-radius: 14px;
+    border: 1px solid rgba(225, 232, 242, 0.98);
+    background: linear-gradient(180deg, rgba(250,252,255,.98) 0%, rgba(242,247,255,.97) 100%);
+    padding: 12px 14px;
+    color: #374151;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.88),
+        0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+.auth-remember {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #d4d7dc;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.auth-remember input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+.auth-remember span {
+    display: inline-block;
+}
+
+.auth-submit-btn {
+    /* Ici on change la couleur du bouton principal Login. */
+    width: 100%;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #fb923c 0%, #dc2626 100%);
+    color: #fff;
+    font-weight: 800;
+    padding: 12px 16px;
+    box-shadow: 0 16px 28px rgba(234, 88, 12, 0.2);
+}
+
+.auth-forgot-link {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: -4px;
+    color: #d65217;
+    font-size: .92rem;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.auth-register-note {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(251, 146, 60, 0.12);
+    color: #7c2d12;
+    font-size: .92rem;
+    line-height: 1.6;
+}
+
+.auth-secondary-btn {
+    /* Ici on change la couleur du bouton de creation de compte administrateur. */
+    width: 100%;
+    border-radius: 4px;
+    background: #7f1d1d;
+    color: #fff;
+    font-weight: 800;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 860px) {
+    .auth-card {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-brand-panel {
+        min-height: 220px;
+    }
+
+    .auth-login-panel {
+        padding: 32px 22px;
+    }
+}
+
+/* Cette section gere le bouton flottant IA et le panneau lateral. */
+.ai-fab {
+    /* Ici on change la position, la taille et la couleur du bouton flottant IA. */
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+    z-index: 40;
+}
+
+.ai-fab-wide {
+    width: auto;
+    min-width: 92px;
+    padding: 0 18px;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-sidepanel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: min(420px, calc(100vw - 40px));
+    height: calc(100vh - 40px);
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(248,250,253,.98) 100%);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 28px;
+    box-shadow: 0 30px 70px rgba(15, 23, 42, 0.16);
+    padding: 24px;
+    transform: translateX(120%);
+    transition: transform .25s ease;
+    z-index: 39;
+    overflow-y: auto;
+}
+
+.ai-sidepanel.open {
+    transform: translateX(0);
+}
+
+.ai-sidepanel-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.ai-sidepanel-actions {
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.ai-sidepanel-actions .btn {
+    min-height: 46px;
+    border-radius: 16px;
+    font-weight: 700;
+}
+
+body.dialog-open {
+    overflow: hidden;
+}
+
+.ai-dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+}
+
+.ai-dialog-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(4px);
+}
+
+.ai-dialog-panel {
+    position: relative;
+    width: min(760px, calc(100vw - 32px));
+    max-height: calc(100vh - 56px);
+    margin: 28px auto;
+    background: linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(244,244,244,.99) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 28px;
+    box-shadow: 0 36px 90px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.ai-dialog-head {
+    /* Cette section organise l entete de la boite de dialogue IA. */
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: center;
+    padding: 24px 28px 18px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(242,242,242,.98));
+}
+
+.ai-dialog-head .muted {
+    max-width: 44rem;
+}
+
+.ai-dialog-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.ai-chat-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #111111;
+    color: #ffffff;
+    font-size: .82rem;
+    font-weight: 700;
+    border: 1px solid #111111;
+}
+
+.ai-chat-icon-btn {
+    width: 42px;
+    min-width: 42px;
+    padding: 0;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1;
+    border-radius: 14px;
+    background: #111111;
+    border-color: #111111;
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .14);
+}
+
+.ai-chat-icon-btn svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ai-dialog-form {
+    /* Cette zone gere le formulaire de question dans la fenetre IA. */
+    padding: 20px 28px 0;
+}
+
+.ai-dialog-label {
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.ai-dialog-form textarea {
+    min-height: 128px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, #ffffff, #f7f7f7);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    padding: 16px 18px;
+    transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.ai-dialog-form textarea:focus {
+    border-color: rgba(0, 0, 0, .55);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, .08);
+    transform: translateY(-1px);
+}
+
+.ai-dialog-body {
+    /* Cette zone affiche l historique de conversation dans la boite IA. */
+    padding: 20px 28px 28px;
+    overflow-y: auto;
+    display: grid;
+    gap: 14px;
+    background: linear-gradient(180deg, rgba(248,248,248,.9) 0%, rgba(238,238,238,.95) 100%);
+}
+
+.ai-chat-empty {
+    /* Ce bloc apparait quand aucune question n a encore ete posee. */
+    border: 1px dashed rgba(0, 0, 0, .35);
+    border-radius: 18px;
+    padding: 16px 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(244,244,244,.92));
+}
+
+.ai-chat-entry {
+    /* Chaque entree regroupe une question et sa reponse IA. */
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid rgba(0, 0, 0, .10);
+    border-radius: 22px;
+    background: rgba(255,255,255,.85);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, .05);
+}
+
+.ai-chat-bubble {
+    /* Cette base sert a dessiner les bulles de discussion. */
+    max-width: 92%;
+    border-radius: 18px;
+    padding: 14px 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    position: relative;
+}
+
+.ai-chat-bubble strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.ai-chat-bubble-question {
+    justify-self: end;
+    background: linear-gradient(135deg, #111111 0%, #444444 100%);
+    color: #ffffff;
+    border-bottom-right-radius: 8px;
+}
+
+.ai-chat-bubble-question .muted {
+    color: rgba(255,255,255,.9);
+}
+
+.ai-chat-bubble-answer {
+    justify-self: start;
+    background: linear-gradient(180deg, #ffffff 0%, #f6f6f6 100%);
+    border: 1px solid rgba(0, 0, 0, .14);
+    color: var(--text);
+    border-bottom-left-radius: 8px;
+}
+
+.ai-chat-bubble-answer .muted {
+    color: var(--muted);
+}
+
+.ai-chat-bubble.is-pending {
+    opacity: .92;
+}
+
+.ai-chat-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, .06);
+    color: #111111;
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+.ai-chat-spinner {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, .20);
+    border-top-color: #111111;
+    animation: ai-spin .8s linear infinite;
+}
+
+@keyframes ai-spin {
+    to { transform: rotate(360deg); }
+}
+
+.settings-hub {
+    /* Cette section ajoute un espace sous le hub de parametres. */
+    margin-bottom: 20px;
+}
+
+.settings-shortcuts {
+    /* Cette grille affiche les raccourcis rapides des parametres. */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.settings-shortcut {
+    display: grid;
+    gap: 6px;
+}
+
+.report-reading-grid {
+    /* Cette grille organise les blocs de lecture dans les rapports. */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.profile-photo-form {
+    /* Ce bloc garde le formulaire de photo de profil compact. */
+    margin: 0;
+}
+
+.profile-photo-edit {
+    /* Cette zone gere le bouton de modification sur la photo de profil. */
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-photo-edit input {
+    display: none;
+}
+
+.profile-photo-edit span {
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: #fff;
+    color: var(--navy);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, .18);
+    font-weight: 800;
+}
+
+.ai-chart-grid {
+    /* Cette grille sert aux graphiques secondaires du module IA. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.ai-dashboard-grid,
+.ai-stats-grid {
+    /* Cette marge separe les grilles IA du contenu precedent. */
+    margin-top: 16px;
+}
+
+.form-checkbox-grid {
+    /* Cette grille aligne les cases a cocher des formulaires. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.checkbox {
+    /* Cette regle aligne proprement une case a cocher et son texte. */
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.checkbox input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+/* Cette section gere le dashboard IA, ses cartes et ses graphiques. */
+.dashboard-ai-board {
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(247,250,252,.96) 100%);
+    overflow: hidden;
+    border: 1px solid #dbe5f0;
+}
+
+/* Cette section gere la partie metier classique du dashboard sous le module IA. */
+.dashboard-section-shell {
+    margin-top: 20px;
+}
+
+.dashboard-reading-stack {
+    /* Cette pile aligne verticalement les zones du dashboard metier. */
+    display: grid;
+    gap: 16px;
+}
+
+.dashboard-reading-zone {
+    /* Chaque zone regroupe une ligne logique de modules metier. */
+    display: grid;
+    gap: 12px;
+}
+
+.dashboard-reading-zone-head {
+    /* Cet entete sert aux sous-zones de lecture du dashboard. */
+    padding: 14px 18px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,.98) 0%, rgba(244,248,252,.98) 100%);
+    border: 1px solid #dbe5f0;
+}
+
+.dashboard-reading-zone-head h4 {
+    margin: 4px 0 6px;
+    font-size: 1rem;
+    color: var(--navy);
+}
+
+.dashboard-section-head {
+    margin-bottom: 12px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,.98) 0%, rgba(237,244,252,.98) 100%);
+    border: 1px solid #dbe5f0;
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.06);
+}
+
+.dashboard-section-head h3 {
+    margin: 4px 0 6px;
+    font-size: 1.05rem;
+}
+
+.dashboard-premium-grid {
+    /* Ici on change le nombre de colonnes et l espacement des cartes metier du bas. */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.dashboard-premium-grid-commercial {
+    /* Cette grille range les modules commerciaux sur deux colonnes. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard-premium-grid-supervision {
+    /* Cette grille range les modules de supervision sur trois colonnes. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dashboard-premium-grid-operations {
+    /* Cette grille range les modules d operations et de tracabilite. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.employee-module-grid {
+    /* Cette grille organise les modules cliquables de l espace employe. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard-premium-grid-modules {
+    /* Cette grille uniforme affiche les modules cliquables du dashboard admin. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+}
+
+.dashboard-clickable-modules {
+    /* Cette grille empile les modules detaillees quand une carte occupe deja une colonne. */
+    display: grid;
+    gap: 12px;
+    grid-column: span 2;
+}
+
+.dashboard-module-toggle {
+    /* Cette base sert a tous les modules qu on peut derouler. */
+    padding: 0;
+    overflow: hidden;
+}
+
+.dashboard-module-toggle summary {
+    /* Cette ligne dessine la tete cliquable de chaque module. */
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(244,248,252,.98) 100%);
+}
+
+.dashboard-module-toggle summary::after {
+    content: "▾";
+    flex: 0 0 auto;
+    font-size: .95rem;
+    color: #64748b;
+    transition: transform .18s ease, color .18s ease;
+}
+
+.dashboard-module-toggle[open] summary::after {
+    transform: rotate(180deg);
+    color: var(--navy);
+}
+
+/* Ici on agrandit la petite fleche des modules cliquables pour mieux voir qu il faut derouler. */
+.dashboard-module-toggle summary::after {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #475569;
+    line-height: 1;
+}
+
+.dashboard-module-card summary {
+    /* Ici on fixe une hauteur minimale commune pour les modules admin. */
+    min-height: 92px;
+}
+
+.employee-module-card summary {
+    /* Ici on garde la meme logique visuelle pour les modules employe. */
+    min-height: 96px;
+}
+
+.dashboard-module-toggle summary::-webkit-details-marker {
+    display: none;
+}
+
+.dashboard-module-toggle summary strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--navy);
+}
+
+.dashboard-module-body {
+    /* Cette zone contient le contenu visible une fois le module ouvert. */
+    padding: 0 18px 18px;
+}
+
+.dashboard-block {
+    /* Ici on change la taille interne des cartes metier classiques. */
+    min-width: 0;
+    grid-column: span 1;
+    padding: 16px;
+}
+
+.dashboard-block-wide {
+    /* Cette regle permet a une carte de prendre toute la largeur de la grille. */
+    grid-column: 1 / -1;
+}
+
+.dashboard-block-accent {
+    /* Cette variante ajoute un fond plus lumineux a certaines cartes. */
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(241,248,255,.98) 100%);
+}
+
+.dashboard-block .card-head {
+    margin-bottom: 12px;
+}
+
+.dashboard-block .card-head h3 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.dashboard-block-chart {
+    /* Ici on change la hauteur minimale de la carte du graphique principal. */
+    min-height: 300px;
+}
+
+.business-chart-shell {
+    /* Cette enveloppe garde une hauteur stable pour les graphiques business. */
+    position: relative;
+    min-height: 280px;
+    padding-top: 0;
+}
+
+.business-chart-shell canvas {
+    width: 100% !important;
+    height: 280px !important;
+}
+
+.business-chart-shell-radar {
+    /* Cette variante ajuste le radar pour mieux utiliser son espace. */
+    min-height: 260px;
+    padding: 8px 0 2px;
+}
+
+.business-chart-shell-radar canvas {
+    height: 250px !important;
+}
+
+.dashboard-block-table,
+.dashboard-block-list,
+.dashboard-block-feed,
+.dashboard-block-actions {
+    /* Ici on change la hauteur minimale des autres cartes du dashboard metier. */
+    min-height: 120px;
+}
+
+.dashboard-module-toggle.dashboard-block,
+.dashboard-module-toggle.dashboard-module-card {
+    height: fit-content;
+}
+
+.dashboard-reading-zone + .dashboard-reading-zone {
+    /* Cette petite marge separe legerement les grandes zones du dashboard. */
+    margin-top: 2px;
+}
+
+.dashboard-block-invoices .table-responsive,
+.dashboard-block-alerts .table-responsive {
+    /* Ici on change la hauteur visible des tableaux avec scroll interne. */
+    max-height: 240px;
+    overflow: auto;
+}
+
+.dashboard-block-table table {
+    /* Cette taille rend les tableaux du dashboard plus compacts. */
+    font-size: .9rem;
+}
+
+.dashboard-block-table th,
+.dashboard-block-table td {
+    padding: 10px 8px;
+}
+
+.dashboard-block-ranking .stack,
+.dashboard-block-feed .stack {
+    gap: 10px;
+}
+
+.dashboard-block-ranking .metric-row {
+    /* Cette grille range les lignes de classement produit ou utilisateur. */
+    grid-template-columns: minmax(120px, 1fr) minmax(100px, 1fr) auto;
+    gap: 10px;
+}
+
+.dashboard-block-ranking .metric-row strong,
+.dashboard-block-ranking .metric-row .muted {
+    font-size: .9rem;
+}
+
+.dashboard-block-feed .note {
+    padding: 12px;
+}
+
+.dashboard-block-feed .stack {
+    max-height: 320px;
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.dashboard-block-feed .note-head {
+    margin-bottom: 4px;
+}
+
+.dashboard-block-feed .muted {
+    font-size: .88rem;
+}
+
+.dashboard-block-actions .stack {
+    gap: 10px;
+}
+
+.dashboard-block-actions .btn {
+    min-height: 44px;
+}
+
+.dashboard-ai-header {
+    /* Cette ligne organise le titre IA, la cloche et les boutons d analyse. */
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.dashboard-ai-header > div:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.dashboard-ai-toolbar {
+    /* Cette barre aligne les boutons d analyse et la cloche sur une meme ligne. */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 12px;
+    min-width: 0;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+}
+
+.dashboard-ai-toolbar .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    width: auto;
+}
+
+.ai-bell-menu {
+    /* Cette zone contient le bouton cloche et son panneau de notifications. */
+    position: relative;
+}
+
+.ai-bell-menu summary {
+    list-style: none;
+}
+
+.ai-bell-menu summary::-webkit-details-marker {
+    display: none;
+}
+
+.ai-bell-button {
+    /* Ce bouton ouvre la liste des notifications IA recentes. */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid #d8e3ef;
+    background: #ffffff;
+    color: var(--navy);
+    cursor: pointer;
+    font-weight: 800;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.ai-bell-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.ai-bell-count {
+    min-width: 24px;
+    height: 24px;
+    padding: 0 7px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #d14343;
+    color: #fff;
+    font-size: .76rem;
+    font-weight: 800;
+}
+
+.ai-bell-panel {
+    /* Ce panneau affiche les notifications IA sous forme de menu flottant. */
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: min(360px, 85vw);
+    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid #d8e3ef;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    z-index: 20;
+}
+
+.ai-bell-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.dashboard-ai-header h3 {
+    margin: 6px 0;
+    font-size: 1.15rem;
+    line-height: 1.2;
+}
+
+.dashboard-ai-tags {
+    /* Ces petites pastilles presentent rapidement les axes de lecture IA. */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.dashboard-ai-loading {
+    /* Cette alerte visible montre qu une analyse IA est en cours ou terminee. */
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 12px 0 16px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    border: 1px solid #cddcf0;
+    background: linear-gradient(180deg, rgba(237,244,255,.96) 0%, rgba(248,251,255,.98) 100%);
+    color: var(--navy);
+    box-shadow: 0 14px 26px rgba(15, 23, 42, 0.08);
+}
+
+.dashboard-ai-loading.is-success {
+    border-color: #b8e0cf;
+    background: linear-gradient(180deg, rgba(236,250,243,.98) 0%, rgba(247,253,249,.98) 100%);
+}
+
+.dashboard-ai-loading.is-error {
+    border-color: #efc2c2;
+    background: linear-gradient(180deg, rgba(254,242,242,.98) 0%, rgba(255,248,248,.98) 100%);
+}
+
+.dashboard-ai-loading-spinner {
+    /* Ce cercle tourne tant que l analyse est encore en cours. */
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    border: 3px solid rgba(29, 78, 216, 0.16);
+    border-top-color: #1d4ed8;
+    animation: dashboard-ai-spin .85s linear infinite;
+    flex: 0 0 auto;
+}
+
+.dashboard-ai-loading.is-success .dashboard-ai-loading-spinner,
+.dashboard-ai-loading.is-error .dashboard-ai-loading-spinner {
+    animation: none;
+}
+
+.dashboard-ai-loading.is-success .dashboard-ai-loading-spinner {
+    border-color: rgba(15, 157, 118, 0.22);
+    border-top-color: #0f9d76;
+}
+
+.dashboard-ai-loading.is-error .dashboard-ai-loading-spinner {
+    border-color: rgba(209, 67, 67, 0.22);
+    border-top-color: #d14343;
+}
+
+.dashboard-ai-loading-text {
+    display: grid;
+    gap: 4px;
+}
+
+.dashboard-ai-loading-text strong {
+    color: var(--navy);
+    line-height: 1.2;
+}
+
+.dashboard-ai-loading-text span {
+    color: var(--muted);
+    font-size: .92rem;
+}
+
+@keyframes dashboard-ai-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.dashboard-ai-kpi-grid {
+    /* Cette grille range les KPI IA sur une meme ligne. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.dashboard-ai-simple-top {
+    /* Cette grille affiche les mini blocs de lecture rapide au dessus. */
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.dashboard-photo-top {
+    /* Ici on change l organisation de la premiere rangee de graphiques du dashboard IA. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.dashboard-photo-bottom {
+    /* Cette ligne organise les graphiques complementaires sous la premiere rangee. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.dashboard-photo-card {
+    /* Cette carte blanche sert de base aux blocs visuels du dashboard IA. */
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(248,251,255,.98) 100%);
+    border: 1px solid #d6e0ec;
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.06);
+    min-height: 300px;
+    transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+
+.dashboard-photo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 24px 44px rgba(15, 23, 42, 0.08);
+    border-color: #c9d8ea;
+}
+
+.dashboard-photo-title {
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #5d6169 0%, #7b8088 100%);
+    color: #fff;
+    text-align: center;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.dashboard-photo-title-orange {
+    background: linear-gradient(90deg, #c84f13 0%, #f35b1c 100%);
+}
+
+.dashboard-photo-gauge {
+    /* Cette variante range les cartes avec anneau ou jauge. */
+    display: grid;
+    align-content: start;
+    gap: 12px;
+}
+
+.dashboard-photo-ring {
+    width: 136px;
+    height: 136px;
+    margin: 0 auto;
+    filter: drop-shadow(0 14px 22px rgba(15, 23, 42, 0.08));
+}
+
+.dashboard-photo-ring canvas {
+    width: 136px !important;
+    height: 136px !important;
+}
+
+.dashboard-photo-table {
+    /* Ce petit tableau aligne les chiffres secondaires sous les graphiques. */
+    border: 1px solid #d8e0ea;
+    border-radius: 14px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(248, 251, 255, .98) 0%, rgba(241, 246, 252, .98) 100%);
+}
+
+.dashboard-photo-table div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    font-size: .88rem;
+    border-bottom: 1px solid #e6edf5;
+}
+
+.dashboard-photo-table div:last-child {
+    border-bottom: none;
+}
+
+.dashboard-photo-table span {
+    color: #475569;
+    font-weight: 700;
+    min-width: 0;
+    flex: 1 1 auto;
+    line-height: 1.35;
+}
+
+.dashboard-photo-table strong {
+    color: #102033;
+    font-weight: 800;
+    text-align: right;
+    flex: 0 0 auto;
+    line-height: 1.2;
+}
+
+.dashboard-photo-table-row span::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    border-radius: 999px;
+    vertical-align: middle;
+    background: #cbd5e1;
+}
+
+.dashboard-stock-row-total span::before { background: #334155; }
+.dashboard-stock-row-critical span::before { background: #d14343; }
+.dashboard-stock-row-watch span::before { background: #f59e0b; }
+.dashboard-stock-row-healthy span::before { background: #0f9d76; }
+
+.dashboard-stock-row-total strong { color: #334155; }
+.dashboard-stock-row-critical strong { color: #d14343; }
+.dashboard-stock-row-watch strong { color: #b45309; }
+.dashboard-stock-row-healthy strong { color: #0f766e; }
+
+.dashboard-photo-donut {
+    /* Cette variante garde le bloc donut bien range verticalement. */
+    display: grid;
+    align-content: start;
+    grid-template-rows: auto auto 1fr;
+    gap: 10px;
+}
+
+.dashboard-photo-strip {
+    /* Cette bande resume rapidement les chiffres IA en petites cartes. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.dashboard-photo-strip-item {
+    padding: 12px 14px;
+    border: 1px solid #d8e0ea;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+}
+
+.dashboard-photo-strip-item span {
+    display: block;
+    color: #64748b;
+    margin-bottom: 4px;
+    font-size: .75rem;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.dashboard-photo-strip-item strong {
+    color: #102033;
+    font-size: .98rem;
+    line-height: 1.25;
+}
+
+.dashboard-ai-simple-grid {
+    /* Cette grille organise les cartes simples de resume IA. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.dashboard-ai-summary-strip {
+    /* Cette ligne affiche des indicateurs resumes sur une seule bande. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.dashboard-ai-output-grid {
+    /* Cette grille range les blocs de sortie textuelle de l analyse IA. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.dashboard-ai-output-grid-top {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+}
+
+.dashboard-ai-output-grid-bottom {
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+}
+
+.dashboard-ai-donut-card {
+    /* Cette carte prepare l alignement des graphiques circulaires IA. */
+    display: grid;
+    align-content: start;
+}
+
+.dashboard-ai-canvas-wrap-small {
+    /* Cette hauteur reserve un espace court pour un petit graphique. */
+    min-height: 220px;
+    padding: 4px 4px 0;
+}
+
+.dashboard-ai-canvas-wrap-medium {
+    /* Cette hauteur reserve un espace moyen pour un graphique plus dense. */
+    min-height: 240px;
+    padding: 6px 6px 0;
+}
+
+.dashboard-photo-donut .dashboard-ai-canvas-wrap-small {
+    min-height: 180px;
+}
+
+.dashboard-stock-legend {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    max-height: 166px;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: #c7d4e4 transparent;
+}
+
+.dashboard-stock-legend-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 12px;
+    border: 1px solid #e5edf6;
+    border-radius: 12px;
+    background: rgba(248, 251, 255, .92);
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.dashboard-stock-legend-item:hover,
+.dashboard-revenue-legend-item:hover {
+    background: #ffffff;
+    border-color: #cedceb;
+    transform: translateY(-1px);
+}
+
+.dashboard-stock-legend-swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .9);
+}
+
+.dashboard-stock-legend-label {
+    min-width: 0;
+    color: #102033;
+    font-size: .84rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.dashboard-stock-legend-value {
+    color: #475569;
+    font-size: .82rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.dashboard-revenue-legend {
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
+    max-height: 172px;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: #c7d4e4 transparent;
+}
+
+.dashboard-revenue-legend-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 12px;
+    border: 1px solid #e5edf6;
+    border-radius: 12px;
+    background: rgba(248, 251, 255, .92);
+}
+
+.dashboard-revenue-legend-rank {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #e8eef7;
+    color: #102033;
+    font-size: .76rem;
+    font-weight: 800;
+}
+
+.dashboard-revenue-legend-label {
+    min-width: 0;
+    color: #102033;
+    font-size: .84rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.dashboard-revenue-legend-value {
+    color: #243447;
+    font-size: .84rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.dashboard-ai-premium-head {
+    /* Cette entete coloree met en avant le haut du module IA premium. */
+    margin-bottom: 14px;
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(15,23,42,.98) 0%, rgba(29,78,216,.94) 58%, rgba(56,189,248,.88) 100%);
+    color: #fff;
+}
+
+.dashboard-ai-premium-head h3 {
+    margin: 6px 0 8px;
+    font-size: 1.2rem;
+}
+
+.dashboard-ai-premium-head .muted {
+    color: rgba(255,255,255,.82);
+}
+
+.dashboard-ai-highlight-grid {
+    /* Cette grille affiche les cartes de synthese premium en haut du module IA. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.premium-highlight-card {
+    /* Cette carte met en avant une statistique IA importante. */
+    position: relative;
+    min-height: 168px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.35);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.1);
+}
+
+.premium-highlight-card::after {
+    content: "";
+    position: absolute;
+    right: -30px;
+    bottom: -30px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.32);
+    filter: blur(2px);
+}
+
+.premium-highlight-top {
+    /* Cette ligne aligne le libelle et le badge d une carte premium. */
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.premium-highlight-label {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: .74rem;
+    font-weight: 800;
+}
+
+.premium-highlight-card strong {
+    font-size: 2rem;
+    color: var(--navy);
+    line-height: 1.15;
+}
+
+.premium-highlight-card p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.premium-highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: .74rem;
+    font-weight: 800;
+    background: #e2e8f0;
+    color: var(--navy);
+}
+
+.premium-highlight-badge.success {
+    background: rgba(15, 157, 118, .14);
+    color: #0a7d5d;
+}
+
+.premium-highlight-badge.warning {
+    background: rgba(212, 139, 31, .16);
+    color: #9b5d09;
+}
+
+.premium-highlight-badge.danger {
+    background: rgba(209, 67, 67, .14);
+    color: #a12626;
+}
+
+.premium-highlight-badge.info {
+    background: rgba(29, 78, 216, .12);
+    color: #1d4ed8;
+}
+
+.premium-highlight-badge.neutral {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.premium-highlight-growth {
+    background:
+        radial-gradient(circle at top right, rgba(56, 189, 248, .2) 0%, transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(241,248,255,.98) 100%);
+}
+
+.premium-highlight-product {
+    background:
+        radial-gradient(circle at top right, rgba(20, 184, 166, .18) 0%, transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(240,253,250,.98) 100%);
+}
+
+.premium-highlight-stock {
+    background:
+        radial-gradient(circle at top right, rgba(245, 158, 11, .16) 0%, transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(255,251,235,.98) 100%);
+}
+
+.premium-highlight-priority {
+    background:
+        radial-gradient(circle at top right, rgba(99, 102, 241, .18) 0%, transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(238,242,255,.98) 100%);
+}
+
+.ring-card span {
+    /* Cette etiquette nomme les petits cadrans et anneaux du dashboard IA. */
+    display: block;
+    color: var(--muted);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-size: .75rem;
+    font-weight: 800;
+}
+
+.ring-wrap {
+    /* Cette enveloppe centre le chiffre au milieu d un anneau. */
+    position: relative;
+    width: 112px;
+    height: 112px;
+    margin: 0 auto;
+}
+
+.ring-wrap canvas {
+    width: 112px !important;
+    height: 112px !important;
+}
+
+.ring-wrap strong {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 1.25rem;
+    color: var(--navy);
+    font-weight: 900;
+    letter-spacing: -.03em;
+    text-align: center;
+}
+
+.dashboard-ai-grid {
+    /* Cette grande grille range les cartes du dashboard IA detaille. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.dashboard-ai-main-grid {
+    /* Cette grille principale partage la zone IA entre graphiques et resume. */
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(290px, .9fr);
+    gap: 12px;
+}
+
+.dashboard-ai-chart-stack {
+    /* Cette pile empile les graphiques IA verticalement. */
+    display: grid;
+    gap: 12px;
+}
+
+.dashboard-ai-grid-top {
+    /* Cette sous-grille organise les deux premiers blocs IA en haut. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard-ai-wide-panel {
+    /* Ici on garde une hauteur minimale pour les panneaux IA plus larges. */
+    min-height: 260px;
+}
+
+.dashboard-ai-summary-panel {
+    /* Ce panneau regroupe les textes et recommandations de l analyse IA. */
+    display: grid;
+    gap: 14px;
+    align-content: start;
+}
+
+.dashboard-ai-grid .card,
+.dashboard-ai-kpi-grid .card {
+    /* Cette regle harmonise les coins et l ombre des cartes IA. */
+    border-radius: 18px;
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+}
+
+.dashboard-ai-panel {
+    /* Cette carte sert de conteneur standard aux panneaux IA. */
+    position: relative;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(245,248,252,.98) 100%);
+    border: 1px solid #dbe5f0;
+}
+
+.dashboard-ai-panel::before {
+    /* Cette barre coloree en haut signale qu il s agit d un bloc IA. */
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1d4ed8 0%, #38bdf8 55%, #0f9d76 100%);
+}
+
+.dashboard-ai-panel .card-head {
+    /* Cette petite marge compense la barre coloree placee en haut du bloc IA. */
+    padding-top: 4px;
+}
+
+.dashboard-ai-mini-metrics {
+    /* Cette pile range les mini statistiques dans un panneau IA. */
+    display: grid;
+    gap: 10px;
+}
+
+.mini-metric {
+    /* Cette carte compacte met en avant une petite mesure IA. */
+    padding: 12px;
+    border-radius: 14px;
+    background: var(--panel-soft);
+    border-left: 4px solid #f59e0b;
+}
+
+.mini-metric span {
+    /* Ce petit texte decrit chaque mini statistique IA. */
+    display: block;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.dashboard-ai-meter-list {
+    /* Cette liste aligne plusieurs jauges textuelles les unes sous les autres. */
+    display: grid;
+    gap: 12px;
+}
+
+.dashboard-ai-meter {
+    /* Cette jauge texte affiche une valeur avec sa barre horizontale. */
+    display: grid;
+    gap: 7px;
+}
+
+.dashboard-ai-meter-head {
+    /* Cette ligne affiche le libelle et la valeur d une jauge IA. */
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    font-size: .9rem;
+}
+
+.dashboard-ai-meter-head span {
+    color: var(--muted);
+}
+
+.dashboard-ai-meter-head strong {
+    color: var(--navy);
+}
+
+.dashboard-ai-meter-track {
+    /* Ce rail sert de fond a la barre de progression IA. */
+    height: 10px;
+    border-radius: 999px;
+    background: #e5edf5;
+    overflow: hidden;
+}
+
+.dashboard-ai-meter-fill {
+    /* Cette barre bleue affiche le niveau d une mesure IA. */
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #1d4ed8 0%, #38bdf8 100%);
+}
+
+.dashboard-ai-meter-fill.stock {
+    background: linear-gradient(90deg, #0f9d76 0%, #34d399 100%);
+}
+
+.dashboard-ai-meter-fill.user {
+    background: linear-gradient(90deg, #4f46e5 0%, #60a5fa 100%);
+}
+
+.dashboard-ai-meter-fill.warning {
+    background: linear-gradient(90deg, #f59e0b 0%, #f97316 100%);
+}
+
+.dashboard-ai-output {
+    /* Cette marge separe la sortie detaillee IA du reste du module. */
+    margin-top: 16px;
+}
+
+.ai-question-card {
+    /* Cette carte organise un bloc de question ou d aide dans le module IA. */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.dashboard-ai-canvas-wrap {
+    /* Cette zone reserve une hauteur stable aux canvases IA. */
+    position: relative;
+    min-height: 280px;
+}
+
+.dashboard-ai-board canvas {
+    /* Ici on fixe une hauteur commune aux graphiques IA standards. */
+    width: 100% !important;
+    height: 190px !important;
+}
+
+/* Ici on donne un peu plus de hauteur aux graphiques horizontaux de lecture detaillee. */
+#dashboard-ai-category-chart,
+#dashboard-ai-stock-health-chart {
+    height: 210px !important;
+}
+
+/* Ici on change la hauteur du graphique d evolution du chiffre d affaire IA. */
+#dashboard-ai-revenue-chart {
+    height: 260px !important;
+}
+
+/* Ici on change la hauteur des graphiques circulaires et du planning IA. */
+#dashboard-ai-product-share-chart,
+#dashboard-ai-gantt-chart {
+    height: 280px !important;
+}
+
+#dashboard-ai-product-share-chart,
+#dashboard-ai-score-ring,
+#dashboard-ai-stock-ring,
+#dashboard-ai-user-ring,
+#dashboard-ai-cancel-ring {
+    filter: drop-shadow(0 12px 20px rgba(15, 23, 42, 0.07));
+}
+
+.dashboard-speedometer {
+    /* Cette zone dessine la jauge demi-cercle de priorite ou urgence. */
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 26px 24px 34px;
+}
+
+.dashboard-speedometer-arc {
+    /* Cet arc colore represente les zones faible, moyenne et elevee. */
+    position: absolute;
+    bottom: 34px;
+    width: 240px;
+    height: 120px;
+    border-top-left-radius: 240px;
+    border-top-right-radius: 240px;
+    border: 20px solid #e7eef7;
+    border-bottom: 0;
+    background:
+        conic-gradient(from 180deg, #10b981 0deg 60deg, #f59e0b 60deg 120deg, #d14343 120deg 180deg);
+    -webkit-mask: radial-gradient(circle at 50% 100%, transparent 0 58px, #000 59px);
+    mask: radial-gradient(circle at 50% 100%, transparent 0 58px, #000 59px);
+}
+
+.dashboard-speedometer-center {
+    /* Cette zone centre le chiffre principal au milieu de la jauge. */
+    position: absolute;
+    bottom: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.dashboard-speedometer-center strong {
+    font-size: 1.55rem;
+    color: #0f172a;
+}
+
+.dashboard-speedometer-center span {
+    font-size: 0.88rem;
+    color: #64748b;
+    font-weight: 700;
+    text-align: center;
+}
+
+.dashboard-speedometer-needle {
+    /* Cette aiguille pointe le niveau actuel sur la jauge. */
+    position: absolute;
+    bottom: 42px;
+    width: 6px;
+    height: 96px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #0f172a 0%, #475569 100%);
+    transform-origin: 50% calc(100% - 8px);
+    transform: rotate(-90deg);
+    transition: transform .35s ease;
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.18);
+}
+
+.dashboard-speedometer-needle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #0f172a;
+    transform: translateX(-50%);
+}
+
+.dashboard-speedometer-mark {
+    /* Ces reperes nomment les zones de la jauge. */
+    position: absolute;
+    bottom: 12px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.dashboard-speedometer-mark.mark-left {
+    left: 34px;
+}
+
+.dashboard-speedometer-mark.mark-center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dashboard-speedometer-mark.mark-right {
+    right: 34px;
+}
+
+.dashboard-speedometer-caption {
+    /* Cette phrase explique rapidement la lecture de la jauge. */
+    margin-top: -2px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Ici on fixe la taille des petits anneaux circulaires du dashboard IA. */
+#dashboard-ai-score-ring,
+#dashboard-ai-cancel-ring,
+#dashboard-ai-stock-ring,
+#dashboard-ai-user-ring {
+    height: 104px !important;
+}
+
+.dashboard-ai-grid .card-head,
+.dashboard-ai-output .card-head {
+    /* Cette regle compacte les entetes des cartes IA. */
+    margin-bottom: 10px;
+}
+
+.dashboard-ai-grid .card-head h3,
+.dashboard-ai-output .card-head h3 {
+    /* Cette taille rend les titres IA plus compacts et reguliers. */
+    font-size: .94rem;
+    margin: 0;
+}
+
+.dashboard-ai-board .card,
+.ai-chart-grid .card,
+.ai-dashboard-grid .card {
+    /* Cette regle evite que les cartes IA debordent horizontalement. */
+    min-width: 0;
+}
+
+.dashboard-ai-board .nested-card {
+    /* Cette variante reduit un peu le padding des cartes internes IA. */
+    padding: 16px;
+}
+
+.dashboard-ai-board .note {
+    /* Cette note donne un fond plus doux aux messages dans le module IA. */
+    background: linear-gradient(180deg, #f9fbfd 0%, #eff6ff 100%);
+}
+
+.dashboard-ai-board .status-badge {
+    /* Cette largeur minimale garde les badges IA bien alignes. */
+    min-width: 72px;
+}
+
+.dashboard-ai-board .actions {
+    /* Cette regle centre mieux les groupes de boutons dans le module IA. */
+    align-items: center;
+}
+
+.dashboard-ai-board .eyebrow {
+    /* Cette couleur distingue visuellement les petits titres IA. */
+    color: #1d4ed8;
+}
+
+.dashboard-ai-board .pill {
+    /* Cette variante recolore les petites pastilles internes du module IA. */
+    background: #eef4fb;
+    color: #1e3a5f;
+}
+
+.dashboard-ai-output .nested-card {
+    /* Ce fond clarifie les sous-cartes du bloc de sortie IA. */
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(243,247,252,.98) 100%);
+}
+
+.dashboard-ai-output .stack .note {
+    /* Cette bordure structure les notes affichees dans la sortie IA. */
+    border: 1px solid rgba(215, 223, 236, .85);
+}
+
+.dashboard-ai-output p,
+.dashboard-ai-output .muted,
+.dashboard-ai-output .note {
+    /* Cet interligne rend les paragraphes IA plus faciles a lire. */
+    line-height: 1.65;
+}
+
+/* Cette regle compacte l interface sur les ecrans intermediaires. */
+@media (max-width: 1200px) {
+    /* Ici on change la disposition des cartes sur ecran moyen. */
+    .dashboard-premium-grid,
+    .dashboard-photo-top,
+    .dashboard-photo-bottom,
+    .dashboard-photo-strip,
+    .dashboard-ai-simple-top,
+    .dashboard-ai-summary-strip,
+    .dashboard-ai-output-grid,
+    .dashboard-ai-highlight-grid,
+    .dashboard-ai-kpi-grid,
+    .dashboard-ai-grid,
+    .dashboard-ai-simple-grid,
+    .dashboard-ai-main-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-premium-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .employee-quick-grid,
+    .employee-module-grid,
+    .dashboard-premium-grid-modules {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bar-chart-compact {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .dashboard-block,
+    .dashboard-block-wide {
+        grid-column: span 1;
+    }
+
+    .dashboard-block-wide {
+        grid-column: span 2;
+    }
+}
+
+/* Cette regle passe les blocs sur une seule colonne pour les petits ecrans. */
+@media (max-width: 860px) {
+    /* Ici on force presque tout le dashboard sur une seule colonne en mobile. */
+    .dashboard-premium-grid,
+    .dashboard-ai-header,
+    .dashboard-photo-top,
+    .dashboard-photo-bottom,
+    .dashboard-photo-strip,
+    .dashboard-ai-simple-top,
+    .dashboard-ai-summary-strip,
+    .dashboard-ai-output-grid,
+    .dashboard-ai-highlight-grid,
+    .dashboard-ai-kpi-grid,
+    .dashboard-ai-grid,
+    .dashboard-ai-simple-grid,
+    .dashboard-ai-grid-top,
+    .dashboard-ai-main-grid,
+    .ai-chart-grid {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .dashboard-premium-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .employee-quick-grid,
+    .employee-module-grid,
+    .dashboard-premium-grid-modules {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-ai-toolbar {
+        min-width: 0;
+        flex: 1 1 auto;
+        width: 100%;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .dashboard-ai-toolbar .actions {
+        justify-content: stretch;
+    }
+
+    .dashboard-ai-toolbar .actions .btn,
+    .ai-bell-button {
+        width: 100%;
+    }
+
+    .ai-bell-panel {
+        position: static;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .bar-chart-compact {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .dashboard-block,
+    .dashboard-block-wide {
+        grid-column: auto;
+    }
+
+    .settings-shortcuts {
+        grid-template-columns: 1fr;
+    }
+
+    .report-reading-grid {
+        grid-template-columns: 1fr;
+    }
+
+.dashboard-ai-grid .card,
+.dashboard-ai-highlight-grid .card,
+.dashboard-ai-kpi-grid .card {
+    min-height: auto;
+}
+}
+
+/* Ici on met en forme le filtre de periode du dashboard IA pour garder un rendu propre. */
+.dashboard-ai-period-form {
+    display: grid;
+    gap: 6px;
+    min-width: 220px;
+}
+
+.dashboard-ai-period-form label {
+    font-size: .78rem;
+    font-weight: 700;
+    color: #111111;
+}
+
+.dashboard-ai-period-form .form-select {
+    min-width: 220px;
+    height: 44px;
+}
+
+/* Refonte finale 2026 : palette plus sobre, contraste plus premium et surfaces plus nettes. */
+:root {
+    --navy: #101418;
+    --navy-soft: #1a2027;
+    --orange: #f36a21;
+    --orange-deep: #b94a18;
+    --orange-soft: #ffd7c2;
+    --surface: #fffdfb;
+    --surface-soft: #f6f2ee;
+    --surface-muted: #ece5de;
+    --line: #ddd0c3;
+    --text: #1b232c;
+    --muted: #6b7280;
+    --success: #0f9d76;
+    --danger: #d14343;
+    --warning: #dd8b19;
+    --shadow: 0 22px 60px rgba(15, 23, 42, 0.08);
+    --shadow-soft: 0 16px 38px rgba(15, 23, 42, 0.06);
+    --shadow-strong: 0 26px 72px rgba(15, 23, 42, 0.14);
+}
+
+body {
+    color: var(--text);
+    background:
+        radial-gradient(circle at 10% 12%, rgba(243, 106, 33, 0.08) 0%, transparent 20%),
+        radial-gradient(circle at 88% 10%, rgba(16, 20, 24, 0.04) 0%, transparent 18%),
+        linear-gradient(180deg, #fffaf6 0%, #f7f1eb 48%, #f5eee7 100%);
+}
+
+.main-content::before {
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0) 34%),
+        radial-gradient(circle at 20% 12%, rgba(255,255,255,0.22) 0%, transparent 18%);
+}
+
+.sidebar,
+body.role-admin .sidebar,
+body.role-employee .sidebar {
+    background:
+        radial-gradient(circle at 92% 88%, rgba(243, 106, 33, 0.42) 0%, transparent 28%),
+        radial-gradient(circle at 70% 64%, rgba(243, 106, 33, 0.12) 0%, transparent 24%),
+        linear-gradient(180deg, #07090b 0%, #0f1318 24%, #1f1916 58%, #4e2816 82%, #a74818 100%);
+    border-right: 1px solid rgba(255, 214, 187, 0.18);
+    box-shadow: 18px 0 50px rgba(0, 0, 0, 0.22);
+}
+
+.sidebar::before {
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 24%),
+        radial-gradient(circle at 85% 78%, transparent 0 24%, rgba(255, 180, 124, 0.1) 24.5%, transparent 25.5%);
+}
+
+.sidebar::after {
+    background:
+        linear-gradient(180deg, rgba(243, 106, 33, 0) 0%, rgba(243, 106, 33, 0.16) 34%, rgba(243, 106, 33, 0.34) 100%);
+}
+
+.brand h1,
+.sidebar-footer strong,
+.sidebar .role-panel strong,
+.sidebar .nav-links a,
+.sidebar .muted,
+.sidebar .role-panel p,
+.sidebar .role-panel-label {
+    color: #fff7f1;
+}
+
+.brand p {
+    color: rgba(255, 241, 231, 0.74);
+}
+
+.brand-mark {
+    background: linear-gradient(160deg, rgba(255,255,255,0.96) 0%, rgba(255,239,225,0.94) 100%);
+    border: 1px solid rgba(255,255,255,0.42);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.role-panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
+    border: 1px solid rgba(255, 210, 180, 0.16);
+}
+
+.nav-links a {
+    color: rgba(255, 246, 239, 0.92);
+    background: transparent;
+    transition: background .2s ease, transform .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
+    border-color: rgba(255, 195, 156, 0.18);
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+.sidebar-footer {
+    background:
+        linear-gradient(180deg, rgba(12, 14, 18, 0) 0%, rgba(12, 14, 18, 0.7) 18%, rgba(84, 40, 20, 0.88) 100%);
+    border-top: 1px solid rgba(255, 201, 165, 0.12);
+}
+
+.topbar {
+    padding: 8px 0 20px;
+    border-bottom: 1px solid rgba(214, 199, 187, 0.56);
+    margin-bottom: 22px;
+}
+
+.topbar h2,
+.card-head h3,
+.dashboard-ai-board h3,
+.dashboard-ai-board strong {
+    color: #18202a;
+}
+
+.topbar h2 {
+    font-size: clamp(1.85rem, 2vw, 2.4rem);
+    letter-spacing: -0.03em;
+    font-weight: 900;
+}
+
+.topbar p,
+.topbar .muted,
+.card p,
+table td,
+table li {
+    color: #667085;
+}
+
+.pill,
+.topbar-meta .pill,
+.topbar-meta .status-badge,
+.topbar-meta .user-badge {
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(216, 198, 183, 0.72);
+    color: #4d5560;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+
+.card,
+.nested-card,
+.table-responsive,
+.auth-card {
+    background: linear-gradient(180deg, rgba(255,253,251,0.96) 0%, rgba(250,245,241,0.94) 100%);
+    border: 1px solid rgba(221, 208, 195, 0.72);
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+}
+
+.card {
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-strong);
+    border-color: rgba(223, 181, 148, 0.72);
+}
+
+.hero-banner,
+.profile-hero {
+    border-radius: 32px;
+    border: 1px solid rgba(255, 169, 111, 0.18);
+    box-shadow: 0 26px 58px rgba(19, 21, 26, 0.16);
+}
+
+.hero-admin,
+.profile-hero-admin {
+    background:
+        radial-gradient(circle at 90% 18%, rgba(255, 191, 136, 0.2) 0%, transparent 22%),
+        linear-gradient(135deg, #1b1e24 0%, #31231c 28%, #7f3b1a 64%, #f36a21 100%);
+}
+
+.hero-employee,
+.profile-hero-employee {
+    background:
+        radial-gradient(circle at 90% 18%, rgba(255, 191, 136, 0.18) 0%, transparent 22%),
+        linear-gradient(135deg, #171d22 0%, #24313a 30%, #8c411d 68%, #f36a21 100%);
+}
+
+.stat-card {
+    background:
+        radial-gradient(circle at 88% 18%, rgba(243, 106, 33, 0.14) 0%, transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,241,235,0.98) 100%);
+    border: 1px solid rgba(220, 207, 196, 0.72);
+}
+
+.stat-card span,
+.muted {
+    color: var(--muted);
+}
+
+.stat-card strong,
+.stat-card-value {
+    color: #1a2430;
+}
+
+.table-responsive {
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,253,251,0.98) 0%, rgba(247,241,235,0.98) 100%);
+}
+
+table {
+    color: var(--text);
+}
+
+table thead th,
+.table-responsive table thead th,
+.data-table-dark-head thead th,
+.line-table th,
+.invoice-preview-table th,
+.invoice-view-table th {
+    background: linear-gradient(180deg, #161b22 0%, #0f141a 100%);
+    color: #fff8f3;
+    border-bottom: 1px solid rgba(255, 183, 132, 0.2);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-size: .74rem;
+}
+
+table tbody tr:nth-child(even) td {
+    background: rgba(249, 244, 239, 0.72);
+}
+
+tbody tr:hover td {
+    background: rgba(255, 239, 228, 0.84);
+}
+
+input,
+select,
+textarea,
+.auth-form-grid input[type="text"],
+.auth-form-grid input[type="password"] {
+    background: rgba(255,255,255,0.92);
+    color: var(--text);
+    border: 1px solid rgba(216, 198, 183, 0.88);
+    border-radius: 16px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.58);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.auth-form-grid input[type="text"]:focus,
+.auth-form-grid input[type="password"]:focus {
+    border-color: rgba(243, 106, 33, 0.46);
+    box-shadow:
+        0 0 0 4px rgba(243, 106, 33, 0.12),
+        0 12px 28px rgba(243, 106, 33, 0.08);
+}
+
+.btn {
+    border-radius: 16px;
+    font-weight: 800;
+    transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary,
+.btn-danger,
+.sidebar .btn-danger,
+form .btn-danger,
+button[type="submit"].btn-danger,
+button[type="submit"].btn-primary {
+    background: linear-gradient(135deg, #13171c 0%, #0a0d11 100%);
+    color: #fffaf6;
+    border: 1px solid rgba(255, 159, 92, 0.24);
+    box-shadow: 0 16px 28px rgba(15, 15, 15, 0.22);
+}
+
+.btn-primary:hover,
+.btn-danger:hover {
+    box-shadow: 0 20px 36px rgba(15, 15, 15, 0.3);
+}
+
+.btn-secondary,
+.pill,
+.topbar-meta .pill,
+.topbar-meta .status-badge,
+.topbar-meta .user-badge {
+    background: linear-gradient(180deg, #fffdfb 0%, #f3ebe3 100%);
+    color: #49515b;
+    border: 1px solid rgba(218, 201, 188, 0.88);
+}
+
+.alert {
+    border-radius: 18px;
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-soft);
+}
+
+.alert-success {
+    background: rgba(15, 157, 118, 0.12);
+    color: #0d7357;
+    border-color: rgba(15, 157, 118, 0.18);
+}
+
+.alert-danger {
+    background: rgba(209, 67, 67, 0.11);
+    color: #8a2a2a;
+    border-color: rgba(209, 67, 67, 0.16);
+}
+
+.dashboard-ai-board {
+    background:
+        linear-gradient(180deg, rgba(255,253,251,0.98) 0%, rgba(249,244,239,0.96) 100%);
+    border: 1px solid rgba(221, 208, 195, 0.76);
+    box-shadow: 0 26px 72px rgba(15, 23, 42, 0.08);
+}
+
+.dashboard-ai-header {
+    align-items: flex-end;
+    gap: 18px;
+}
+
+.dashboard-ai-header h3 {
+    font-size: 1.55rem;
+    letter-spacing: -0.02em;
+}
+
+.dashboard-ai-toolbar .actions {
+    gap: 10px;
+}
+
+.dashboard-ai-loading {
+    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(249,244,239,0.96) 100%);
+    border: 1px solid rgba(220, 207, 196, 0.8);
+    box-shadow: var(--shadow-soft);
+}
+
+.dashboard-photo-title,
+.dashboard-photo-title-orange {
+    background: linear-gradient(180deg, #171c22 0%, #0e1318 100%);
+    color: #fff9f4;
+    border: 1px solid rgba(255, 163, 101, 0.2);
+    letter-spacing: .04em;
+}
+
+.dashboard-photo-title-orange {
+    background: linear-gradient(135deg, #864018 0%, #f36a21 100%);
+}
+
+.dashboard-photo-table div,
+.dashboard-photo-table-row {
+    background: rgba(255,255,255,0.66);
+    border: 1px solid rgba(223, 213, 205, 0.82);
+}
+
+.dashboard-ai-board .note {
+    background: linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(247,241,235,0.86) 100%);
+    border: 1px solid rgba(221, 208, 195, 0.68);
+}
+
+.auth-page {
+    background:
+        linear-gradient(135deg, rgba(0,0,0,0.78) 0%, rgba(21,21,21,0.72) 34%, rgba(102,45,18,0.68) 72%, rgba(243,106,33,0.6) 100%);
+}
+
+.auth-page::before {
+    opacity: 0.24;
+    filter: saturate(1.08) contrast(1.02);
+}
+
+.auth-card {
+    background: linear-gradient(180deg, rgba(255,253,251,0.95) 0%, rgba(250,245,241,0.93) 100%);
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.26);
+}
+
+.auth-left {
+    background:
+        linear-gradient(180deg, rgba(7,9,11,0.2) 0%, rgba(7,9,11,0.1) 100%),
+        linear-gradient(160deg, rgba(243,106,33,0.26) 0%, rgba(15,15,15,0.08) 100%);
+}
+
+.auth-right {
+    background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(250,245,241,0.9) 100%);
+}
+
+.auth-login-box,
+.auth-form-grid {
+    background: rgba(255,255,255,0.7);
+}
+
+.role-pill-admin {
+    background: rgba(243, 106, 33, 0.12);
+    color: #c3561e;
+}
+
+.role-pill-employee {
+    background: rgba(15, 157, 118, 0.12);
+    color: #0b7b5c;
+}
+
+/* Couche finale forcee : rend le redesign clairement visible meme si d anciennes regles restent plus haut. */
+body {
+    background: linear-gradient(180deg, #fffaf5 0%, #f4ede7 100%) !important;
+}
+
+.main-content {
+    background: transparent !important;
+}
+
+.topbar {
+    background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.34) 100%) !important;
+    border: 1px solid rgba(223, 210, 198, 0.68) !important;
+    border-radius: 24px !important;
+    padding: 20px 24px !important;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06) !important;
+}
+
+.sidebar,
+body.role-admin .sidebar,
+body.role-employee .sidebar {
+    background:
+        radial-gradient(circle at 88% 82%, rgba(243, 106, 33, 0.54) 0%, transparent 26%),
+        linear-gradient(180deg, #090b0d 0%, #10141a 24%, #231914 58%, #5d3019 82%, #cf581d 100%) !important;
+}
+
+.card,
+.table-responsive,
+.auth-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(247,241,235,0.97) 100%) !important;
+    border: 1px solid rgba(221, 208, 195, 0.82) !important;
+    box-shadow: 0 22px 54px rgba(15, 23, 42, 0.08) !important;
+}
+
+.btn-primary,
+.btn-danger,
+.sidebar .btn-danger {
+    background: linear-gradient(135deg, #13171c 0%, #090c10 100%) !important;
+    color: #fffaf6 !important;
+    border: 1px solid rgba(255, 163, 101, 0.26) !important;
+}
+
+.btn-secondary {
+    background: linear-gradient(180deg, #fffdfb 0%, #efe6dd 100%) !important;
+    color: #48505a !important;
+    border: 1px solid rgba(217, 201, 188, 0.88) !important;
+}
+
+.hero-banner,
+.profile-hero {
+    background:
+        radial-gradient(circle at 88% 18%, rgba(255, 191, 136, 0.22) 0%, transparent 22%),
+        linear-gradient(135deg, #1b1f25 0%, #37261d 34%, #8e411d 70%, #f36a21 100%) !important;
+}
+
+table thead th,
+.table-responsive table thead th,
+.data-table-dark-head thead th {
+    background: linear-gradient(180deg, #171c22 0%, #0e1318 100%) !important;
+    color: #fff8f3 !important;
+}
+
+/* Direction finale simple 2026 : theme clair, sobre, moderne, sans reprendre la palette precedente. */
+:root {
+    --app-bg: #f3f6fb;
+    --app-surface: #ffffff;
+    --app-surface-soft: #f8fafc;
+    --app-line: #d9e2ec;
+    --app-text: #0f172a;
+    --app-muted: #64748b;
+    --app-accent: #2563eb;
+    --app-accent-soft: #dbeafe;
+    --app-success: #059669;
+    --app-warning: #d97706;
+    --app-danger: #dc2626;
+    --app-dark: #0f172a;
+    --app-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+    --app-shadow-strong: 0 20px 46px rgba(15, 23, 42, 0.12);
+}
+
+body {
+    background: var(--app-bg) !important;
+    color: var(--app-text) !important;
+}
+
+.main-content::before,
+.sidebar::before,
+.sidebar::after {
+    display: none !important;
+}
+
+.sidebar,
+body.role-admin .sidebar,
+body.role-employee .sidebar {
+    background: linear-gradient(180deg, #0f172a 0%, #111827 100%) !important;
+    border-right: 1px solid rgba(255,255,255,0.06) !important;
+    box-shadow: none !important;
+}
+
+.brand h1,
+.sidebar-footer strong,
+.sidebar .role-panel strong,
+.sidebar .nav-links a,
+.sidebar .role-panel-label {
+    color: #f8fafc !important;
+}
+
+.brand p,
+.sidebar .muted,
+.sidebar .role-panel p,
+.sidebar-footer .muted {
+    color: rgba(226, 232, 240, 0.72) !important;
+}
+
+.brand-mark {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+}
+
+.role-panel {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    backdrop-filter: none !important;
+}
+
+.nav-links a {
+    border: 1px solid transparent !important;
+    border-radius: 14px !important;
+    background: transparent !important;
+    transform: none !important;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.08) !important;
+    box-shadow: none !important;
+}
+
+.sidebar-footer {
+    background: transparent !important;
+    border-top: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.topbar {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 20px !important;
+}
+
+.topbar h2,
+.card-head h3,
+.dashboard-ai-board h3,
+.dashboard-ai-board strong,
+table,
+table td,
+table th {
+    color: var(--app-text) !important;
+}
+
+.topbar p,
+.topbar .muted,
+.card p,
+.muted {
+    color: var(--app-muted) !important;
+}
+
+.pill,
+.topbar-meta .pill,
+.topbar-meta .status-badge,
+.topbar-meta .user-badge {
+    background: #ffffff !important;
+    border: 1px solid var(--app-line) !important;
+    color: var(--app-text) !important;
+    box-shadow: none !important;
+}
+
+.card,
+.nested-card,
+.table-responsive,
+.auth-card,
+.dashboard-ai-board {
+    background: var(--app-surface) !important;
+    border: 1px solid var(--app-line) !important;
+    border-radius: 24px !important;
+    box-shadow: var(--app-shadow) !important;
+}
+
+.card:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--app-shadow-strong) !important;
+}
+
+.hero-banner,
+.profile-hero,
+.hero-admin,
+.hero-employee,
+.profile-hero-admin,
+.profile-hero-employee {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-shadow: var(--app-shadow-strong) !important;
+}
+
+.hero-banner h3,
+.hero-banner p,
+.hero-banner .eyebrow,
+.profile-hero h3,
+.profile-hero p {
+    color: #ffffff !important;
+}
+
+.hero-metrics > div {
+    background: rgba(255,255,255,0.12) !important;
+    border: 1px solid rgba(255,255,255,0.14) !important;
+    box-shadow: none !important;
+}
+
+.stat-card {
+    background: var(--app-surface) !important;
+    border: 1px solid var(--app-line) !important;
+}
+
+.stat-card::after {
+    display: none !important;
+}
+
+.stat-card strong,
+.stat-card-value {
+    color: var(--app-text) !important;
+}
+
+.table-responsive {
+    background: var(--app-surface) !important;
+}
+
+table thead th,
+.table-responsive table thead th,
+.data-table-dark-head thead th,
+.line-table th,
+.invoice-preview-table th,
+.invoice-view-table th {
+    background: #e2e8f0 !important;
+    color: #334155 !important;
+    border-bottom: 1px solid var(--app-line) !important;
+    text-transform: uppercase !important;
+}
+
+table tbody tr:nth-child(even) td,
+tbody tr:hover td {
+    background: transparent !important;
+}
+
+input,
+select,
+textarea,
+.auth-form-grid input[type="text"],
+.auth-form-grid input[type="password"] {
+    background: #ffffff !important;
+    border: 1px solid var(--app-line) !important;
+    color: var(--app-text) !important;
+    box-shadow: none !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.auth-form-grid input[type="text"]:focus,
+.auth-form-grid input[type="password"]:focus {
+    border-color: #93c5fd !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12) !important;
+}
+
+.btn-primary,
+.btn-danger,
+.sidebar .btn-danger,
+form .btn-danger,
+button[type="submit"].btn-danger,
+button[type="submit"].btn-primary {
+    background: var(--app-dark) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--app-dark) !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary {
+    background: #ffffff !important;
+    color: var(--app-text) !important;
+    border: 1px solid var(--app-line) !important;
+    box-shadow: none !important;
+}
+
+.btn:hover {
+    transform: translateY(-1px) !important;
+}
+
+.alert-success {
+    background: #ecfdf5 !important;
+    color: #065f46 !important;
+    border-color: #a7f3d0 !important;
+}
+
+.alert-danger {
+    background: #fef2f2 !important;
+    color: #991b1b !important;
+    border-color: #fecaca !important;
+}
+
+.dashboard-photo-title,
+.dashboard-photo-title-orange {
+    background: #0f172a !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.dashboard-photo-table div,
+.dashboard-photo-table-row,
+.dashboard-ai-board .note {
+    background: var(--app-surface-soft) !important;
+    border: 1px solid var(--app-line) !important;
+}
+
+.dashboard-ai-loading {
+    background: #eff6ff !important;
+    border: 1px solid #bfdbfe !important;
+    box-shadow: none !important;
+}
+
+.auth-page {
+    background: linear-gradient(135deg, #eaf1fb 0%, #f8fbff 100%) !important;
+}
+
+.auth-page::before {
+    opacity: 0.08 !important;
+}
+
+.auth-card {
+    background: #ffffff !important;
+    border: 1px solid #dbe4ee !important;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1) !important;
+}
+
+.auth-left {
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%) !important;
+}
+
+.auth-right,
+.auth-login-box,
+.auth-form-grid {
+    background: #ffffff !important;
+}
+
+.role-pill-admin {
+    background: #dbeafe !important;
+    color: #1d4ed8 !important;
+}
+
+.role-pill-employee {
+    background: #dcfce7 !important;
+    color: #15803d !important;
+}
+
+html,
+body,
+.app-shell,
+.main-content {
+    background: #ffffff !important;
+}
+
+.toolbar {
+    align-items: center !important;
+    gap: 14px !important;
+}
+
+.toolbar-form,
+.toolbar-form-wide {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+}
+
+.toolbar-form-wide {
+    justify-content: flex-start !important;
+}
+
+.filter-field {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.filter-field input,
+.filter-field select {
+    height: 46px !important;
+    min-width: 0;
+}
+
+.filter-field-search {
+    flex: 1 1 320px;
+}
+
+.filter-field-search input {
+    width: 100%;
+}
+
+.filter-field-letter {
+    flex: 0 0 92px;
+}
+
+.filter-field-letter input {
+    width: 92px;
+    text-align: center;
+}
+
+.filter-field-date,
+.filter-field-select {
+    flex: 0 0 180px;
+}
+
+.filter-field-date input,
+.filter-field-select select {
+    width: 180px;
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.filter-actions .btn,
+.toolbar-form .btn,
+.toolbar-form-wide .btn {
+    height: 46px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .filter-field-search,
+    .filter-field-letter,
+    .filter-field-date,
+    .filter-field-select,
+    .filter-actions {
+        flex: 1 1 100%;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .filter-field-letter input,
+    .filter-field-date input,
+    .filter-field-select select,
+    .filter-actions .btn {
+        width: 100%;
+    }
+
+    .filter-actions {
+        justify-content: stretch;
+    }
+}

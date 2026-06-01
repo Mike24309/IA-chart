@@ -1,0 +1,2560 @@
+/* Cette section definit les couleurs et variables globales reutilisees dans tout le theme. */
+:root {
+    --navy: #0f172a;
+    --white: #ffffff;
+    --light: #f3f6fb;
+    --line: #d7dfec;
+    --text: #18212f;
+    --muted: #64748b;
+    --green: #0f9d76;
+    --red: #d14343;
+    --amber: #d48b1f;
+    --panel: rgba(255, 255, 255, 0.92);
+    --panel-soft: #eff6ff;
+    --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+/* Cette section regle le style de base du document entier. */
+body {
+    margin: 0;
+    font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(180deg, #eef4fb 0%, #f8fbff 100%);
+    color: var(--text);
+    transition: background .25s ease, color .25s ease;
+}
+
+a { color: inherit; text-decoration: none; }
+input, select, textarea, button { font: inherit; }
+
+/* Cette section definit le style commun des champs de formulaire. */
+input, select, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--white);
+    color: var(--text);
+}
+
+textarea { min-height: 110px; resize: vertical; }
+
+/* Ici on change la largeur de la sidebar a gauche avec la valeur 280px. */
+.app-shell { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+
+/* Cette section gere la barre laterale, le logo et la navigation principale. */
+.sidebar {
+    /* Ici on change le fond principal de la barre laterale. */
+    background: linear-gradient(180deg, var(--navy) 0%, #111827 100%);
+    color: var(--white);
+    padding: 28px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Ici on garde la barre laterale de l administrateur visible meme pendant le defilement. */
+body.role-admin .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.brand { display: flex; gap: 14px; align-items: center; margin-bottom: 28px; }
+.brand h1, .brand p { margin: 0; }
+.brand p { color: rgba(255, 255, 255, .7); }
+
+.brand-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    background: linear-gradient(135deg, #38bdf8 0%, #0f9d76 100%);
+}
+
+.brand-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    border-radius: 16px;
+    background: #ffffff;
+    padding: 4px;
+}
+
+.role-panel {
+    margin-bottom: 22px;
+    padding: 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    background: rgba(255, 255, 255, .06);
+}
+
+.role-panel-label,
+.eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: .72rem;
+    font-weight: 800;
+    opacity: .85;
+}
+
+.role-panel strong,
+.hero-banner h3,
+.profile-hero h3 {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+
+.role-panel p { margin: 0; color: rgba(255, 255, 255, .72); font-size: .92rem; }
+.role-panel-admin { box-shadow: inset 0 0 0 1px rgba(56, 189, 248, .18); }
+.role-panel-employee { box-shadow: inset 0 0 0 1px rgba(15, 157, 118, .18); }
+
+.nav-links { display: grid; gap: 8px; }
+
+.nav-links a {
+    /* Ici on change la taille interieure et la forme des liens du menu lateral. */
+    padding: 12px 14px;
+    border-radius: 14px;
+    color: rgba(255, 255, 255, .82);
+}
+
+/* Ici on change l apparence d un lien actif ou survole dans le menu lateral. */
+.nav-links a.active, .nav-links a:hover { background: rgba(255, 255, 255, .1); color: #fff; }
+
+.main-content { padding: 28px; }
+.topbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 20px; }
+.topbar h2 { margin: 0 0 6px; }
+.topbar-meta { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+
+/* Cette section gere les cartes, les grilles et les blocs de contenu reutilisables. */
+.card {
+    /* Ici on change la forme, l ombre et l espace interne de toutes les cartes. */
+    background: var(--panel);
+    border: 1px solid rgba(215, 223, 236, .9);
+    border-radius: 24px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.nested-card { background: color-mix(in srgb, var(--panel-soft) 80%, transparent); }
+.card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 12px; }
+.stats-grid, .content-grid, .form-grid { display: grid; gap: 20px; align-items: start; }
+.stats-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: 118px;
+    margin-bottom: 20px;
+}
+.content-grid { grid-template-columns: 2fr 1fr; }
+.form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.full { grid-column: 1 / -1; }
+.stack { display: grid; gap: 14px; }
+.stat-card span, .muted { color: var(--muted); }
+.stat-card strong { font-size: 1.7rem; }
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 118px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Ici on garde le texte des cartes statistiques bien aligne, meme si une valeur prend deux lignes. */
+.stat-card span {
+    display: block;
+    min-height: 22px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Ici on fixe une taille visuelle commune pour les grands chiffres des cartes. */
+.stat-card strong {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-height: 56px;
+    line-height: 1.15;
+    text-align: center;
+    margin: 4px 0 0;
+    width: 100%;
+}
+
+.stat-card-value {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.stat-card-currency {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: .95rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+}
+
+.stat-card .btn {
+    margin-top: 10px;
+    align-self: center;
+}
+
+.employee-quick-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: minmax(146px, auto);
+}
+
+.employee-stat-card {
+    min-height: 146px;
+    padding: 18px 16px;
+}
+
+.employee-stat-card .stat-card-value {
+    font-size: 1.1em;
+}
+
+.employee-stat-card .btn {
+    width: min(180px, 100%);
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    padding: 10px 14px;
+}
+
+.stat-card::after {
+    content: "";
+    position: absolute;
+    inset: auto -30px -30px auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56, 189, 248, .18) 0%, rgba(56, 189, 248, 0) 70%);
+}
+
+/* Cette section regle les boutons, tableaux, pastilles et messages d alerte. */
+.toolbar { display: flex; justify-content: space-between; gap: 14px; align-items: center; margin-bottom: 18px; }
+.toolbar-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 14px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { color: var(--muted); }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn {
+    padding: 12px 16px;
+    border-radius: 14px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.btn-block { width: 100%; }
+/* Ici on change la couleur du bouton principal. */
+.btn-primary { background: var(--navy); color: #fff; }
+/* Ici on change la couleur du bouton secondaire. */
+.btn-secondary { background: #e2e8f0; color: var(--navy); }
+.btn-danger { background: var(--red); color: #fff; }
+
+.is-disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    pointer-events: auto;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 7px 11px;
+    font-size: .82rem;
+    font-weight: 700;
+    background: #e2e8f0;
+    color: var(--navy);
+}
+
+.alert { padding: 14px 16px; border-radius: 16px; margin-bottom: 18px; }
+.alert-success { background: rgba(15, 157, 118, .15); color: #0c6d52; }
+.alert-danger { background: rgba(209, 67, 67, .14); color: #8e2929; }
+
+.note {
+    border-radius: 16px;
+    background: var(--panel-soft);
+    color: var(--text);
+    padding: 14px;
+}
+
+.note-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.profile-photo-block { display: flex; gap: 18px; align-items: center; }
+
+.profile-photo-large,
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    border-radius: 18px;
+    background: #ffffff;
+    padding: 4px;
+    border: 1px solid rgba(215, 223, 236, .85);
+}
+
+.avatar-fallback {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #38bdf8 0%, #0f9d76 100%);
+    color: #fff;
+    font-weight: 800;
+}
+
+.user-badge,
+.user-inline {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.user-badge { margin-bottom: 14px; }
+
+.invoice-line {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+/* Cette section gere les bandeaux du dashboard et du profil. */
+.hero-banner,
+.profile-hero {
+    /* Ici on change la taille, les coins et l espace du grand bandeau d accueil. */
+    border-radius: 28px;
+    padding: 26px;
+    margin-bottom: 20px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* Ici on change le fond du bandeau administrateur et du bandeau profil administrateur. */
+.hero-admin,
+.profile-hero-admin {
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+}
+
+/* Ici on change le fond du bandeau employe et du bandeau profil employe. */
+.hero-employee,
+.profile-hero-employee {
+    background: linear-gradient(135deg, #14532d 0%, #0f766e 100%);
+}
+
+/* Ici on change la couleur et la largeur du texte descriptif dans les grands bandeaux. */
+.hero-banner p,
+.profile-hero p { margin-bottom: 0; color: rgba(255, 255, 255, .84); max-width: 680px; }
+
+/* Ici on change la grille des chiffres rapides dans le bandeau du dashboard et du profil. */
+.hero-metrics,
+.profile-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    min-width: 360px;
+}
+
+/* Ici on change les cartes internes qui affichent les chiffres dans le bandeau. */
+.hero-metrics div,
+.profile-summary div {
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .12);
+}
+
+/* Ici on change le style du petit texte au-dessus des chiffres du bandeau. */
+.hero-metrics span,
+.profile-summary span { display: block; font-size: .8rem; color: rgba(255, 255, 255, .7); margin-bottom: 6px; }
+
+/* Ici on aligne la photo et les informations principales dans le bandeau profil. */
+.profile-identity {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+/* Ici on change la taille et la forme de la photo dans le bandeau profil. */
+.profile-hero-avatar {
+    width: 92px;
+    height: 92px;
+    border-radius: 24px;
+    object-fit: contain;
+    object-position: center;
+    background: #ffffff;
+    display: grid;
+    place-items: center;
+    font-size: 1.8rem;
+    padding: 5px;
+    border: 1px solid rgba(215, 223, 236, .85);
+}
+
+/* Cette section regle les graphiques simples et les blocs metier du dashboard. */
+.bar-chart {
+    /* Ici on change la hauteur du graphique en colonnes du dashboard metier. */
+    height: 224px;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+    align-items: end;
+}
+
+/* Ici on change la disposition d une colonne complete dans le graphique en barres. */
+.bar-item {
+    display: grid;
+    gap: 8px;
+    justify-items: center;
+    min-width: 0;
+}
+
+/* Ici on change le fond et la hauteur du rail de chaque barre. */
+.bar-track {
+    width: 100%;
+    height: 150px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(226, 232, 240, .5) 0%, rgba(203, 213, 225, .8) 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Ici on change la couleur et l arrondi de la barre de valeur. */
+.bar-fill {
+    width: 100%;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #38bdf8 0%, #1d4ed8 100%);
+}
+
+.bar-chart-compact {
+    height: 186px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.bar-chart-compact .bar-track {
+    height: 108px;
+    border-radius: 14px;
+}
+
+.bar-chart-compact .bar-fill {
+    border-radius: 14px;
+}
+
+.bar-chart-compact .bar-item strong {
+    font-size: .72rem;
+    line-height: 1.1;
+    text-align: center;
+    word-break: break-word;
+}
+
+.bar-chart-compact .bar-item span {
+    font-size: .75rem;
+    color: var(--muted);
+}
+
+.chart-empty-state {
+    min-height: 220px;
+    border-radius: 22px;
+    border: 1px dashed var(--line);
+    background: linear-gradient(180deg, rgba(248, 250, 252, .9) 0%, rgba(241, 245, 249, .95) 100%);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 28px 20px;
+    color: var(--muted);
+}
+
+.chart-empty-state strong {
+    color: var(--navy);
+    font-size: 1rem;
+}
+
+.chart-empty-state span {
+    max-width: 420px;
+    line-height: 1.6;
+}
+
+.chart-empty-state-compact {
+    min-height: 150px;
+}
+
+.metric-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) minmax(160px, 1fr) auto;
+    gap: 14px;
+    align-items: center;
+}
+
+.metric-progress {
+    height: 12px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+
+.metric-progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #38bdf8 0%, #1d4ed8 100%);
+}
+
+.metric-progress-fill.accent {
+    background: linear-gradient(90deg, #0f9d76 0%, #14b8a6 100%);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: .78rem;
+    font-weight: 800;
+    text-transform: capitalize;
+}
+
+.status-success { background: rgba(15, 157, 118, .14); color: #0a7d5d; }
+.status-danger { background: rgba(209, 67, 67, .14); color: #a12626; }
+.status-warning { background: rgba(212, 139, 31, .16); color: #9b5d09; }
+.status-info { background: rgba(29, 78, 216, .12); color: #1d4ed8; }
+.status-admin { background: rgba(29, 78, 216, .14); color: #1d4ed8; }
+.status-employee { background: rgba(15, 157, 118, .14); color: #0a7d5d; }
+.role-pill-admin { background: rgba(29, 78, 216, .14); color: #1d4ed8; }
+.role-pill-employee { background: rgba(15, 157, 118, .14); color: #0a7d5d; }
+
+.invoice-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.totals {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dashboard-detail-grid { margin-top: 24px; }
+.content-grid + .content-grid { margin-top: 24px; }
+.theme-toggle { white-space: nowrap; }
+.settings-preview-cell {
+    display: flex;
+    align-items: flex-end;
+}
+.settings-thumb {
+    width: 92px;
+    height: 92px;
+    object-fit: contain;
+    display: block;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+}
+.settings-thumb-wide {
+    width: 180px;
+    height: 92px;
+}
+.settings-placeholder {
+    min-width: 120px;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px dashed var(--line);
+    color: var(--muted);
+    text-align: center;
+}
+
+/* Cette section definit les couleurs et adaptations du mode sombre. */
+body.theme-dark {
+    --white: #0f172a;
+    --light: #020617;
+    --line: #243244;
+    --text: #e5eefb;
+    --muted: #9fb0c8;
+    --panel: rgba(15, 23, 42, .9);
+    --panel-soft: #162234;
+    --shadow: 0 18px 50px rgba(2, 6, 23, 0.35);
+    background: radial-gradient(circle at top, #18263b 0%, #020617 75%);
+}
+
+body.theme-dark .sidebar {
+    /* Ici on change le fond de la sidebar uniquement en mode sombre. */
+    background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+}
+
+body.theme-dark .btn-secondary,
+body.theme-dark .pill {
+    /* Ici on change les couleurs des boutons secondaires et des pastilles en mode sombre. */
+    background: #162234;
+    color: #d9e7fb;
+}
+
+body.theme-dark .premium-highlight-growth,
+body.theme-dark .premium-highlight-product,
+body.theme-dark .premium-highlight-stock,
+body.theme-dark .premium-highlight-priority {
+    background: linear-gradient(180deg, rgba(22,34,52,.98) 0%, rgba(15,23,42,.98) 100%);
+}
+
+body.theme-dark .dashboard-ai-premium-head {
+    background: linear-gradient(135deg, rgba(2,6,23,.98) 0%, rgba(30,64,175,.9) 60%, rgba(14,116,144,.84) 100%);
+}
+
+body.theme-dark .dashboard-section-head {
+    background: linear-gradient(180deg, rgba(15,23,42,.98) 0%, rgba(22,34,52,.98) 100%);
+    border-color: #243244;
+}
+
+body.theme-dark .dashboard-block-accent {
+    background: linear-gradient(180deg, rgba(22,34,52,.98) 0%, rgba(15,23,42,.98) 100%);
+}
+
+body.theme-dark .bar-track,
+body.theme-dark .metric-progress {
+    background: #223146;
+}
+
+body.theme-dark .alert-success { color: #8cf0cf; }
+body.theme-dark .alert-danger { color: #ffb4b4; }
+
+@media (max-width: 1024px) {
+    .app-shell,
+    .stats-grid,
+    .content-grid,
+    .form-grid,
+    .hero-metrics,
+    .profile-summary,
+    .invoice-meta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-banner,
+    .profile-hero,
+    .metric-row {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+
+    .bar-chart {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        height: auto;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topbar-meta {
+        justify-content: flex-start;
+    }
+}
+
+/* Cette section gere tout le style de la page de connexion. */
+.auth-page {
+    /* Ici on change le fond general de toute la page de connexion. */
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(255, 180, 60, 0.42) 0%, transparent 32%),
+        radial-gradient(circle at bottom right, rgba(239, 68, 68, 0.26) 0%, transparent 30%),
+        linear-gradient(135deg, #4a0f0f 0%, #7c1d12 46%, #2f0a0a 100%);
+    display: grid;
+    place-items: center;
+    padding: 32px 18px;
+}
+
+.auth-shell {
+    width: min(920px, 100%);
+}
+
+.auth-card {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    min-height: 560px;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 28px 60px rgba(10, 8, 24, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.auth-brand-panel {
+    /* Ici on change la couleur de fond du panneau gauche de connexion. */
+    position: relative;
+    background:
+        linear-gradient(180deg, rgba(72, 16, 16, 0.96) 0%, rgba(127, 29, 29, 0.98) 100%);
+    color: #fff;
+    padding: 36px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.auth-brand-wave {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 144, 43, 0.42);
+    filter: blur(.2px);
+}
+
+.auth-brand-wave-one {
+    /* Ici on change la premiere forme decorative visible sur le panneau gauche. */
+    width: 420px;
+    height: 420px;
+    left: -180px;
+    bottom: -40px;
+    transform: rotate(22deg);
+    box-shadow:
+        0 0 0 18px rgba(249, 115, 22, 0.10),
+        0 0 0 36px rgba(249, 115, 22, 0.07),
+        0 0 0 54px rgba(249, 115, 22, 0.05);
+}
+
+.auth-brand-wave-two {
+    /* Ici on change la deuxieme forme decorative visible sur le panneau gauche. */
+    width: 360px;
+    height: 360px;
+    right: -180px;
+    top: -90px;
+    border-color: rgba(248, 113, 113, 0.34);
+    box-shadow:
+        0 0 0 14px rgba(248, 113, 113, 0.08),
+        0 0 0 28px rgba(248, 113, 113, 0.05);
+}
+
+.auth-brand-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.auth-brand-logo {
+    /* Ici on change la couleur du petit carre logo avec les lettres de l application. */
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 800;
+    box-shadow: 0 12px 24px rgba(255, 95, 109, 0.28);
+}
+
+.auth-brand-eyebrow {
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .78rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.74);
+}
+
+.auth-brand-content h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    line-height: 1.1;
+}
+
+.auth-login-panel {
+    /* Ici on change la couleur de fond du panneau droit qui contient les formulaires. */
+    background: linear-gradient(180deg, #f97316 0%, #dc2626 100%);
+    color: #fff;
+    padding: 44px 42px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-login-head {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.auth-login-head p {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .78rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.auth-login-head h2 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.auth-alert {
+    margin-bottom: 18px;
+}
+
+.auth-login-box {
+    width: min(360px, 100%);
+    margin: 0 auto;
+    background: #20263d;
+    border-radius: 6px;
+    padding: 28px 26px;
+    box-shadow: 0 18px 32px rgba(18, 15, 38, 0.3);
+}
+
+.auth-switcher {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.auth-switcher-btn {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.78);
+    border-radius: 4px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.auth-switcher-btn.active {
+    /* Ici on change la couleur du bouton actif entre Connexion et Creer un compte. */
+    background: linear-gradient(180deg, #fb923c 0%, #dc2626 100%);
+    color: #fff;
+    border-color: transparent;
+}
+
+.auth-panel {
+    display: none;
+}
+
+.auth-panel.active {
+    display: block;
+}
+
+.auth-form-grid {
+    display: grid;
+    gap: 14px;
+}
+
+.auth-form-grid label {
+    display: block;
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: .88rem;
+    font-weight: 600;
+}
+
+.auth-form-grid input[type="email"],
+.auth-form-grid input[type="password"] {
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #f8fafc;
+    padding: 11px 12px;
+    color: #0f172a;
+}
+
+.auth-remember {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: .9rem;
+}
+
+.auth-remember input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+.auth-remember span {
+    display: inline-block;
+}
+
+.auth-submit-btn {
+    /* Ici on change la couleur du bouton principal Login. */
+    width: 100%;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #fb923c 0%, #dc2626 100%);
+    color: #fff;
+    font-weight: 800;
+    padding: 12px 16px;
+}
+
+.auth-forgot-link {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: -4px;
+    color: #b91c1c;
+    font-size: .92rem;
+    text-decoration: none;
+}
+
+.auth-register-note {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(251, 146, 60, 0.12);
+    color: #7c2d12;
+    font-size: .92rem;
+    line-height: 1.6;
+}
+
+.auth-secondary-btn {
+    /* Ici on change la couleur du bouton de creation de compte administrateur. */
+    width: 100%;
+    border-radius: 4px;
+    background: #7f1d1d;
+    color: #fff;
+    font-weight: 800;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 860px) {
+    .auth-card {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-brand-panel {
+        min-height: 220px;
+    }
+
+    .auth-login-panel {
+        padding: 32px 22px;
+    }
+}
+
+/* Cette section gere le bouton flottant IA et le panneau lateral. */
+.ai-fab {
+    /* Ici on change la position, la taille et la couleur du bouton flottant IA. */
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+    z-index: 40;
+}
+
+.ai-fab-wide {
+    width: auto;
+    min-width: 92px;
+    padding: 0 18px;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-sidepanel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: min(380px, calc(100vw - 40px));
+    height: calc(100vh - 40px);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    transform: translateX(120%);
+    transition: transform .25s ease;
+    z-index: 39;
+    overflow-y: auto;
+}
+
+.ai-sidepanel.open {
+    transform: translateX(0);
+}
+
+.ai-sidepanel-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.ai-sidepanel-chat {
+    margin-top: 14px;
+}
+
+.ai-sidepanel-chat textarea {
+    min-height: 96px;
+}
+
+body.dialog-open {
+    overflow: hidden;
+}
+
+.ai-dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+}
+
+.ai-dialog-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.46);
+    backdrop-filter: blur(4px);
+}
+
+.ai-dialog-panel {
+    position: relative;
+    width: min(760px, calc(100vw - 32px));
+    max-height: calc(100vh - 56px);
+    margin: 28px auto;
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(244,248,252,.98) 100%);
+    border: 1px solid rgba(215, 223, 236, .95);
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.18);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.ai-dialog-head {
+    /* Cette section organise l entete de la boite de dialogue IA. */
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 22px 24px 16px;
+    border-bottom: 1px solid #e4ebf3;
+    background: rgba(255,255,255,.88);
+}
+
+.ai-dialog-form {
+    /* Cette zone gere le formulaire de question dans la fenetre IA. */
+    padding: 18px 24px 0;
+}
+
+.ai-dialog-label {
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.ai-dialog-form textarea {
+    min-height: 120px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+.ai-dialog-body {
+    /* Cette zone affiche l historique de conversation dans la boite IA. */
+    padding: 18px 24px 24px;
+    overflow-y: auto;
+    display: grid;
+    gap: 12px;
+    background: linear-gradient(180deg, rgba(247,250,253,.7) 0%, rgba(240,245,251,.9) 100%);
+}
+
+.ai-chat-empty {
+    /* Ce bloc apparait quand aucune question n a encore ete posee. */
+    border: 1px dashed rgba(148, 163, 184, .55);
+    border-radius: 18px;
+    padding: 16px 18px;
+    background: rgba(255,255,255,.72);
+}
+
+.ai-chat-entry {
+    /* Chaque entree regroupe une question et sa reponse IA. */
+    display: grid;
+    gap: 8px;
+}
+
+.ai-chat-bubble {
+    /* Cette base sert a dessiner les bulles de discussion. */
+    max-width: 92%;
+    border-radius: 18px;
+    padding: 14px 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.ai-chat-bubble strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.ai-chat-bubble-question {
+    justify-self: end;
+    background: linear-gradient(135deg, #1d4ed8 0%, #38bdf8 100%);
+    color: #ffffff;
+    border-bottom-right-radius: 8px;
+}
+
+.ai-chat-bubble-question .muted {
+    color: rgba(255,255,255,.9);
+}
+
+.ai-chat-bubble-answer {
+    justify-self: start;
+    background: #ffffff;
+    border: 1px solid rgba(215, 223, 236, .95);
+    color: var(--text);
+    border-bottom-left-radius: 8px;
+}
+
+.ai-chat-bubble-answer .muted {
+    color: var(--muted);
+}
+
+.settings-hub {
+    /* Cette section ajoute un espace sous le hub de parametres. */
+    margin-bottom: 20px;
+}
+
+.settings-shortcuts {
+    /* Cette grille affiche les raccourcis rapides des parametres. */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.settings-shortcut {
+    display: grid;
+    gap: 6px;
+}
+
+.report-reading-grid {
+    /* Cette grille organise les blocs de lecture dans les rapports. */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.profile-photo-form {
+    /* Ce bloc garde le formulaire de photo de profil compact. */
+    margin: 0;
+}
+
+.profile-photo-edit {
+    /* Cette zone gere le bouton de modification sur la photo de profil. */
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-photo-edit input {
+    display: none;
+}
+
+.profile-photo-edit span {
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: #fff;
+    color: var(--navy);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, .18);
+    font-weight: 800;
+}
+
+.ai-chart-grid {
+    /* Cette grille sert aux graphiques secondaires du module IA. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.ai-dashboard-grid,
+.ai-stats-grid {
+    /* Cette marge separe les grilles IA du contenu precedent. */
+    margin-top: 16px;
+}
+
+.form-checkbox-grid {
+    /* Cette grille aligne les cases a cocher des formulaires. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.checkbox {
+    /* Cette regle aligne proprement une case a cocher et son texte. */
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.checkbox input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+/* Cette section gere le dashboard IA, ses cartes et ses graphiques. */
+.dashboard-ai-board {
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(247,250,252,.96) 100%);
+    overflow: hidden;
+    border: 1px solid #dbe5f0;
+}
+
+/* Cette section gere la partie metier classique du dashboard sous le module IA. */
+.dashboard-section-shell {
+    margin-top: 20px;
+}
+
+.dashboard-reading-stack {
+    /* Cette pile aligne verticalement les zones du dashboard metier. */
+    display: grid;
+    gap: 16px;
+}
+
+.dashboard-reading-zone {
+    /* Chaque zone regroupe une ligne logique de modules metier. */
+    display: grid;
+    gap: 12px;
+}
+
+.dashboard-reading-zone-head {
+    /* Cet entete sert aux sous-zones de lecture du dashboard. */
+    padding: 14px 18px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,.98) 0%, rgba(244,248,252,.98) 100%);
+    border: 1px solid #dbe5f0;
+}
+
+.dashboard-reading-zone-head h4 {
+    margin: 4px 0 6px;
+    font-size: 1rem;
+    color: var(--navy);
+}
+
+.dashboard-section-head {
+    margin-bottom: 12px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,.98) 0%, rgba(237,244,252,.98) 100%);
+    border: 1px solid #dbe5f0;
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.06);
+}
+
+.dashboard-section-head h3 {
+    margin: 4px 0 6px;
+    font-size: 1.05rem;
+}
+
+.dashboard-premium-grid {
+    /* Ici on change le nombre de colonnes et l espacement des cartes metier du bas. */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.dashboard-premium-grid-commercial {
+    /* Cette grille range les modules commerciaux sur deux colonnes. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard-premium-grid-supervision {
+    /* Cette grille range les modules de supervision sur trois colonnes. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dashboard-premium-grid-operations {
+    /* Cette grille range les modules d operations et de tracabilite. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.employee-module-grid {
+    /* Cette grille organise les modules cliquables de l espace employe. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard-premium-grid-modules {
+    /* Cette grille uniforme affiche les modules cliquables du dashboard admin. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+}
+
+.dashboard-clickable-modules {
+    /* Cette grille empile les modules detaillees quand une carte occupe deja une colonne. */
+    display: grid;
+    gap: 12px;
+    grid-column: span 2;
+}
+
+.dashboard-module-toggle {
+    /* Cette base sert a tous les modules qu on peut derouler. */
+    padding: 0;
+    overflow: hidden;
+}
+
+.dashboard-module-toggle summary {
+    /* Cette ligne dessine la tete cliquable de chaque module. */
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(244,248,252,.98) 100%);
+}
+
+.dashboard-module-toggle summary::after {
+    content: "▾";
+    flex: 0 0 auto;
+    font-size: .95rem;
+    color: #64748b;
+    transition: transform .18s ease, color .18s ease;
+}
+
+.dashboard-module-toggle[open] summary::after {
+    transform: rotate(180deg);
+    color: var(--navy);
+}
+
+/* Ici on agrandit la petite fleche des modules cliquables pour mieux voir qu il faut derouler. */
+.dashboard-module-toggle summary::after {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #475569;
+    line-height: 1;
+}
+
+.dashboard-module-card summary {
+    /* Ici on fixe une hauteur minimale commune pour les modules admin. */
+    min-height: 92px;
+}
+
+.employee-module-card summary {
+    /* Ici on garde la meme logique visuelle pour les modules employe. */
+    min-height: 96px;
+}
+
+.dashboard-module-toggle summary::-webkit-details-marker {
+    display: none;
+}
+
+.dashboard-module-toggle summary strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--navy);
+}
+
+.dashboard-module-body {
+    /* Cette zone contient le contenu visible une fois le module ouvert. */
+    padding: 0 18px 18px;
+}
+
+.dashboard-block {
+    /* Ici on change la taille interne des cartes metier classiques. */
+    min-width: 0;
+    grid-column: span 1;
+    padding: 16px;
+}
+
+.dashboard-block-wide {
+    /* Cette regle permet a une carte de prendre toute la largeur de la grille. */
+    grid-column: 1 / -1;
+}
+
+.dashboard-block-accent {
+    /* Cette variante ajoute un fond plus lumineux a certaines cartes. */
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(241,248,255,.98) 100%);
+}
+
+.dashboard-block .card-head {
+    margin-bottom: 12px;
+}
+
+.dashboard-block .card-head h3 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.dashboard-block-chart {
+    /* Ici on change la hauteur minimale de la carte du graphique principal. */
+    min-height: 300px;
+}
+
+.business-chart-shell {
+    /* Cette enveloppe garde une hauteur stable pour les graphiques business. */
+    position: relative;
+    min-height: 280px;
+    padding-top: 0;
+}
+
+.business-chart-shell canvas {
+    width: 100% !important;
+    height: 280px !important;
+}
+
+.business-chart-shell-radar {
+    /* Cette variante ajuste le radar pour mieux utiliser son espace. */
+    min-height: 260px;
+    padding: 8px 0 2px;
+}
+
+.business-chart-shell-radar canvas {
+    height: 250px !important;
+}
+
+.dashboard-block-table,
+.dashboard-block-list,
+.dashboard-block-feed,
+.dashboard-block-actions {
+    /* Ici on change la hauteur minimale des autres cartes du dashboard metier. */
+    min-height: 120px;
+}
+
+.dashboard-module-toggle.dashboard-block,
+.dashboard-module-toggle.dashboard-module-card {
+    height: fit-content;
+}
+
+.dashboard-reading-zone + .dashboard-reading-zone {
+    /* Cette petite marge separe legerement les grandes zones du dashboard. */
+    margin-top: 2px;
+}
+
+.dashboard-block-invoices .table-responsive,
+.dashboard-block-alerts .table-responsive {
+    /* Ici on change la hauteur visible des tableaux avec scroll interne. */
+    max-height: 240px;
+    overflow: auto;
+}
+
+.dashboard-block-table table {
+    /* Cette taille rend les tableaux du dashboard plus compacts. */
+    font-size: .9rem;
+}
+
+.dashboard-block-table th,
+.dashboard-block-table td {
+    padding: 10px 8px;
+}
+
+.dashboard-block-ranking .stack,
+.dashboard-block-feed .stack {
+    gap: 10px;
+}
+
+.dashboard-block-ranking .metric-row {
+    /* Cette grille range les lignes de classement produit ou utilisateur. */
+    grid-template-columns: minmax(120px, 1fr) minmax(100px, 1fr) auto;
+    gap: 10px;
+}
+
+.dashboard-block-ranking .metric-row strong,
+.dashboard-block-ranking .metric-row .muted {
+    font-size: .9rem;
+}
+
+.dashboard-block-feed .note {
+    padding: 12px;
+}
+
+.dashboard-block-feed .stack {
+    max-height: 320px;
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.dashboard-block-feed .note-head {
+    margin-bottom: 4px;
+}
+
+.dashboard-block-feed .muted {
+    font-size: .88rem;
+}
+
+.dashboard-block-actions .stack {
+    gap: 10px;
+}
+
+.dashboard-block-actions .btn {
+    min-height: 44px;
+}
+
+.dashboard-ai-header {
+    /* Cette ligne organise le titre IA, la cloche et les boutons d analyse. */
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.dashboard-ai-header > div:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.dashboard-ai-toolbar {
+    /* Cette barre aligne les boutons d analyse et la cloche sur une meme ligne. */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 12px;
+    min-width: 0;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+}
+
+.dashboard-ai-toolbar .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    width: auto;
+}
+
+.ai-bell-menu {
+    /* Cette zone contient le bouton cloche et son panneau de notifications. */
+    position: relative;
+}
+
+.ai-bell-menu summary {
+    list-style: none;
+}
+
+.ai-bell-menu summary::-webkit-details-marker {
+    display: none;
+}
+
+.ai-bell-button {
+    /* Ce bouton ouvre la liste des notifications IA recentes. */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid #d8e3ef;
+    background: #ffffff;
+    color: var(--navy);
+    cursor: pointer;
+    font-weight: 800;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.ai-bell-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.ai-bell-count {
+    min-width: 24px;
+    height: 24px;
+    padding: 0 7px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #d14343;
+    color: #fff;
+    font-size: .76rem;
+    font-weight: 800;
+}
+
+.ai-bell-panel {
+    /* Ce panneau affiche les notifications IA sous forme de menu flottant. */
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: min(360px, 85vw);
+    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid #d8e3ef;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    z-index: 20;
+}
+
+.ai-bell-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.dashboard-ai-header h3 {
+    margin: 6px 0;
+    font-size: 1.15rem;
+    line-height: 1.2;
+}
+
+.dashboard-ai-tags {
+    /* Ces petites pastilles presentent rapidement les axes de lecture IA. */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.dashboard-ai-loading {
+    /* Cette alerte visible montre qu une analyse IA est en cours ou terminee. */
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 12px 0 16px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    border: 1px solid #cddcf0;
+    background: linear-gradient(180deg, rgba(237,244,255,.96) 0%, rgba(248,251,255,.98) 100%);
+    color: var(--navy);
+    box-shadow: 0 14px 26px rgba(15, 23, 42, 0.08);
+}
+
+.dashboard-ai-loading.is-success {
+    border-color: #b8e0cf;
+    background: linear-gradient(180deg, rgba(236,250,243,.98) 0%, rgba(247,253,249,.98) 100%);
+}
+
+.dashboard-ai-loading.is-error {
+    border-color: #efc2c2;
+    background: linear-gradient(180deg, rgba(254,242,242,.98) 0%, rgba(255,248,248,.98) 100%);
+}
+
+.dashboard-ai-loading-spinner {
+    /* Ce cercle tourne tant que l analyse est encore en cours. */
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    border: 3px solid rgba(29, 78, 216, 0.16);
+    border-top-color: #1d4ed8;
+    animation: dashboard-ai-spin .85s linear infinite;
+    flex: 0 0 auto;
+}
+
+.dashboard-ai-loading.is-success .dashboard-ai-loading-spinner,
+.dashboard-ai-loading.is-error .dashboard-ai-loading-spinner {
+    animation: none;
+}
+
+.dashboard-ai-loading.is-success .dashboard-ai-loading-spinner {
+    border-color: rgba(15, 157, 118, 0.22);
+    border-top-color: #0f9d76;
+}
+
+.dashboard-ai-loading.is-error .dashboard-ai-loading-spinner {
+    border-color: rgba(209, 67, 67, 0.22);
+    border-top-color: #d14343;
+}
+
+.dashboard-ai-loading-text {
+    display: grid;
+    gap: 4px;
+}
+
+.dashboard-ai-loading-text strong {
+    color: var(--navy);
+    line-height: 1.2;
+}
+
+.dashboard-ai-loading-text span {
+    color: var(--muted);
+    font-size: .92rem;
+}
+
+@keyframes dashboard-ai-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.dashboard-ai-kpi-grid {
+    /* Cette grille range les KPI IA sur une meme ligne. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.dashboard-ai-simple-top {
+    /* Cette grille affiche les mini blocs de lecture rapide au dessus. */
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.dashboard-photo-top {
+    /* Ici on change l organisation de la premiere rangee de graphiques du dashboard IA. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.dashboard-photo-bottom {
+    /* Cette ligne organise les graphiques complementaires sous la premiere rangee. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.dashboard-photo-card {
+    /* Cette carte blanche sert de base aux blocs visuels du dashboard IA. */
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(248,251,255,.98) 100%);
+    border: 1px solid #d6e0ec;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.06);
+}
+
+.dashboard-photo-title {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #243447;
+    color: #fff;
+    text-align: center;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.dashboard-photo-title-orange {
+    background: #eb7d34;
+}
+
+.dashboard-photo-gauge {
+    /* Cette variante range les cartes avec anneau ou jauge. */
+    display: grid;
+    align-content: start;
+    gap: 10px;
+}
+
+.dashboard-photo-ring {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto;
+}
+
+.dashboard-photo-ring canvas {
+    width: 128px !important;
+    height: 128px !important;
+}
+
+.dashboard-photo-table {
+    /* Ce petit tableau aligne les chiffres secondaires sous les graphiques. */
+    border: 1px solid #d8e0ea;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(248, 251, 255, .9);
+}
+
+.dashboard-photo-table div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+    font-size: .86rem;
+    border-bottom: 1px solid #e6edf5;
+}
+
+.dashboard-photo-table div:last-child {
+    border-bottom: none;
+}
+
+.dashboard-photo-table span {
+    color: #475569;
+    font-weight: 700;
+}
+
+.dashboard-photo-table strong {
+    color: #102033;
+    font-weight: 800;
+}
+
+.dashboard-photo-donut {
+    /* Cette variante garde le bloc donut bien range verticalement. */
+    display: grid;
+    align-content: start;
+}
+
+.dashboard-photo-strip {
+    /* Cette bande resume rapidement les chiffres IA en petites cartes. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.dashboard-photo-strip-item {
+    padding: 10px 12px;
+    border: 1px solid #d8e0ea;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+}
+
+.dashboard-photo-strip-item span {
+    display: block;
+    color: #64748b;
+    margin-bottom: 4px;
+    font-size: .75rem;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.dashboard-photo-strip-item strong {
+    color: #102033;
+    font-size: .96rem;
+}
+
+.dashboard-ai-simple-grid {
+    /* Cette grille organise les cartes simples de resume IA. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.dashboard-ai-summary-strip {
+    /* Cette ligne affiche des indicateurs resumes sur une seule bande. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.dashboard-ai-output-grid {
+    /* Cette grille range les blocs de sortie textuelle de l analyse IA. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.dashboard-ai-output-grid-top {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+}
+
+.dashboard-ai-output-grid-bottom {
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+}
+
+.dashboard-ai-donut-card {
+    /* Cette carte prepare l alignement des graphiques circulaires IA. */
+    display: grid;
+    align-content: start;
+}
+
+.dashboard-ai-canvas-wrap-small {
+    /* Cette hauteur reserve un espace court pour un petit graphique. */
+    min-height: 220px;
+}
+
+.dashboard-ai-canvas-wrap-medium {
+    /* Cette hauteur reserve un espace moyen pour un graphique plus dense. */
+    min-height: 240px;
+}
+
+.dashboard-photo-donut .dashboard-ai-canvas-wrap-small {
+    min-height: 250px;
+}
+
+.dashboard-ai-premium-head {
+    /* Cette entete coloree met en avant le haut du module IA premium. */
+    margin-bottom: 14px;
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(15,23,42,.98) 0%, rgba(29,78,216,.94) 58%, rgba(56,189,248,.88) 100%);
+    color: #fff;
+}
+
+.dashboard-ai-premium-head h3 {
+    margin: 6px 0 8px;
+    font-size: 1.2rem;
+}
+
+.dashboard-ai-premium-head .muted {
+    color: rgba(255,255,255,.82);
+}
+
+.dashboard-ai-highlight-grid {
+    /* Cette grille affiche les cartes de synthese premium en haut du module IA. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.premium-highlight-card {
+    /* Cette carte met en avant une statistique IA importante. */
+    position: relative;
+    min-height: 168px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.35);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.1);
+}
+
+.premium-highlight-card::after {
+    content: "";
+    position: absolute;
+    right: -30px;
+    bottom: -30px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.32);
+    filter: blur(2px);
+}
+
+.premium-highlight-top {
+    /* Cette ligne aligne le libelle et le badge d une carte premium. */
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.premium-highlight-label {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: .74rem;
+    font-weight: 800;
+}
+
+.premium-highlight-card strong {
+    font-size: 2rem;
+    color: var(--navy);
+    line-height: 1.15;
+}
+
+.premium-highlight-card p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.premium-highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: .74rem;
+    font-weight: 800;
+    background: #e2e8f0;
+    color: var(--navy);
+}
+
+.premium-highlight-badge.success {
+    background: rgba(15, 157, 118, .14);
+    color: #0a7d5d;
+}
+
+.premium-highlight-badge.warning {
+    background: rgba(212, 139, 31, .16);
+    color: #9b5d09;
+}
+
+.premium-highlight-badge.danger {
+    background: rgba(209, 67, 67, .14);
+    color: #a12626;
+}
+
+.premium-highlight-badge.info {
+    background: rgba(29, 78, 216, .12);
+    color: #1d4ed8;
+}
+
+.premium-highlight-badge.neutral {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.premium-highlight-growth {
+    background:
+        radial-gradient(circle at top right, rgba(56, 189, 248, .2) 0%, transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(241,248,255,.98) 100%);
+}
+
+.premium-highlight-product {
+    background:
+        radial-gradient(circle at top right, rgba(20, 184, 166, .18) 0%, transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(240,253,250,.98) 100%);
+}
+
+.premium-highlight-stock {
+    background:
+        radial-gradient(circle at top right, rgba(245, 158, 11, .16) 0%, transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(255,251,235,.98) 100%);
+}
+
+.premium-highlight-priority {
+    background:
+        radial-gradient(circle at top right, rgba(99, 102, 241, .18) 0%, transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(238,242,255,.98) 100%);
+}
+
+.ring-card span {
+    /* Cette etiquette nomme les petits cadrans et anneaux du dashboard IA. */
+    display: block;
+    color: var(--muted);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-size: .75rem;
+    font-weight: 800;
+}
+
+.ring-wrap {
+    /* Cette enveloppe centre le chiffre au milieu d un anneau. */
+    position: relative;
+    width: 104px;
+    height: 104px;
+    margin: 0 auto;
+}
+
+.ring-wrap canvas {
+    width: 104px !important;
+    height: 104px !important;
+}
+
+.ring-wrap strong {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 1.18rem;
+    color: var(--navy);
+    font-weight: 900;
+    letter-spacing: -.03em;
+}
+
+.dashboard-ai-grid {
+    /* Cette grande grille range les cartes du dashboard IA detaille. */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.dashboard-ai-main-grid {
+    /* Cette grille principale partage la zone IA entre graphiques et resume. */
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(290px, .9fr);
+    gap: 12px;
+}
+
+.dashboard-ai-chart-stack {
+    /* Cette pile empile les graphiques IA verticalement. */
+    display: grid;
+    gap: 12px;
+}
+
+.dashboard-ai-grid-top {
+    /* Cette sous-grille organise les deux premiers blocs IA en haut. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard-ai-wide-panel {
+    /* Ici on garde une hauteur minimale pour les panneaux IA plus larges. */
+    min-height: 260px;
+}
+
+.dashboard-ai-summary-panel {
+    /* Ce panneau regroupe les textes et recommandations de l analyse IA. */
+    display: grid;
+    gap: 14px;
+    align-content: start;
+}
+
+.dashboard-ai-grid .card,
+.dashboard-ai-kpi-grid .card {
+    /* Cette regle harmonise les coins et l ombre des cartes IA. */
+    border-radius: 18px;
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+}
+
+.dashboard-ai-panel {
+    /* Cette carte sert de conteneur standard aux panneaux IA. */
+    position: relative;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(245,248,252,.98) 100%);
+    border: 1px solid #dbe5f0;
+}
+
+.dashboard-ai-panel::before {
+    /* Cette barre coloree en haut signale qu il s agit d un bloc IA. */
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1d4ed8 0%, #38bdf8 55%, #0f9d76 100%);
+}
+
+.dashboard-ai-panel .card-head {
+    /* Cette petite marge compense la barre coloree placee en haut du bloc IA. */
+    padding-top: 4px;
+}
+
+.dashboard-ai-mini-metrics {
+    /* Cette pile range les mini statistiques dans un panneau IA. */
+    display: grid;
+    gap: 10px;
+}
+
+.mini-metric {
+    /* Cette carte compacte met en avant une petite mesure IA. */
+    padding: 12px;
+    border-radius: 14px;
+    background: var(--panel-soft);
+    border-left: 4px solid #f59e0b;
+}
+
+.mini-metric span {
+    /* Ce petit texte decrit chaque mini statistique IA. */
+    display: block;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.dashboard-ai-meter-list {
+    /* Cette liste aligne plusieurs jauges textuelles les unes sous les autres. */
+    display: grid;
+    gap: 12px;
+}
+
+.dashboard-ai-meter {
+    /* Cette jauge texte affiche une valeur avec sa barre horizontale. */
+    display: grid;
+    gap: 7px;
+}
+
+.dashboard-ai-meter-head {
+    /* Cette ligne affiche le libelle et la valeur d une jauge IA. */
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    font-size: .9rem;
+}
+
+.dashboard-ai-meter-head span {
+    color: var(--muted);
+}
+
+.dashboard-ai-meter-head strong {
+    color: var(--navy);
+}
+
+.dashboard-ai-meter-track {
+    /* Ce rail sert de fond a la barre de progression IA. */
+    height: 10px;
+    border-radius: 999px;
+    background: #e5edf5;
+    overflow: hidden;
+}
+
+.dashboard-ai-meter-fill {
+    /* Cette barre bleue affiche le niveau d une mesure IA. */
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #1d4ed8 0%, #38bdf8 100%);
+}
+
+.dashboard-ai-meter-fill.stock {
+    background: linear-gradient(90deg, #0f9d76 0%, #34d399 100%);
+}
+
+.dashboard-ai-meter-fill.user {
+    background: linear-gradient(90deg, #4f46e5 0%, #60a5fa 100%);
+}
+
+.dashboard-ai-meter-fill.warning {
+    background: linear-gradient(90deg, #f59e0b 0%, #f97316 100%);
+}
+
+.dashboard-ai-output {
+    /* Cette marge separe la sortie detaillee IA du reste du module. */
+    margin-top: 16px;
+}
+
+.ai-question-card {
+    /* Cette carte organise un bloc de question ou d aide dans le module IA. */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.dashboard-ai-canvas-wrap {
+    /* Cette zone reserve une hauteur stable aux canvases IA. */
+    position: relative;
+    min-height: 280px;
+}
+
+.dashboard-ai-board canvas {
+    /* Ici on fixe une hauteur commune aux graphiques IA standards. */
+    width: 100% !important;
+    height: 190px !important;
+}
+
+/* Ici on donne un peu plus de hauteur aux graphiques horizontaux de lecture detaillee. */
+#dashboard-ai-category-chart,
+#dashboard-ai-stock-health-chart {
+    height: 210px !important;
+}
+
+/* Ici on change la hauteur du graphique d evolution du chiffre d affaire IA. */
+#dashboard-ai-revenue-chart {
+    height: 260px !important;
+}
+
+/* Ici on change la hauteur des graphiques circulaires et du planning IA. */
+#dashboard-ai-product-share-chart,
+#dashboard-ai-gantt-chart {
+    height: 280px !important;
+}
+
+.dashboard-speedometer {
+    /* Cette zone dessine la jauge demi-cercle de priorite ou urgence. */
+    position: relative;
+    min-height: 280px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 26px 24px 30px;
+}
+
+.dashboard-speedometer-arc {
+    /* Cet arc colore represente les zones faible, moyenne et elevee. */
+    position: absolute;
+    bottom: 34px;
+    width: 240px;
+    height: 120px;
+    border-top-left-radius: 240px;
+    border-top-right-radius: 240px;
+    border: 20px solid #e7eef7;
+    border-bottom: 0;
+    background:
+        conic-gradient(from 180deg, #10b981 0deg 60deg, #f59e0b 60deg 120deg, #d14343 120deg 180deg);
+    -webkit-mask: radial-gradient(circle at 50% 100%, transparent 0 58px, #000 59px);
+    mask: radial-gradient(circle at 50% 100%, transparent 0 58px, #000 59px);
+}
+
+.dashboard-speedometer-center {
+    /* Cette zone centre le chiffre principal au milieu de la jauge. */
+    position: absolute;
+    bottom: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.dashboard-speedometer-center strong {
+    font-size: 1.45rem;
+    color: #0f172a;
+}
+
+.dashboard-speedometer-center span {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.dashboard-speedometer-needle {
+    /* Cette aiguille pointe le niveau actuel sur la jauge. */
+    position: absolute;
+    bottom: 42px;
+    width: 6px;
+    height: 96px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #0f172a 0%, #475569 100%);
+    transform-origin: 50% calc(100% - 8px);
+    transform: rotate(-90deg);
+    transition: transform .35s ease;
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.18);
+}
+
+.dashboard-speedometer-needle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #0f172a;
+    transform: translateX(-50%);
+}
+
+.dashboard-speedometer-mark {
+    /* Ces reperes nomment les zones de la jauge. */
+    position: absolute;
+    bottom: 12px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.dashboard-speedometer-mark.mark-left {
+    left: 34px;
+}
+
+.dashboard-speedometer-mark.mark-center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dashboard-speedometer-mark.mark-right {
+    right: 34px;
+}
+
+.dashboard-speedometer-caption {
+    /* Cette phrase explique rapidement la lecture de la jauge. */
+    margin-top: -10px;
+    text-align: center;
+}
+
+/* Ici on fixe la taille des petits anneaux circulaires du dashboard IA. */
+#dashboard-ai-score-ring,
+#dashboard-ai-cancel-ring,
+#dashboard-ai-stock-ring,
+#dashboard-ai-user-ring {
+    height: 104px !important;
+}
+
+.dashboard-ai-grid .card-head,
+.dashboard-ai-output .card-head {
+    /* Cette regle compacte les entetes des cartes IA. */
+    margin-bottom: 10px;
+}
+
+.dashboard-ai-grid .card-head h3,
+.dashboard-ai-output .card-head h3 {
+    /* Cette taille rend les titres IA plus compacts et reguliers. */
+    font-size: .94rem;
+    margin: 0;
+}
+
+.dashboard-ai-board .card,
+.ai-chart-grid .card,
+.ai-dashboard-grid .card {
+    /* Cette regle evite que les cartes IA debordent horizontalement. */
+    min-width: 0;
+}
+
+.dashboard-ai-board .nested-card {
+    /* Cette variante reduit un peu le padding des cartes internes IA. */
+    padding: 16px;
+}
+
+.dashboard-ai-board .note {
+    /* Cette note donne un fond plus doux aux messages dans le module IA. */
+    background: linear-gradient(180deg, #f9fbfd 0%, #eff6ff 100%);
+}
+
+.dashboard-ai-board .status-badge {
+    /* Cette largeur minimale garde les badges IA bien alignes. */
+    min-width: 72px;
+}
+
+.dashboard-ai-board .actions {
+    /* Cette regle centre mieux les groupes de boutons dans le module IA. */
+    align-items: center;
+}
+
+.dashboard-ai-board .eyebrow {
+    /* Cette couleur distingue visuellement les petits titres IA. */
+    color: #1d4ed8;
+}
+
+.dashboard-ai-board .pill {
+    /* Cette variante recolore les petites pastilles internes du module IA. */
+    background: #eef4fb;
+    color: #1e3a5f;
+}
+
+.dashboard-ai-output .nested-card {
+    /* Ce fond clarifie les sous-cartes du bloc de sortie IA. */
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(243,247,252,.98) 100%);
+}
+
+.dashboard-ai-output .stack .note {
+    /* Cette bordure structure les notes affichees dans la sortie IA. */
+    border: 1px solid rgba(215, 223, 236, .85);
+}
+
+.dashboard-ai-output p,
+.dashboard-ai-output .muted,
+.dashboard-ai-output .note {
+    /* Cet interligne rend les paragraphes IA plus faciles a lire. */
+    line-height: 1.65;
+}
+
+/* Cette regle compacte l interface sur les ecrans intermediaires. */
+@media (max-width: 1200px) {
+    /* Ici on change la disposition des cartes sur ecran moyen. */
+    .dashboard-premium-grid,
+    .dashboard-photo-top,
+    .dashboard-photo-bottom,
+    .dashboard-photo-strip,
+    .dashboard-ai-simple-top,
+    .dashboard-ai-summary-strip,
+    .dashboard-ai-output-grid,
+    .dashboard-ai-highlight-grid,
+    .dashboard-ai-kpi-grid,
+    .dashboard-ai-grid,
+    .dashboard-ai-simple-grid,
+    .dashboard-ai-main-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-premium-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .employee-quick-grid,
+    .employee-module-grid,
+    .dashboard-premium-grid-modules {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bar-chart-compact {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .dashboard-block,
+    .dashboard-block-wide {
+        grid-column: span 1;
+    }
+
+    .dashboard-block-wide {
+        grid-column: span 2;
+    }
+}
+
+/* Cette regle passe les blocs sur une seule colonne pour les petits ecrans. */
+@media (max-width: 860px) {
+    /* Ici on force presque tout le dashboard sur une seule colonne en mobile. */
+    .dashboard-premium-grid,
+    .dashboard-ai-header,
+    .dashboard-photo-top,
+    .dashboard-photo-bottom,
+    .dashboard-photo-strip,
+    .dashboard-ai-simple-top,
+    .dashboard-ai-summary-strip,
+    .dashboard-ai-output-grid,
+    .dashboard-ai-highlight-grid,
+    .dashboard-ai-kpi-grid,
+    .dashboard-ai-grid,
+    .dashboard-ai-simple-grid,
+    .dashboard-ai-grid-top,
+    .dashboard-ai-main-grid,
+    .ai-chart-grid {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .dashboard-premium-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .employee-quick-grid,
+    .employee-module-grid,
+    .dashboard-premium-grid-modules {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-ai-toolbar {
+        min-width: 0;
+        flex: 1 1 auto;
+        width: 100%;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .dashboard-ai-toolbar .actions {
+        justify-content: stretch;
+    }
+
+    .dashboard-ai-toolbar .actions .btn,
+    .ai-bell-button {
+        width: 100%;
+    }
+
+    .ai-bell-panel {
+        position: static;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .bar-chart-compact {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .dashboard-block,
+    .dashboard-block-wide {
+        grid-column: auto;
+    }
+
+    .settings-shortcuts {
+        grid-template-columns: 1fr;
+    }
+
+    .report-reading-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-ai-grid .card,
+    .dashboard-ai-highlight-grid .card,
+    .dashboard-ai-kpi-grid .card {
+        min-height: auto;
+    }
+}
