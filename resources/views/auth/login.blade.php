@@ -47,6 +47,13 @@
             @endif
 
             <div class="auth-login-box">
+                <div class="auth-auth-switch">
+                    <button type="button" class="auth-switch-btn active" data-auth-target="login-panel">Connexion</button>
+                    @if($canSelfRegister)
+                        <button type="button" class="auth-switch-btn" data-auth-target="register-panel">Créer un compte</button>
+                    @endif
+                </div>
+
                 {{-- Ce panneau contient le formulaire de connexion principal. --}}
                 <div class="auth-panel active" id="login-panel">
                     <form method="POST" action="{{ route('login.perform') }}" class="auth-form-grid">
@@ -73,13 +80,61 @@
                     </form>
                 </div>
 
+                @if($canSelfRegister)
+                <div class="auth-panel" id="register-panel">
+                    <form method="POST" action="{{ route('register.perform') }}" class="auth-form-grid">
+                        @csrf
+                        <div class="auth-register-note">
+                            Si le compte n existe pas encore, tu peux en creer un maintenant avec ton nom, ton email et un mot de passe.
+                        </div>
+                        <div>
+                            <label for="register_name">Nom complet</label>
+                            <input id="register_name" type="text" name="name" value="{{ old('name') }}" placeholder="Votre nom complet" required>
+                        </div>
+                        <div>
+                            <label for="register_email">Adresse email</label>
+                            <input id="register_email" type="email" name="email" value="{{ old('email') }}" placeholder="Votre adresse email" required>
+                        </div>
+                        <div>
+                            <label for="register_password">Mot de passe</label>
+                            <input id="register_password" type="password" name="password" placeholder="Choisissez un mot de passe" required>
+                        </div>
+                        <div>
+                            <label for="register_password_confirmation">Confirmer le mot de passe</label>
+                            <input id="register_password_confirmation" type="password" name="password_confirmation" placeholder="Repetez le mot de passe" required>
+                        </div>
+                        <button class="btn auth-submit-btn" type="submit">Creer le compte</button>
+                        <button type="button" class="auth-forgot-link auth-link-button" data-auth-target="login-panel">J ai deja un compte</button>
+                    </form>
+                </div>
+                @endif
             </div>
         </section>
     </div>
 </div>
 
 <script>
-    // Aucun script de bascule n est necessaire ici car les deux formulaires restent visibles.
+    document.querySelectorAll('[data-auth-target]').forEach((button) => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.auth-panel').forEach((panel) => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.auth-switch-btn').forEach((tab) => {
+                tab.classList.remove('active');
+            });
+
+            const targetId = button.getAttribute('data-auth-target');
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            const activeTab = document.querySelector(`.auth-switch-btn[data-auth-target="${targetId}"]`);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        });
+    });
 </script>
 </body>
 </html>

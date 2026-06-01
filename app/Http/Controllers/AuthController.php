@@ -28,7 +28,7 @@ class AuthController extends Controller
     // Cette methode affiche la page de connexion simple avec le lien mot de passe oublie.
     public function showLogin(): View
     {
-        $canSelfRegister = false;
+        $canSelfRegister = true;
 
         return view('auth.login', compact('canSelfRegister'));
     }
@@ -73,12 +73,42 @@ class AuthController extends Controller
         }
     }
 
-    // Cette methode bloque l inscription libre pour garder une page de connexion simple.
+    // Cette methode cree un compte employe simple depuis la page de connexion.
     public function register(Request $request): RedirectResponse
     {
-        return redirect()->route('login')->withErrors([
-            'register' => 'La creation libre de compte est desactivee.',
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:utilisateurs,adresse_email'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
+
+        try {
+            $employeeRole = Role::firstOrCreate(
+                ['nom' => 'employee'],
+                ['libelle' => 'Employe']
+            );
+
+            $user = User::create([
+                'role_id' => $employeeRole->id,
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'login_code' => $this->generateLoginCode(),
+                'password' => $data['password'],
+                'is_active' => true,
+            ]);
+
+            Auth::login($user);
+            $request->session()->regenerate();
+            $this->activityService->log('creation_compte_utilisateur', $user);
+
+            return redirect()->route('dashboard')->with('success', 'Votre compte a ete cree avec succes.');
+        } catch (QueryException $exception) {
+            if ($this->isDatabaseUnavailable($exception)) {
+                return $this->databaseUnavailableResponse($request, 'Creation de compte impossible pour le moment : la base de donnees ne repond pas.');
+            }
+
+            throw $exception;
+        }
     }
 
     // Cette methode affiche le formulaire de demande de reinitialisation du mot de passe.
