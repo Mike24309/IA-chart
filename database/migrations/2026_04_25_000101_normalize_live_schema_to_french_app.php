@@ -10,7 +10,9 @@ return new class extends Migration
     // Cette migration aligne la vraie base locale sur les noms francais utilises par l'application.
     public function up(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
 
         $this->renameTable('parametres_systeme', 'parametres');
         $this->renameTable('journal_activite', 'activites_utilisateurs');
@@ -250,7 +252,9 @@ return new class extends Migration
             });
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
     }
 
     public function down(): void

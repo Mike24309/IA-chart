@@ -9,7 +9,9 @@ return new class extends Migration
     // Cette migration renomme physiquement les tables et colonnes principales en francais.
     public function up(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
 
         $this->renameTableIfExists('users', 'utilisateurs');
         $this->renameTableIfExists('facture_details', 'details_facture');
@@ -142,13 +144,17 @@ return new class extends Migration
         $this->renameColumnIfExists('historiques_rapports_ia', 'report_title', 'titre_rapport');
         $this->renameColumnIfExists('historiques_rapports_ia', 'generated_at', 'genere_le');
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
     }
 
     // Cette migration remet les anciens noms en anglais si un retour arriere est necessaire.
     public function down(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
 
         $this->renameColumnIfExists('roles', 'nom', 'name');
         $this->renameColumnIfExists('roles', 'libelle', 'label');
@@ -281,7 +287,9 @@ return new class extends Migration
         $this->renameTableIfExists('journaux_ia', 'logs_ia');
         $this->renameTableIfExists('scores_performance', 'score_performance');
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
     }
 
     // Cette methode renomme une table seulement si elle existe encore.
