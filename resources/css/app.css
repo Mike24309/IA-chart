@@ -5280,3 +5280,53 @@ body,
         justify-content: stretch;
     }
 }
+
+/* Auth compact render override. */
+.auth-shell-compact {
+    min-height: calc(100vh - 20px);
+    padding: 10px 14px;
+    align-items: center;
+}
+
+.auth-card-compact {
+    width: min(100%, 1080px);
+    min-height: auto;
+    max-height: calc(100vh - 20px);
+}
+
+.auth-brand-panel-compact {
+    min-height: 0;
+}
+
+.auth-login-panel-compact {
+    padding: 28px 30px 24px;
+    max-height: calc(100vh - 20px);
+    overflow: auto;
+}
+
+.auth-form-grid-compact {
+    gap: 10px;
+}
+
+.auth-form-grid-compact input[type="text"],
+.auth-form-grid-compact input[type="email"],
+.auth-form-grid-compact input[type="password"] {
+    padding: 10px 12px;
+}
+
+.auth-form-grid-compact label {
+    margin-bottom: 4px;
+}
+
+.auth-submit-btn {
+    padding: 10px 14px;
+}
+
+.auth-link-inline {
+    margin-top: -2px;
+    padding: 9px 12px;
+}
+
+.auth-register-note {
+    padding: 10px 12px;
+}
