@@ -4,26 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEV IA</title>
+    <title>{{ $appSettings->company_name ?? 'DEV IA' }}</title>
     <link rel="stylesheet" href="{{ asset('app.css') }}?v={{ filemtime(public_path('app.css')) }}">
 </head>
 <body class="auth-page">
+@php($companyName = $appSettings->company_name ?? 'DEV IA')
 <div class="auth-shell auth-shell-compact">
     <div class="auth-card auth-card-compact">
         <aside class="auth-brand-panel auth-brand-panel-compact">
             <div class="auth-brand-wave auth-brand-wave-one"></div>
             <div class="auth-brand-wave auth-brand-wave-two"></div>
             <div class="auth-brand-content">
-                <div class="auth-brand-logo">DI</div>
+                <div class="auth-brand-logo">{{ strtoupper(substr($companyName, 0, 2)) }}</div>
                 <p class="auth-brand-eyebrow">Bienvenue</p>
-                <h1>DEV IA</h1>
+                <h1>{{ $companyName }}</h1>
             </div>
         </aside>
 
         <section class="auth-login-panel auth-login-panel-compact">
             <div class="auth-login-head">
                 <p>Connexion et acces utilisateur</p>
-                <h2>DEV IA</h2>
+                <h2>{{ $companyName }}</h2>
             </div>
 
             <div class="auth-register-note" style="margin-bottom: 14px;">

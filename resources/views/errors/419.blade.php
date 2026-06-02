@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session expiree</title>
+    <title>Session expiree - {{ $appSettings->company_name ?? 'DEV IA' }}</title>
     <link rel="stylesheet" href="{{ asset('app.css') }}?v={{ filemtime(public_path('app.css')) }}">
 </head>
 <body class="auth-page">
+    @php($companyName = $appSettings->company_name ?? 'DEV IA')
     <div class="auth-shell">
         <div class="auth-card">
             <aside class="auth-brand-panel">
                 <div class="auth-brand-wave auth-brand-wave-one"></div>
                 <div class="auth-brand-wave auth-brand-wave-two"></div>
                 <div class="auth-brand-content">
-                    <div class="auth-brand-logo">DI</div>
+                    <div class="auth-brand-logo">{{ strtoupper(substr($companyName, 0, 2)) }}</div>
                     <p class="auth-brand-eyebrow">Session expiree</p>
-                    <h1>DEV IA</h1>
+                    <h1>{{ $companyName }}</h1>
                 </div>
             </aside>
             <section class="auth-login-panel">

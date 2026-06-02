@@ -5542,3 +5542,52 @@ table {
         max-width: 100%;
     }
 }
+
+/* Final shell stabilization for admin and employee layouts */
+.app-shell {
+    display: grid !important;
+    grid-template-columns: 280px minmax(0, 1fr) !important;
+    min-height: 100svh !important;
+    align-items: stretch !important;
+}
+
+.sidebar,
+body.role-admin .sidebar,
+body.role-employee .sidebar {
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+    min-height: 100svh !important;
+    height: 100svh !important;
+    position: sticky !important;
+    top: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    align-self: start !important;
+}
+
+.main-content {
+    min-width: 0 !important;
+    width: auto !important;
+    overflow-x: hidden !important;
+}
+
+@media (max-width: 900px) {
+    .app-shell {
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: auto !important;
+    }
+
+    .sidebar,
+    body.role-admin .sidebar,
+    body.role-employee .sidebar {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        position: relative !important;
+        top: auto !important;
+    }
+}

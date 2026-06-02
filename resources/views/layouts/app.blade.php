@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'DEV IA')</title>
+    <title>@yield('title', $appSettings->company_name ?? 'DEV IA')</title>
     <link rel="stylesheet" href="{{ asset('app.css') }}?v={{ filemtime(public_path('app.css')) }}">
     <script src="{{ asset('app.js') }}?v={{ filemtime(public_path('app.js')) }}" defer></script>
 </head>
