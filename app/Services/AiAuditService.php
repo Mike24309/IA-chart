@@ -53,17 +53,24 @@ class AiAuditService
             }
         }
 
-        $prompt = $this->buildAnalysisPrompt($metricsForPrompt, $settings);
-        $responsePayload = $this->callGemini($prompt, $settings->modele_openrouter, null, null, false);
-        $analysis = $this->extractStructuredJsonWithRepair($responsePayload, $settings->modele_openrouter, 'analysis');
+        try {
+            $prompt = $this->buildAnalysisPrompt($metricsForPrompt, $settings);
+            $responsePayload = $this->callGemini($prompt, $settings->modele_openrouter, null, null, false);
+            $analysis = $this->extractStructuredJsonWithRepair($responsePayload, $settings->modele_openrouter, 'analysis');
 
-        if (! $this->isStructuredAnalysisPayload($analysis)) {
-            throw new RuntimeException('La vraie IA n a pas renvoye une analyse exploitable. Relancez l analyse avec IA.');
+            if (! $this->isStructuredAnalysisPayload($analysis)) {
+                throw new RuntimeException('La vraie IA n a pas renvoye une analyse exploitable. Relancez l analyse avec IA.');
+            }
+
+            $analysis = $this->normalizeStructuredAnalysis($analysis, $metrics);
+            $analysis['analysis_origin'] = $analysis['analysis_origin'] ?? 'ia';
+            $analysis['analysis_origin_label'] = $analysis['analysis_origin_label'] ?? 'Analyse IA verifiee';
+        } catch (RuntimeException $exception) {
+            $analysis = $this->buildFallbackAnalysis($metrics);
+            $analysis['analysis_mode'] = 'analysis';
+            $analysis['analysis_origin'] = 'local';
+            $analysis['analysis_origin_label'] = 'Analyse locale de secours';
         }
-
-        $analysis = $this->normalizeStructuredAnalysis($analysis, $metrics);
-        $analysis['analysis_origin'] = $analysis['analysis_origin'] ?? 'ia';
-        $analysis['analysis_origin_label'] = $analysis['analysis_origin_label'] ?? 'Analyse IA verifiee';
 
         $log = LogIa::create([
             'utilisateur_id' => $user->id,
