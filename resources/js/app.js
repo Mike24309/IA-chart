@@ -1938,3 +1938,14 @@ document.querySelectorAll('[data-auto-filter-form]').forEach((form) => {
         input.addEventListener('change', () => submitAutoFilterForm(form));
     });
 });
+document.addEventListener('submit', (event) => {
+    const form = event.target;
+
+    if (!(form instanceof HTMLFormElement)) {
+        return;
+    }
+
+    if (form.querySelector('input[type="file"]') && form.enctype !== 'multipart/form-data') {
+        form.enctype = 'multipart/form-data';
+    }
+});
