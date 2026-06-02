@@ -5327,6 +5327,137 @@ body,
     padding: 9px 12px;
 }
 
+/* Bloc final de responsivite pour garder l application propre sur mobile. */
+@media (max-width: 1100px) {
+    .app-shell {
+        grid-template-columns: 1fr !important;
+    }
+
+    .sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+        position: relative !important;
+        min-height: auto !important;
+    }
+
+    .main-content {
+        width: 100% !important;
+        padding: 18px !important;
+    }
+
+    .topbar {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+    }
+
+    .topbar-meta {
+        width: 100% !important;
+        flex-wrap: wrap !important;
+    }
+
+    .stats-grid,
+    .content-grid,
+    .form-grid,
+    .settings-shortcuts,
+    .dashboard-photo-top,
+    .dashboard-photo-bottom,
+    .dashboard-photo-strip,
+    .dashboard-ai-grid,
+    .dashboard-ai-simple-grid,
+    .invoice-create-layout,
+    .invoice-show-layout,
+    .invoice-view-party-grid,
+    .invoice-view-footer,
+    .invoice-view-bank {
+        grid-template-columns: 1fr !important;
+    }
+
+    .invoice-create-form,
+    .invoice-action-card {
+        position: static !important;
+        top: auto !important;
+    }
+
+    .invoice-line-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-areas:
+            "product"
+            "quantity"
+            "price"
+            "action" !important;
+    }
+
+    .invoice-view-header {
+        grid-template-columns: 1fr !important;
+    }
+
+    .invoice-view-summary {
+        justify-content: stretch !important;
+    }
+
+    .invoice-view-summary table {
+        width: 100% !important;
+    }
+
+    .profile-hero,
+    .settings-hub,
+    .card,
+    .note,
+    .auth-card,
+    .auth-login-box {
+        border-radius: 20px !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .main-content {
+        padding: 12px !important;
+    }
+
+    .topbar {
+        padding: 14px !important;
+    }
+
+    .topbar h2 {
+        font-size: 1.4rem !important;
+    }
+
+    .profile-hero,
+    .settings-shortcuts,
+    .dashboard-photo-card,
+    .invoice-view-shell,
+    .invoice-create-form,
+    .auth-card {
+        width: 100% !important;
+    }
+
+    .settings-thumb {
+        width: 100% !important;
+        max-width: 180px !important;
+        height: auto !important;
+    }
+
+    .settings-thumb-wide {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    .profile-photo-block,
+    .profile-hero,
+    .sidebar-footer .user-badge {
+        align-items: flex-start !important;
+    }
+
+    input,
+    select,
+    textarea,
+    button,
+    .btn {
+        width: 100%;
+    }
+}
+
 .auth-register-note {
     padding: 10px 12px;
 }

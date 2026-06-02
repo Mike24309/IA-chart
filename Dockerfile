@@ -43,7 +43,8 @@ RUN mkdir -p storage/framework/cache/data \
 
 RUN php artisan config:clear && \
     php artisan route:clear && \
-    php artisan view:clear
+    php artisan view:clear && \
+    php artisan storage:link --force || true
 
 EXPOSE 10000
 
