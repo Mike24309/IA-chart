@@ -204,35 +204,48 @@
     <div class="ai-dialog" id="ai-question-dialog" hidden>
         <div class="ai-dialog-backdrop" data-ai-dialog-close></div>
         <div class="ai-dialog-panel" role="dialog" aria-modal="true" aria-labelledby="ai-dialog-title">
-        <div class="ai-dialog-head">
-            <div>
-                <strong id="ai-dialog-title">Question a l assistant IA</strong>
-                <div class="muted">Posez votre question sur les donnees calculees, le resume IA, les ventes, le stock ou les factures, puis l IA vous repondra clairement.</div>
-            </div>
-            <div class="ai-dialog-toolbar">
-                <span class="ai-chat-counter" id="ai-dialog-history-count">0 echange</span>
-                <button type="button" class="btn btn-secondary ai-chat-icon-btn" id="ai-dialog-new-conversation" title="Nouvelle conversation" aria-label="Nouvelle conversation">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path d="M12 5v14M5 12h14" />
-                    </svg>
-                </button>
-                <button type="button" class="btn btn-secondary" id="ai-dialog-close">Fermer</button>
-            </div>
-        </div>
-            <form id="ai-dialog-form" class="stack ai-dialog-form">
-                @csrf
-                <label for="ai-dialog-question" class="ai-dialog-label">Votre question</label>
-                <textarea id="ai-dialog-question" placeholder="Ecrivez votre question sur le resume IA, les ventes, le stock, les factures ou les alertes."></textarea>
-                <div class="actions">
-                    <button type="submit" class="btn btn-primary" id="ai-dialog-submit">Envoyer la question</button>
+            <div class="ai-dialog-shell">
+                <aside class="ai-dialog-conversations">
+                    <div class="ai-dialog-conversations-head">
+                        <div>
+                            <strong>Historique</strong>
+                            <div class="muted">Vos conversations restent ici et vous pouvez reprendre une ancienne discussion.</div>
+                        </div>
+                        <span class="ai-chat-counter" id="ai-dialog-history-count">0 conversation</span>
+                    </div>
+                    <div class="ai-dialog-conversation-list" id="ai-dialog-conversation-list"></div>
+                </aside>
+                <div class="ai-dialog-main">
+                    <div class="ai-dialog-head">
+                        <div>
+                            <strong id="ai-dialog-title">Question a l assistant IA</strong>
+                            <div class="muted">Posez votre question sur les donnees calculees, le resume IA, les ventes, le stock ou les factures, puis l IA vous repondra clairement.</div>
+                        </div>
+                        <div class="ai-dialog-toolbar">
+                            <button type="button" class="btn btn-secondary ai-chat-icon-btn" id="ai-dialog-new-conversation" title="Nouvelle conversation" aria-label="Nouvelle conversation">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M12 5v14M5 12h14" />
+                                </svg>
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="ai-dialog-close">Fermer</button>
+                        </div>
+                    </div>
+                    <form id="ai-dialog-form" class="stack ai-dialog-form">
+                        @csrf
+                        <label for="ai-dialog-question" class="ai-dialog-label">Votre question</label>
+                        <textarea id="ai-dialog-question" placeholder="Ecrivez votre question sur le resume IA, les ventes, le stock, les factures ou les alertes."></textarea>
+                        <div class="actions">
+                            <button type="submit" class="btn btn-primary" id="ai-dialog-submit">Envoyer la question</button>
+                        </div>
+                    </form>
+                    <div class="ai-dialog-body" id="ai-dialog-body">
+                        <div class="ai-chat-empty" id="ai-chat-empty">
+                            <strong>Assistant IA</strong>
+                            <div class="muted">Vos echanges avec l assistant s afficheront ici. L historique reste visible sur cet appareil et peut etre vide a tout moment.</div>
+                        </div>
+                    </div>
                 </div>
-            </form>
-        <div class="ai-dialog-body" id="ai-dialog-body">
-            <div class="ai-chat-empty" id="ai-chat-empty">
-                <strong>Assistant IA</strong>
-                <div class="muted">Vos echanges avec l assistant s afficheront ici. L historique reste visible sur cet appareil et peut etre vide a tout moment.</div>
             </div>
-        </div>
     </div>
     </div>
     <script>

@@ -247,13 +247,7 @@ class AiAuditService
             $payload['analysis_origin'] = $payload['analysis_origin'] ?? 'ia';
             $payload['analysis_origin_label'] = $payload['analysis_origin_label'] ?? 'Reponse IA verifiee';
         } catch (RuntimeException $exception) {
-            $payload = [
-                'answer' => $this->buildLocalChatAnswer($question, $analysis),
-                'short_summary' => data_get($analysis, 'download_summary.conclusion')
-                    ?: data_get($analysis, 'download_summary.summary', 'Mode local temporaire.'),
-                'analysis_origin' => 'local',
-                'analysis_origin_label' => 'Reponse locale sur donnees',
-            ];
+            throw new RuntimeException('La vraie IA n a pas repondu. Relancez la question IA.');
         }
 
         LogIa::create([

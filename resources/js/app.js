@@ -26,6 +26,7 @@ const aiDialogClearHistory = document.getElementById('ai-dialog-clear-history');
 const aiDialogForm = document.getElementById('ai-dialog-form');
 const aiDialogQuestion = document.getElementById('ai-dialog-question');
 const aiDialogBody = document.getElementById('ai-dialog-body');
+const aiDialogConversationList = document.getElementById('ai-dialog-conversation-list');
 const aiDialogHistoryCount = document.getElementById('ai-dialog-history-count');
 const aiDialogSubmitButton = document.getElementById('ai-dialog-submit');
 const aiDialogNewConversation = document.getElementById('ai-dialog-new-conversation');
@@ -35,8 +36,11 @@ let isAiAnalyzing = false;
 const defaultSummaryButtonLabel = aiSidepanelSummary?.textContent?.trim() || 'Generer le resume IA';
 const dashboardAiSeed = window.dashboardAiSeed || null;
 let autoFilterTimer = null;
-const aiDialogHistoryStorageKey = 'ia-chart-ai-dialog-history';
-let aiDialogHistory = [];
+const aiDialogConversationsStorageKey = 'ia-chart-ai-dialog-conversations';
+const aiDialogActiveConversationStorageKey = 'ia-chart-ai-dialog-active-conversation';
+const aiDialogLegacyHistoryStorageKey = 'ia-chart-ai-dialog-history';
+let aiDialogConversations = [];
+let aiDialogActiveConversationId = null;
 
 // Cette fonction applique le theme clair ou sombre sur toute l application.
 const applyTheme = (theme) => {
@@ -196,6 +200,7 @@ const setSummaryButtonLoading = (loading) => {
 
 const openAiQuestionDialog = () => {
     if (!aiQuestionDialog) return;
+    ensureAiDialogConversationState();
     aiQuestionDialog.hidden = false;
     document.body.classList.add('dialog-open');
     renderAiDialogHistory();
@@ -304,50 +309,225 @@ const formatAiDialogTimestamp = (value) => {
     });
 };
 
-const readAiDialogHistory = () => {
-    try {
-        const raw = window.localStorage.getItem(aiDialogHistoryStorageKey);
-        const parsed = raw ? JSON.parse(raw) : [];
+const normalizeAiDialogEntry = (entry) => {
+    if (!entry || typeof entry !== 'object') {
+        return null;
+    }
 
-        return Array.isArray(parsed) ? parsed.filter((entry) => entry && typeof entry === 'object') : [];
+    return {
+        id: typeof entry.id === 'string' && entry.id ? entry.id : `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        question: typeof entry.question === 'string' ? entry.question : '',
+        answer: typeof entry.answer === 'string' ? entry.answer : '',
+        summary: typeof entry.summary === 'string' ? entry.summary : '',
+        pending: Boolean(entry.pending),
+        error: typeof entry.error === 'string' ? entry.error : '',
+        createdAt: typeof entry.createdAt === 'string' ? entry.createdAt : new Date().toISOString(),
+    };
+};
+
+const normalizeAiDialogConversation = (conversation, index = 0) => {
+    if (!conversation || typeof conversation !== 'object') {
+        return null;
+    }
+
+    const entries = Array.isArray(conversation.entries)
+        ? conversation.entries.map(normalizeAiDialogEntry).filter(Boolean)
+        : [];
+    const createdAt = typeof conversation.createdAt === 'string' ? conversation.createdAt : new Date().toISOString();
+    const updatedAt = typeof conversation.updatedAt === 'string'
+        ? conversation.updatedAt
+        : (entries[entries.length - 1]?.createdAt || createdAt);
+    const firstQuestion = entries.find((entry) => entry.question)?.question ?? '';
+    const fallbackTitle = firstQuestion.trim() ? firstQuestion.trim() : `Conversation ${index + 1}`;
+
+    return {
+        id: typeof conversation.id === 'string' && conversation.id ? conversation.id : `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        title: typeof conversation.title === 'string' && conversation.title.trim() ? conversation.title.trim() : fallbackTitle,
+        createdAt,
+        updatedAt,
+        entries,
+    };
+};
+
+const createAiDialogConversation = (title = 'Nouvelle conversation') => ({
+    id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+    title,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    entries: [],
+});
+
+const getAiDialogConversationTitle = (conversation, index = 0) => {
+    const title = typeof conversation?.title === 'string' ? conversation.title.trim() : '';
+    if (title) return title;
+
+    const firstQuestion = conversation?.entries?.find((entry) => entry?.question)?.question?.trim() ?? '';
+    if (firstQuestion) return firstQuestion.slice(0, 64);
+
+    return `Conversation ${index + 1}`;
+};
+
+const getAiDialogConversationPreview = (conversation) => {
+    const entries = Array.isArray(conversation?.entries) ? conversation.entries : [];
+    const lastEntry = entries[entries.length - 1];
+    const lastText = lastEntry?.answer || lastEntry?.question || '';
+    const preview = lastText.trim().replace(/\s+/g, ' ');
+
+    return preview.slice(0, 96) || 'Nouvelle conversation';
+};
+
+const refreshAiDialogConversationTitle = (conversation, index = 0) => {
+    const firstQuestion = conversation?.entries?.find((entry) => entry?.question)?.question?.trim() ?? '';
+    const currentTitle = typeof conversation?.title === 'string' ? conversation.title.trim() : '';
+    const isGenericTitle = !currentTitle
+        || currentTitle === 'Nouvelle conversation'
+        || /^Conversation \d+$/i.test(currentTitle);
+
+    if (isGenericTitle && firstQuestion) {
+        return firstQuestion.slice(0, 64);
+    }
+
+    if (currentTitle) {
+        return currentTitle;
+    }
+
+    if (firstQuestion) {
+        return firstQuestion.slice(0, 64);
+    }
+
+    return `Conversation ${index + 1}`;
+};
+
+const readAiDialogConversations = () => {
+    try {
+        const raw = window.localStorage.getItem(aiDialogConversationsStorageKey);
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            return Array.isArray(parsed) ? parsed.map(normalizeAiDialogConversation).filter(Boolean) : [];
+        }
+
+        const legacyRaw = window.localStorage.getItem(aiDialogLegacyHistoryStorageKey);
+        if (legacyRaw) {
+            const parsed = JSON.parse(legacyRaw);
+            const legacyEntries = Array.isArray(parsed)
+                ? parsed.map(normalizeAiDialogEntry).filter(Boolean).reverse()
+                : [];
+
+            if (legacyEntries.length > 0) {
+                return [normalizeAiDialogConversation({
+                    id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+                    title: legacyEntries.find((entry) => entry.question)?.question?.trim() || 'Conversation 1',
+                    createdAt: legacyEntries[0]?.createdAt || new Date().toISOString(),
+                    updatedAt: legacyEntries[legacyEntries.length - 1]?.createdAt || new Date().toISOString(),
+                    entries: legacyEntries,
+                })].filter(Boolean);
+            }
+        }
     } catch (error) {
         return [];
     }
+
+    return [];
 };
 
-const persistAiDialogHistory = () => {
+const persistAiDialogConversations = () => {
     try {
-        window.localStorage.setItem(aiDialogHistoryStorageKey, JSON.stringify(aiDialogHistory));
+        window.localStorage.setItem(aiDialogConversationsStorageKey, JSON.stringify(aiDialogConversations));
+        if (aiDialogActiveConversationId) {
+            window.localStorage.setItem(aiDialogActiveConversationStorageKey, aiDialogActiveConversationId);
+        }
     } catch (error) {
         // Rien a faire si le stockage local est bloque.
     }
 };
 
+const getActiveAiDialogConversation = () => {
+    if (aiDialogConversations.length === 0) return null;
+    return aiDialogConversations.find((conversation) => conversation.id === aiDialogActiveConversationId) || aiDialogConversations[0];
+};
+
+const ensureAiDialogConversationState = () => {
+    if (aiDialogConversations.length === 0) {
+        const starterConversation = createAiDialogConversation();
+        aiDialogConversations = [starterConversation];
+        aiDialogActiveConversationId = starterConversation.id;
+        persistAiDialogConversations();
+        return;
+    }
+
+    if (!getActiveAiDialogConversation()) {
+        aiDialogActiveConversationId = aiDialogConversations[0].id;
+    }
+
+    persistAiDialogConversations();
+};
+
 const updateAiDialogHistoryCount = () => {
     if (!aiDialogHistoryCount) return;
 
-    const count = aiDialogHistory.length;
-    aiDialogHistoryCount.textContent = count === 1 ? '1 echange' : `${count} echanges`;
+    const count = aiDialogConversations.length;
+    aiDialogHistoryCount.textContent = count === 1 ? '1 conversation' : `${count} conversations`;
 };
 
-const renderAiDialogHistory = () => {
-    if (!aiDialogBody) return;
+const renderAiDialogConversationList = () => {
+    if (!aiDialogConversationList) return;
 
-    if (aiDialogHistory.length === 0) {
-        aiDialogBody.innerHTML = `
-            <div class="ai-chat-empty" id="ai-chat-empty">
-                <strong>Assistant IA</strong>
-                <div class="muted">Vos echanges avec l assistant s afficheront ici. L historique reste visible sur cet appareil et peut etre vide a tout moment.</div>
+    if (aiDialogConversations.length === 0) {
+        aiDialogConversationList.innerHTML = `
+            <div class="ai-dialog-conversation-empty">
+                <strong>Aucune conversation</strong>
+                <div class="muted">Cliquez sur le bouton + pour commencer une nouvelle discussion.</div>
             </div>
         `;
         updateAiDialogHistoryCount();
         return;
     }
 
-    aiDialogBody.innerHTML = aiDialogHistory.map((entry) => {
+    aiDialogConversationList.innerHTML = aiDialogConversations.map((conversation, index) => {
+        const active = conversation.id === aiDialogActiveConversationId;
+        const title = escapeHtml(getAiDialogConversationTitle(conversation, index));
+        const preview = escapeHtml(getAiDialogConversationPreview(conversation));
+        const meta = `${conversation.entries.length} message${conversation.entries.length > 1 ? 's' : ''}`;
+        const updatedAt = formatAiDialogTimestamp(conversation.updatedAt);
+
+        return `
+            <button
+                type="button"
+                class="ai-dialog-conversation-item ${active ? 'is-active' : ''}"
+                data-conversation-id="${escapeHtml(conversation.id)}"
+            >
+                <strong>${title}</strong>
+                <div class="ai-dialog-conversation-preview">${preview}</div>
+                <div class="ai-dialog-conversation-meta">
+                    <span>${meta}</span>
+                    <span>${escapeHtml(updatedAt || 'A l instant')}</span>
+                </div>
+            </button>
+        `;
+    }).join('');
+
+    updateAiDialogHistoryCount();
+};
+
+const renderAiDialogHistory = () => {
+    if (!aiDialogBody) return;
+
+    const activeConversation = getActiveAiDialogConversation();
+
+    if (!activeConversation || activeConversation.entries.length === 0) {
+        aiDialogBody.innerHTML = `
+            <div class="ai-chat-empty" id="ai-chat-empty">
+                <strong>Assistant IA</strong>
+                <div class="muted">Vos conversations apparaissent ici. Ouvrez une nouvelle discussion ou reprenez un ancien fil depuis la colonne de gauche.</div>
+            </div>
+        `;
+        renderAiDialogConversationList();
+        return;
+    }
+
+    aiDialogBody.innerHTML = activeConversation.entries.map((entry) => {
         const question = escapeHtml(entry.question ?? '');
         const answer = escapeHtml(entry.answer ?? '');
-        const summary = escapeHtml(entry.summary ?? '');
         const error = escapeHtml(entry.error ?? '');
         const timestamp = formatAiDialogTimestamp(entry.createdAt);
         const pending = Boolean(entry.pending);
@@ -372,7 +552,7 @@ const renderAiDialogHistory = () => {
                             : (
                                 error
                                     ? `<div class="muted">${error}</div>`
-                                    : `<div class="muted">${answer}</div>${summary ? `<div class="muted">${summary}</div>` : ''}`
+                                    : `<div class="muted">${answer}</div>`
                             )
                     }
                 </div>
@@ -381,37 +561,70 @@ const renderAiDialogHistory = () => {
     }).join('');
 
     if (aiDialogBody.scrollTo) {
-        aiDialogBody.scrollTo({ top: 0, behavior: 'smooth' });
+        aiDialogBody.scrollTo({ top: aiDialogBody.scrollHeight, behavior: 'smooth' });
     } else {
-        aiDialogBody.scrollTop = 0;
+        aiDialogBody.scrollTop = aiDialogBody.scrollHeight;
     }
 
-    updateAiDialogHistoryCount();
+    renderAiDialogConversationList();
 };
 
 const addAiDialogEntry = (entry) => {
-    aiDialogHistory = [entry, ...aiDialogHistory];
-    persistAiDialogHistory();
+    ensureAiDialogConversationState();
+
+    const conversation = getActiveAiDialogConversation();
+    if (!conversation) return entry.id;
+
+    conversation.entries = [...conversation.entries, entry];
+    conversation.title = refreshAiDialogConversationTitle(conversation, aiDialogConversations.findIndex((item) => item.id === conversation.id));
+    conversation.updatedAt = entry.createdAt || new Date().toISOString();
+    aiDialogConversations = aiDialogConversations.map((item) => (
+        item.id === conversation.id ? { ...conversation } : item
+    ));
+    persistAiDialogConversations();
     renderAiDialogHistory();
     return entry.id;
 };
 
 const updateAiDialogEntry = (id, patch) => {
-    aiDialogHistory = aiDialogHistory.map((entry) => (
-        entry.id === id ? { ...entry, ...patch } : entry
-    ));
-    persistAiDialogHistory();
+    aiDialogConversations = aiDialogConversations.map((conversation) => {
+        const entryIndex = conversation.entries.findIndex((entry) => entry.id === id);
+        if (entryIndex === -1) return conversation;
+
+        const nextEntries = conversation.entries.map((entry) => (
+            entry.id === id ? { ...entry, ...patch } : entry
+        ));
+
+        const nextConversation = {
+            ...conversation,
+            entries: nextEntries,
+            updatedAt: new Date().toISOString(),
+        };
+
+        nextConversation.title = refreshAiDialogConversationTitle(
+            nextConversation,
+            aiDialogConversations.findIndex((item) => item.id === conversation.id)
+        );
+
+        return nextConversation;
+    });
+    persistAiDialogConversations();
     renderAiDialogHistory();
 };
 
 const clearAiDialogHistory = () => {
-    aiDialogHistory = [];
-    persistAiDialogHistory();
+    aiDialogConversations = [];
+    aiDialogActiveConversationId = null;
+    persistAiDialogConversations();
     renderAiDialogHistory();
 };
 
 const startNewAiConversation = () => {
-    clearAiDialogHistory();
+    const newConversation = createAiDialogConversation();
+    aiDialogConversations = [...aiDialogConversations, newConversation];
+    aiDialogActiveConversationId = newConversation.id;
+    persistAiDialogConversations();
+    renderAiDialogHistory();
 
     if (aiDialogQuestion) {
         aiDialogQuestion.value = '';
@@ -1627,7 +1840,24 @@ if (aiDialogNewConversation) {
     });
 }
 
-aiDialogHistory = readAiDialogHistory();
+if (aiDialogConversationList) {
+    aiDialogConversationList.addEventListener('click', (event) => {
+        const item = event.target.closest('[data-conversation-id]');
+        if (!item) return;
+
+        const conversationId = item.getAttribute('data-conversation-id');
+        if (!conversationId || conversationId === aiDialogActiveConversationId) return;
+
+        aiDialogActiveConversationId = conversationId;
+        persistAiDialogConversations();
+        renderAiDialogHistory();
+        aiDialogQuestion?.focus();
+    });
+}
+
+aiDialogConversations = readAiDialogConversations();
+aiDialogActiveConversationId = window.localStorage.getItem(aiDialogActiveConversationStorageKey) || aiDialogConversations[0]?.id || null;
+ensureAiDialogConversationState();
 renderAiDialogHistory();
 
 const renderDashboardSeedCharts = () => {
