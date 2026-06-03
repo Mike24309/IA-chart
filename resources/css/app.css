@@ -5461,89 +5461,6 @@ body,
 .auth-register-note {
     padding: 10px 12px;
 }
-/* Responsive safeguards for desktop and mobile */
-html,
-body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-img,
-video,
-canvas,
-svg {
-    max-width: 100%;
-    height: auto;
-}
-
-input,
-textarea,
-select,
-button {
-    max-width: 100%;
-}
-
-input[type="file"] {
-    width: 100%;
-}
-
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-table {
-    width: 100%;
-}
-
-@media (max-width: 1024px) {
-    .container,
-    .page-container,
-    .page-content,
-    .content-wrapper,
-    .main-content,
-    .dashboard-content,
-    .auth-wrapper,
-    .auth-container,
-    .auth-card,
-    .login-card,
-    .profile-card,
-    .invoice-card,
-    .report-card,
-    .modal-dialog {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-    .sidebar,
-    .aside,
-    aside {
-        width: 100% !important;
-        max-width: 100% !important;
-        position: relative !important;
-    }
-
-    .hide-mobile {
-        display: none !important;
-    }
-
-    .stack-mobile {
-        display: block !important;
-        width: 100% !important;
-    }
-
-    form {
-        width: 100%;
-    }
-
-    .btn,
-    button {
-        max-width: 100%;
-    }
-}
-
-/* Final shell stabilization for admin and employee layouts */
 .app-shell {
     display: grid !important;
     grid-template-columns: 280px minmax(0, 1fr) !important;
@@ -5570,24 +5487,4 @@ body.role-employee .sidebar {
     min-width: 0 !important;
     width: auto !important;
     overflow-x: hidden !important;
-}
-
-@media (max-width: 900px) {
-    .app-shell {
-        display: flex !important;
-        flex-direction: column !important;
-        min-height: auto !important;
-    }
-
-    .sidebar,
-    body.role-admin .sidebar,
-    body.role-employee .sidebar {
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: 100% !important;
-        height: auto !important;
-        min-height: auto !important;
-        position: relative !important;
-        top: auto !important;
-    }
 }
