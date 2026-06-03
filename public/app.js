@@ -446,6 +446,32 @@ const getActiveAiDialogConversation = () => {
     return aiDialogConversations.find((conversation) => conversation.id === aiDialogActiveConversationId) || aiDialogConversations[0];
 };
 
+const setActiveAiDialogConversation = (conversationId) => {
+    if (!conversationId) return;
+
+    aiDialogActiveConversationId = conversationId;
+    persistAiDialogConversations();
+    renderAiDialogHistory();
+    aiDialogQuestion?.focus();
+};
+
+const deleteAiDialogConversation = (conversationId) => {
+    if (!conversationId) return;
+
+    aiDialogConversations = aiDialogConversations.filter((conversation) => conversation.id !== conversationId);
+
+    if (aiDialogConversations.length === 0) {
+        const starterConversation = createAiDialogConversation();
+        aiDialogConversations = [starterConversation];
+        aiDialogActiveConversationId = starterConversation.id;
+    } else if (aiDialogActiveConversationId === conversationId) {
+        aiDialogActiveConversationId = aiDialogConversations[0].id;
+    }
+
+    persistAiDialogConversations();
+    renderAiDialogHistory();
+};
+
 const ensureAiDialogConversationState = () => {
     if (aiDialogConversations.length === 0) {
         const starterConversation = createAiDialogConversation();
@@ -496,7 +522,20 @@ const renderAiDialogConversationList = () => {
                 class="ai-dialog-conversation-item ${active ? 'is-active' : ''}"
                 data-conversation-id="${escapeHtml(conversation.id)}"
             >
-                <strong>${title}</strong>
+                <div class="ai-dialog-conversation-item-head">
+                    <strong>${title}</strong>
+                    <button
+                        type="button"
+                        class="ai-dialog-conversation-delete"
+                        data-conversation-delete="${escapeHtml(conversation.id)}"
+                        aria-label="Supprimer la conversation ${title}"
+                        title="Supprimer cette conversation"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" />
+                        </svg>
+                    </button>
+                </div>
                 <div class="ai-dialog-conversation-preview">${preview}</div>
                 <div class="ai-dialog-conversation-meta">
                     <span>${meta}</span>
@@ -1842,16 +1881,21 @@ if (aiDialogNewConversation) {
 
 if (aiDialogConversationList) {
     aiDialogConversationList.addEventListener('click', (event) => {
+        const deleteButton = event.target.closest('[data-conversation-delete]');
+        if (deleteButton) {
+            event.preventDefault();
+            event.stopPropagation();
+            deleteAiDialogConversation(deleteButton.getAttribute('data-conversation-delete'));
+            return;
+        }
+
         const item = event.target.closest('[data-conversation-id]');
         if (!item) return;
 
         const conversationId = item.getAttribute('data-conversation-id');
         if (!conversationId || conversationId === aiDialogActiveConversationId) return;
 
-        aiDialogActiveConversationId = conversationId;
-        persistAiDialogConversations();
-        renderAiDialogHistory();
-        aiDialogQuestion?.focus();
+        setActiveAiDialogConversation(conversationId);
     });
 }
 

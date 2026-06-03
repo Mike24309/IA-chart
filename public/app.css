@@ -2692,6 +2692,45 @@ body.dialog-open {
     gap: 6px;
 }
 
+.ai-dialog-conversation-item-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.ai-dialog-conversation-delete {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    background: rgba(255, 255, 255, 0.95);
+    color: #111111;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: transform .15s ease, border-color .15s ease, background .15s ease, color .15s ease;
+}
+
+.ai-dialog-conversation-delete:hover {
+    border-color: rgba(0, 0, 0, 0.22);
+    background: #111111;
+    color: #ffffff;
+    transform: scale(1.03);
+}
+
+.ai-dialog-conversation-delete svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
 .ai-dialog-conversation-empty {
     border: 1px dashed rgba(0, 0, 0, 0.14);
     border-radius: 18px;
