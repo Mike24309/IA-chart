@@ -128,7 +128,7 @@ class AiAuditService
             }
         }
 
-        try {
+        $analysis = $this->runAiWithRetries(function () use ($metricsForPrompt, $localAnalysis, $metrics, $settings) {
             $prompt = $this->buildSummaryPrompt($metricsForPrompt, $localAnalysis, $settings);
             $responsePayload = $this->callGemini($prompt, $settings->modele_openrouter, null, null, false, 18, 8, 1, 500);
             $analysis = $this->extractStructuredJsonWithRepair($responsePayload, $settings->modele_openrouter, 'analysis', 18, 8, 1, 500);
@@ -147,13 +147,9 @@ class AiAuditService
             if (! $this->isReportAnalysisComplete($analysis)) {
                 throw new RuntimeException('La vraie IA n a pas renvoye un resume complet. Relancez le resume IA.');
             }
-        } catch (RuntimeException $exception) {
-            $analysis = $this->buildFallbackAnalysis($metrics);
-            $analysis['analysis_mode'] = 'summary';
-            $analysis['analysis_origin'] = 'ia';
-            $analysis['analysis_origin_label'] = 'Resume IA simule localement';
-            $analysis['company'] = array_merge(data_get($metrics, 'company', []), data_get($analysis, 'company', []));
-        }
+
+            return $analysis;
+        }, 3, 1300);
 
         $log = LogIa::create([
             'utilisateur_id' => $user->id,
@@ -240,15 +236,15 @@ class AiAuditService
         $liveMetrics = $this->compactMetricsForPrompt($this->buildMetricsSnapshot($settings));
 
         $prompt = $this->buildChatPrompt($analysis, $liveMetrics, $question, $recentChatHistory->all());
-        try {
+        $payload = $this->runAiWithRetries(function () use ($prompt, $settings) {
             $responsePayload = $this->callGemini($prompt, $settings->modele_openrouter, null, null, false);
             $payload = $this->extractStructuredJsonWithRepair($responsePayload, $settings->modele_openrouter, 'chat');
 
             $payload['analysis_origin'] = $payload['analysis_origin'] ?? 'ia';
             $payload['analysis_origin_label'] = $payload['analysis_origin_label'] ?? 'Reponse IA verifiee';
-        } catch (RuntimeException $exception) {
-            throw new RuntimeException('La vraie IA n a pas repondu. Relancez la question IA.');
-        }
+
+            return $payload;
+        }, 3, 1000);
 
         LogIa::create([
             'utilisateur_id' => $user->id,
@@ -263,6 +259,43 @@ class AiAuditService
         ]);
 
         return $payload;
+    }
+
+    /**
+     * Essaie plusieurs fois de produire une reponse IA avant de remonter une erreur.
+     */
+    private function runAiWithRetries(callable $callback, int $attempts = 3, int $delayMs = 1000): array
+    {
+        $attempts = max(1, $attempts);
+        $lastException = null;
+
+        for ($attempt = 1; $attempt <= $attempts; $attempt++) {
+            try {
+                $result = $callback();
+
+                if (! is_array($result)) {
+                    throw new RuntimeException('La vraie IA n a pas renvoye une reponse exploitable.');
+                }
+
+                return $result;
+            } catch (RuntimeException $exception) {
+                $lastException = $exception;
+            } catch (\Throwable $exception) {
+                $lastException = $exception instanceof RuntimeException
+                    ? $exception
+                    : new RuntimeException('Le service IA a rencontre une erreur temporaire : ' . $exception->getMessage());
+            }
+
+            if ($attempt < $attempts) {
+                usleep(max(0, $delayMs) * 1000);
+            }
+        }
+
+        if ($lastException instanceof RuntimeException) {
+            throw $lastException;
+        }
+
+        throw new RuntimeException('La vraie IA n a pas repondu. Relancez la question ou le resume IA.');
     }
 
     // Cette methode prepare les donnees qui serviront a generer le rapport PDF IA telechargeable.
